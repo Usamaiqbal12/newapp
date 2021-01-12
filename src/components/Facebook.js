@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const BtnFacebook = styled.button`
-  background: #3b5998;
-  color: white;
-  border: 0px transparent;
-  text-align: center;
-  margin: 5px;
-  display: inline-block;
+// const BtnFacebook = styled.button`
+//   background: #3b5998;
+//   color: white;
+//   border: 0px transparent;
+//   text-align: center;
+//   margin: 5px;
+//   display: inline-block;
 
-  &:hover {
-    background: #3b5998;
-    opacity: 0.6;
-  }
-`;
+//   &:hover {
+//     background: #3b5998;
+//     opacity: 0.6;
+//   }
+// `;
 
 class Facebook extends Component {
   state = {

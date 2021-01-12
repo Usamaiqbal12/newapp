@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useForm from "./useForm";
 import "../index.css";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -66,7 +66,7 @@ const SignUp = () => {
   );
   const classes = useStyles();
   const [gender, setGender] = React.useState("");
-  const handleChanging = (event) => {
+  const handleGenderChanging = (event) => {
     setGender(event.target.value);
   };
 
@@ -159,7 +159,7 @@ const SignUp = () => {
                   id="demo-customized-select-native"
                   variat="outlined"
                   value={gender}
-                  onChange={handleChanging}
+                  onChange={handleGenderChanging}
 
                   // input={<BootstrapInput />}
                 >
