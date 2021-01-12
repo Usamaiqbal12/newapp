@@ -4,7 +4,8 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/userProfile";
 import NavBar from "./components/Header";
-import CreateSearch from "./components/createSearch";
+import CreateDataset from "./components/dataset/CreateDataset";
+import Parameters from "./components/dataset/Parameters";
 class App extends Component {
   render() {
     return (
@@ -15,7 +16,10 @@ class App extends Component {
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={UserProfile} />
-            <Route path="/createsearch" component={CreateSearch} />
+            <Route path="/createdataset">
+              <CreateDataset />
+            </Route>
+            {/* <Route path="/createsearch" component={CreateDataset} /> */}
           </Switch>
         </main>
       </>
