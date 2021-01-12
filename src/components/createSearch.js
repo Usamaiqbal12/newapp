@@ -18,6 +18,7 @@ class CreateSearch extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
   };
+
   render() {
     const { attributes, gender, mortality, size, handleSubmit } = this.state;
 
