@@ -16,7 +16,8 @@ function App() {
     let mounted = true;
     if (localStorage.getItem('jwt'))
     {
-    datasetListFunc().then((items) => {
+    const user_id = JSON.parse(localStorage.getItem('user_id'))
+    datasetListFunc(user_id).then((items) => {
       if (mounted) {
         dispatch({
             type:'ADDDATASET',

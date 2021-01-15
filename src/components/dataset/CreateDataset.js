@@ -11,7 +11,7 @@ function CreateDataset() {
     morality: "",
     size: 0,
     name: "",
-    type_dataset:"parameter"
+    type_dataset:"parameter",
   });
   const handleAttribute = (e) => {
     const index = attributes.indexOf(e.target.name);

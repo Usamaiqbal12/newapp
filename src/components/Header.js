@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { isAuthenticated } from "../services/Api";
+import { useStateValue } from "../StateProvider";
 const NavBar = () => {
   const [auth, setAuth] = useState(false)
+  const [, dispatch] = useStateValue();
+
   useEffect(()=>{
     if(localStorage.getItem('jwt'))
     {
@@ -12,6 +15,10 @@ const NavBar = () => {
   const logout=e=>{
     setAuth(false)
     localStorage.removeItem('jwt')
+    dispatch({
+      type: "ADDDATASET",
+      data: [],
+    });
   }
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">

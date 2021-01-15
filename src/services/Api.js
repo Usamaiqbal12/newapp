@@ -1,5 +1,3 @@
-
-
 const API_URL = "http://localhost:8000/";
 
 const createdataset = (e) => {
@@ -14,17 +12,17 @@ const createdataset = (e) => {
     .then((data) => console.log(data));
 };
 
-const authorsList = (e) => {
+const authorsList = () => {
   return fetch(`${API_URL}author/list`, {
     method: "get",
   }).then((data) => data.json());
 };
 const datasetListFunc = (e) => {
-  return fetch(`${API_URL}dataset/list`, {
+  return fetch(`${API_URL}dataset/list/${e}`, {
     method: "get",
-    headers:{
-    'Authorization': `Token ${JSON.parse(localStorage.getItem('jwt'))} `,
-    }
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
   }).then((data) => data.json());
 };
 
