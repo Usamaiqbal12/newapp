@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.css";
 function Parameters(props) {
-  const { handleChange, handleAttribute, submit } = props;
+  const { handleChange, handleAttribute } = props;
 
   return (
     <div className="params">

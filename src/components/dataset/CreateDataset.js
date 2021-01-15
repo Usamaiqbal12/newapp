@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createdataset } from "../../services/Api";
 import Parameters from "./Parameters";
 function CreateDataset() {
   const history = useHistory()
-  const data = ["athlete", "politician"];
   const [attributes, setattributes] = useState([]);
   const [params, setparams] = useState({
     attributes: attributes,

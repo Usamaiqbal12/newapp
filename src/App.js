@@ -1,20 +1,21 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import UserProfile from "./components/userProfile";
 import NavBar from "./components/Header";
 import CreateDataset from "./components/dataset/CreateDataset";
-import Parameters from "./components/dataset/Parameters";
 import Manual from "./components/dataset/Manual";
 import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
 import { datasetListFunc } from "./services/Api";
 function App() {
-  const [{},dispatch]=useStateValue();
+  const [,dispatch]=useStateValue();
   useEffect(() => {
     let mounted = true;
+    if (localStorage.getItem('jwt'))
+    {
     datasetListFunc().then((items) => {
       if (mounted) {
         dispatch({
@@ -23,6 +24,7 @@ function App() {
           })
       }
     });
+  }
     return () => (mounted = false);
   }, []);
   return (

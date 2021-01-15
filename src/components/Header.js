@@ -1,6 +1,18 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link, NavLink } from "react-router-dom";
+import { isAuthenticated } from "../services/Api";
 const NavBar = () => {
+  const [auth, setAuth] = useState(false)
+  useEffect(()=>{
+    if(localStorage.getItem('jwt'))
+    {
+      setAuth(true)
+    }
+  },[auth])
+  const logout=e=>{
+    setAuth(false)
+    localStorage.removeItem('jwt')
+  }
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">
       <Link className="navbar-brand" to="#">
@@ -38,11 +50,18 @@ const NavBar = () => {
           </li>
         </ul>
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink className="nav-link mr-2" to="/signin">
-              Login
+          {isAuthenticated()? <li onClick={logout} className="nav-item">
+            <NavLink className="nav-link mr-2" to="/">
+              Logout
             </NavLink>
-          </li>
+          </li>:
+           <li className="nav-item">
+           <NavLink className="nav-link mr-2" to="/signin">
+             Login
+           </NavLink>
+         </li>
+          }
+         
           <li className="nav-item">
             <NavLink className="nav-link" to="/signup">
               SigUp

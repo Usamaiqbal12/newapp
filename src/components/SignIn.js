@@ -5,22 +5,28 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Facebook from "./Facebook";
-import Google from "./Google";
-import { signIn, authenticate, isAuthenticated } from "../services/Api";
-import { Redirect } from "react-router-dom";
+// import Facebook from "./Facebook";
+// import Google from "./Google";
+import {
+  signIn,
+  authenticate,
+  isAuthenticated,
+  datasetListFunc,
+} from "../services/Api";
+import { Link, Redirect } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link to='/' color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -50,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const [, dispatch] = useStateValue();
   const classes = useStyles();
   const [userData, setuserData] = useState({
     email: "",
@@ -60,14 +67,17 @@ export default function SignIn() {
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(userData);
     signIn(JSON.stringify(userData)).then((data) => {
-      console.log(data.data.token);
       if (data.data.token) {
         authenticate(data.data.token, () => {
           setuserData({ email: "", password: "" });
+          datasetListFunc().then((items) => {
+            dispatch({
+              type: "ADDDATASET",
+              data: items.data,
+            });
+          });
         });
-        console.log(data);
       }
     });
   };
@@ -137,7 +147,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

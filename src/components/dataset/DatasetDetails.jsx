@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getDataSet } from "../../services/Api";
-import { useStateValue } from "../../StateProvider";
 function DatasetDetails(props) {
-//   const [{ datasetList }, dispatch] = useStateValue();
   const [foundedValue, setfoundedValue] = useState([]);
   useEffect(() => {
     const {
@@ -13,7 +11,7 @@ function DatasetDetails(props) {
       if (mounted) {
      setfoundedValue(
         items.data
-        )
+        ) 
       }
     });
     return () => (mounted = false);
@@ -27,7 +25,6 @@ function DatasetDetails(props) {
     <h2>authors:{foundedValue.author&&foundedValue.author.map((v,i)=>{
         return <p key={i}>{v.first_name} {v.last_name}</p>
     })}</h2>
-    {console.log(foundedValue.author)}
     </>
     }
 

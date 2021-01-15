@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Route, useHistory } from "react-router-dom";
+
+import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
-import UserProfile from "../userProfile";
 function ListDataset() {
-  const [{datasetList}, dispatch] = useStateValue();
+  const [{datasetList},] = useStateValue();
   const history = useHistory();
   return (
     <>

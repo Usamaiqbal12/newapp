@@ -6,7 +6,7 @@ import {
 } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 function Manual() {
-  const [{}, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
   const [authors, setauthorsList] = useState([]);
   const [authorsId, setauthorsId] = useState([]);
   const [authorsData, setauthorsData] = useState({

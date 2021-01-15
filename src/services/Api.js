@@ -1,4 +1,4 @@
-import axios from "axios";
+
 
 const API_URL = "http://localhost:8000/";
 
@@ -22,6 +22,9 @@ const authorsList = (e) => {
 const datasetListFunc = (e) => {
   return fetch(`${API_URL}dataset/list`, {
     method: "get",
+    headers:{
+    'Authorization': `Token ${JSON.parse(localStorage.getItem('jwt'))} `,
+    }
   }).then((data) => data.json());
 };
 
@@ -50,9 +53,7 @@ export const signup = (user) => {
     },
     body: JSON.stringify(user),
   })
-    .then((response) => {
-      return response.json();
-    })
+    .then((data) => data.json())
     .catch((err) => console.log(err));
 };
 
