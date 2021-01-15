@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { createdataset } from "../../services/Api";
 import Parameters from "./Parameters";
 function CreateDataset() {
+  const history = useHistory()
   const data = ["athlete", "politician"];
   const [attributes, setattributes] = useState([]);
   const [params, setparams] = useState({
@@ -43,6 +45,10 @@ function CreateDataset() {
         handleChange={handleChange}
       />
       <div>
+        <button onClick={()=> history.push('/manual')}>Advance Selection</button>
+      </div>
+      <div>
+        Dataset Name:
         <input type="text" onChange={handleChange} name="name" />
         <button onClick={submit}>submit</button>
       </div>

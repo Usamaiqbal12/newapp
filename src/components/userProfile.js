@@ -39,6 +39,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="container">
+        {console.log(this.props.getDataSet())}
         <div className="row">
           <div className="col-3 bg-light mt-4">
             <img src={this.state.Image} alt="abc" />

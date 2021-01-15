@@ -27,6 +27,11 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink className="nav-link" to="/dataset">
+              Dataset
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink className="nav-link" to="/createsearch">
               Create Search
             </NavLink>

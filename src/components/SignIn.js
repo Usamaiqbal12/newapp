@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Facebook from "./Facebook";
 import Google from "./Google";
+import { signIn, authenticate, isAuthenticated } from "../services/Api";
+import { Redirect } from "react-router-dom";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -49,7 +51,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+  const [userData, setuserData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    setuserData({ ...userData, [e.target.name]: e.target.value });
+  };
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(userData);
+    signIn(JSON.stringify(userData)).then((data) => {
+      console.log(data.data.token);
+      if (data.data.token) {
+        authenticate(data.data.token, () => {
+          setuserData({ email: "", password: "" });
+        });
+        console.log(data);
+      }
+    });
+  };
+  const performRedirect = () => {
+    if (isAuthenticated()) {
+      return <Redirect to="/" />;
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -60,11 +86,13 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submit}>
           <TextField
             variant="outlined"
             margin="normal"
             required
+            onChange={handleChange}
+            value={userData.email}
             fullWidth
             id="email"
             label="Email Address"
@@ -75,8 +103,10 @@ export default function SignIn() {
           <TextField
             variant="outlined"
             margin="normal"
+            value={userData.password}
             required
             fullWidth
+            onChange={handleChange}
             name="password"
             label="Password"
             type="password"
@@ -96,10 +126,10 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-
+          {/* 
           <Facebook />
 
-          <Google />
+          <Google /> */}
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
@@ -117,6 +147,7 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      {performRedirect()}
     </Container>
   );
 }
