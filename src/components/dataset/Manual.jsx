@@ -13,7 +13,6 @@ function Manual() {
     name: "",
     type_dataset: "manual",
     authors: [],
-    user_id:JSON.parse(localStorage.getItem('user_id'))
   });
   useEffect(() => {
     let mounted = true;
@@ -38,11 +37,12 @@ function Manual() {
       if (authorsData.authors.name !== "") {
         createdataset(JSON.stringify(authorsData));
         setauthorsData({ ...authorsData, name: "" });
-        datasetListFunc(authorsData.user_id).then((items) => {
+        datasetListFunc().then((items) => {
           dispatch({
             type: "ADDDATASET",
             data: items.data,
           });
+          console.log('helo');
         });
       } else {
         alert("Please Type Dataset Name !");

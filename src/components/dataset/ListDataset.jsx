@@ -19,7 +19,7 @@ function ListDataset() {
           {datasetList.length > 0
             ? datasetList[0].map((v, i) => {
                 return (
-                  <tr key={i}>
+                  <tr key={i} style={{cursor:'pointer'}}>
                     <th scope="row">{i + 1}</th>
                     <th onClick={() => history.push(`/dataset/detail/${v.id}`)}>
                       {v.dataset_name}

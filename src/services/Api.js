@@ -6,19 +6,28 @@ const createdataset = (e) => {
     body: e,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
     },
   })
     .then((res) => res.json())
     .then((data) => console.log(data));
 };
 
+export const deleteDatasetFunc = async (e) => {
+  return await fetch(`${API_URL}dataset/delete/${e}`, {
+    method: "delete",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
+  }).then((data) => data.json());
+};
 const authorsList = () => {
   return fetch(`${API_URL}author/list`, {
     method: "get",
   }).then((data) => data.json());
 };
 const datasetListFunc = (e) => {
-  return fetch(`${API_URL}dataset/list/${e}`, {
+  return fetch(`${API_URL}dataset/list`, {
     method: "get",
     headers: {
       Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
@@ -32,6 +41,7 @@ const getDataSet = (e) => {
   }).then((data) => data.json());
 };
 
+// Auth--->
 const signIn = (e) => {
   return fetch(`${API_URL}user/login/`, {
     method: "post",
