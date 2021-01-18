@@ -69,7 +69,6 @@ export default function SignIn() {
     e.preventDefault();
     signIn(JSON.stringify(userData)).then((data) => {
       if (data.data.token) {
-        localStorage.setItem('user_id',JSON.stringify(data.data.id))
         authenticate(data.data.token, () => {
           setuserData({ email: "", password: "" });
           datasetListFunc(data.data.id).then((items) => {

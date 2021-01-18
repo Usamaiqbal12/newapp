@@ -15,7 +15,7 @@ function Parameters(props) {
           <input type="checkbox" name="jadu" onChange={handleAttribute} /> jadu
         </div>
         <div>
-          <input type="checkbox" name="politician" onChange={handleAttribute} />{" "}
+          <input type="checkbox" name="Politician" onChange={handleAttribute} />{" "}
           politician
         </div>
       </div>

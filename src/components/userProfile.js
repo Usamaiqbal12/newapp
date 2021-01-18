@@ -1,26 +1,4 @@
 import React, { Component } from "react";
-// import { Grid, Paper } from "@material-ui/core";
-// import { getUsers } from "./../services/FakeUserData";
-// import { getUsers } from "../services/FakeUserData";
-// import users from "./../services/FakeUserData";
-// const UserProfile = () => {
-//   return (
-//     <div>
-//       <Grid container spacing={3}>
-//         <Grid item xs>
-//           {users.map((user) => {
-//             return <Paper key={user.id}>{user.img}</Paper>;
-//           })}
-//         </Grid>
-
-//         <Grid item xs={8}>
-//           <Paper>xs=6</Paper>
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// };
-
 class UserProfile extends Component {
   state = {
     id: 1,

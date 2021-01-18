@@ -1,6 +1,7 @@
 
 export const initialState={
-    datasetList:[]
+    datasetList:[],
+    user:[]
 }
     
 const reducer = (state,action)=>{
@@ -10,6 +11,11 @@ const reducer = (state,action)=>{
                 ...state,
                 datasetList:[action.data],
             };
+        case 'ADDUSER':
+            return {
+                ...state,
+                user:[action.data]
+            }
         default:
             return state;
     }

@@ -10,14 +10,26 @@ import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
 import { datasetListFunc } from "./services/Api";
+import Newparams from "./components/dataset/new";
+import { getUser } from "./services/user/userApi";
+import Profile from "./components/user/Profile";
+import EditProfile from "./components/user/EditProfile";
+import Params from './components/dataset/Params'
 function App() {
   const [,dispatch]=useStateValue();
   useEffect(() => {
     let mounted = true;
     if (localStorage.getItem('jwt'))
     {
-    const user_id = JSON.parse(localStorage.getItem('user_id'))
-    datasetListFunc(user_id).then((items) => {
+    getUser().then(data=>{
+      if(mounted){
+        dispatch({
+          type:"ADDUSER",
+          data:data
+        })
+      }
+    })
+    datasetListFunc().then((items) => {
       if (mounted) {
         dispatch({
             type:'ADDDATASET',
@@ -35,7 +47,7 @@ function App() {
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/profile" component={UserProfile} />
+          <Route path="/profile" component={Profile} />
           <Route path="/createsearch">
             <CreateDataset />
           </Route>
@@ -47,6 +59,9 @@ function App() {
           </Route>
           <Route path="/dataset/detail/:id" component={DatasetDetails}>
           </Route>
+          <Route path='/new'><Params/> </Route>
+          <Route path='/editprofile'><EditProfile /> </Route>
+
         </Switch>
       </main>
     </>

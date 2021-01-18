@@ -46,6 +46,11 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink className="nav-link" to="/editprofile">
+              Edit Profile
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink className="nav-link" to="/dataset">
               Dataset
             </NavLink>

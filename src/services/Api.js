@@ -21,13 +21,16 @@ export const deleteDatasetFunc = async (e) => {
     },
   }).then((data) => data.json());
 };
-const authorsList = () => {
-  return fetch(`${API_URL}author/list`, {
+const authorsList = async() => {
+  return await fetch(`${API_URL}author/list`, {
     method: "get",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
   }).then((data) => data.json());
 };
-const datasetListFunc = (e) => {
-  return fetch(`${API_URL}dataset/list`, {
+const datasetListFunc = async(e) => {
+  return await fetch(`${API_URL}dataset/list`, {
     method: "get",
     headers: {
       Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
@@ -35,9 +38,12 @@ const datasetListFunc = (e) => {
   }).then((data) => data.json());
 };
 
-const getDataSet = (e) => {
-  return fetch(`${API_URL}dataset/authorslist/${e}`, {
+const getDataSet = async(e) => {
+  return await fetch(`${API_URL}dataset/authorslist/${e}`, {
     method: "get",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
   }).then((data) => data.json());
 };
 

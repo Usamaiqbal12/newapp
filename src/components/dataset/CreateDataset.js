@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { createdataset } from "../../services/Api";
 import Parameters from "./Parameters";
 function CreateDataset() {
-  const history = useHistory()
+  const history = useHistory();
   const [attributes, setattributes] = useState([]);
   const [params, setparams] = useState({
     attributes: attributes,
@@ -11,7 +11,7 @@ function CreateDataset() {
     morality: "",
     size: 0,
     name: "",
-    type_dataset:"parameter",
+    type_dataset: "parameter",
   });
   const handleAttribute = (e) => {
     const index = attributes.indexOf(e.target.name);
@@ -34,7 +34,22 @@ function CreateDataset() {
   };
   const submit = (e) => {
     e.preventDefault();
-    createdataset(JSON.stringify(params))
+    if (
+      params.attributes == [] ||
+      params.gender === "" ||
+      params.morality === "" ||
+      params.size === 0
+    ) {
+      alert('Please Select Parameters!')
+    }
+    else if(params.name === "")
+    {
+      alert('Please Type Dataset Name')
+    } 
+    else {
+      createdataset(JSON.stringify(params));
+      setparams({...params, name:""})
+    }
   };
   return (
     <>
@@ -44,11 +59,13 @@ function CreateDataset() {
         handleChange={handleChange}
       />
       <div>
-        <button onClick={()=> history.push('/manual')}>Advance Selection</button>
+        <button onClick={() => history.push("/manual")}>
+          Advance Selection
+        </button>
       </div>
       <div>
         Dataset Name:
-        <input type="text" onChange={handleChange} name="name" />
+        <input type="text" onChange={handleChange} value={params.name} name="name" />
         <button onClick={submit}>submit</button>
       </div>
     </>
