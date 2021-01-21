@@ -1,38 +1,42 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createdataset } from "../../services/Api";
-import Parameters from "./Parameters";
+import Params from "./Params";
+import "./style.css";
 function CreateDataset() {
   const history = useHistory();
-  const [attributes, setattributes] = useState([]);
   const [params, setparams] = useState({
-    attributes: attributes,
+    attributes: "",
     gender: "",
     morality: "",
     size: 0,
     name: "",
     type_dataset: "parameter",
   });
-  const handleAttribute = (e) => {
-    const index = attributes.indexOf(e.target.name);
-    if (!e.target.checked) {
-      attributes.splice(index, 1);
-      setattributes([...attributes]);
-      setparams({ ...params, attributes: [...attributes] });
-    } else {
-      if (index === -1) {
-        setattributes([...attributes, e.target.name]);
-        setparams({
-          ...params,
-          attributes: [...params.attributes, e.target.name],
-        });
-      }
-    }
-  };
+
   const handleChange = (e) => {
-    setparams({ ...params, [e.target.name]: e.target.value });
+    setparams({ ...params, [e[0].name]: e[0].value });
   };
-  const submit = (e) => {
+
+  const onSelect = (e) => {
+    let attributes = [];
+    e.map((v) => attributes.push(v.name));
+
+    var unique = attributes.filter(onlyUnique);
+    setparams({ ...params, attributes: unique });
+  };
+  const onRemove = (e) => {
+    let attributes = [];
+    e.map((v) => {
+      attributes.push(v.name);
+    });
+
+    setparams({ ...params, attributes: attributes });
+  };
+  const onlyUnique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
+  const onSubmit = (e) => {
     e.preventDefault();
     if (
       params.attributes == [] ||
@@ -40,33 +44,42 @@ function CreateDataset() {
       params.morality === "" ||
       params.size === 0
     ) {
-      alert('Please Select Parameters!')
-    }
-    else if(params.name === "")
-    {
-      alert('Please Type Dataset Name')
-    } 
-    else {
+      alert("Please Select Parameters!");
+    } else if (params.name === "") {
+      alert("Please Type Dataset Name");
+    } else {
       createdataset(JSON.stringify(params));
-      setparams({...params, name:""})
+      setparams({ ...params, name: "" });
     }
   };
+
   return (
     <>
-      <Parameters
-        submit={submit}
-        handleAttribute={handleAttribute}
+      <Params
+        submit={onSubmit}
         handleChange={handleChange}
+        onSelect={onSelect}
+        onRemove={onRemove}
       />
-      <div>
-        <button onClick={() => history.push("/manual")}>
+      <div className=" butnA">
+        <button
+          className="btn btn-light"
+          onClick={() => history.push("/manual")}
+        >
           Advance Selection
         </button>
       </div>
       <div>
         Dataset Name:
-        <input type="text" onChange={handleChange} value={params.name} name="name" />
-        <button onClick={submit}>submit</button>
+        <input
+          type="text"
+          onChange={(e) => setparams({ ...params, name: e.target.value })}
+          name="name"
+          value={params.name}
+        />
+        <button className="btn btn-light" onClick={onSubmit}>
+          submit
+        </button>
       </div>
     </>
   );
