@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-// import Facebook from "./Facebook";
+import Facebook from "./Facebook";
 // import Google from "./Google";
 import {
   signIn,
@@ -143,10 +143,10 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-          {/* 
+          
           <Facebook />
 
-          <Google /> */}
+          {/* <Google /> */}
           <Grid container>
             <Grid item xs>
               <Link to="/" variant="body2">

@@ -21,3 +21,14 @@ export const updateUser =(e,pk)=>{
   })
     .then((data) => data.json());
 }
+
+export const facebookLogin=e=>{
+  return fetch(`${API_URL}user/facebooklogin/`, {
+    method: "post",
+    body:JSON.stringify(e),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json());
+}
