@@ -71,6 +71,15 @@ export const signup = (user) => {
     .catch((err) => console.log(err));
 };
 
+export const discussionmode = (e) => {
+  return fetch(`${API_URL}dataset/discussionmode/${e}`, {
+    method: "get",
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+};
+
+
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data));

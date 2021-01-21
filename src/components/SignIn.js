@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Facebook from "./Facebook";
-// import Google from "./Google";
+import Google from "./Google";
 import {
   signIn,
   authenticate,
@@ -146,7 +146,7 @@ export default function SignIn() {
           
           <Facebook />
 
-          {/* <Google /> */}
+          <Google />
           <Grid container>
             <Grid item xs>
               <Link to="/" variant="body2">

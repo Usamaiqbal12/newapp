@@ -16,6 +16,7 @@ import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
 import Params from "./components/dataset/Params";
 import PrivateRoutes from "./PrivateRoutes";
+import DiscussionMode from "./components/dataset/DiscussionMode";
 function App() {
   const [, dispatch] = useStateValue();
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
+          <Route path='/discussionmode/:id' component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
           <PrivateRoutes path="/createsearch" component={CreateDataset} />
           <PrivateRoutes path="/manual" component={Manual} />
