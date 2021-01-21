@@ -22,11 +22,12 @@ import {
 } from "../services/Api";
 import { Link, Redirect } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
+import { getUser } from "../services/user/userApi";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link to='/' color="inherit" href="https://material-ui.com/">
+      <Link to="/" color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -71,6 +72,12 @@ export default function SignIn() {
       if (data.data.token) {
         authenticate(data.data.token, () => {
           setuserData({ email: "", password: "" });
+          getUser().then((data) => {
+            dispatch({
+              type: "ADDUSER",
+              data: data,
+            });
+          });
           datasetListFunc(data.data.id).then((items) => {
             dispatch({
               type: "ADDDATASET",
@@ -142,7 +149,7 @@ export default function SignIn() {
           <Google /> */}
           <Grid container>
             <Grid item xs>
-              <Link to='/' variant="body2">
+              <Link to="/" variant="body2">
                 Forgot password?
               </Link>
             </Grid>

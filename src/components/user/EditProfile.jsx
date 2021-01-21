@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Button,
@@ -15,7 +15,8 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Link, useHistory } from "react-router-dom";
-
+import { useStateValue } from "../../StateProvider";
+import { updateUser } from "../../services/user/userApi";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -42,17 +43,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EditProfile() {
+  const [{ user }] = useStateValue();
+  const [currentUser, setCurrentUser] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    date_of_birth: "",
+    nickname: "",
+    gender: "",
+  });
+  useEffect(() => {
+    if (user[0] !== undefined) {
+      setCurrentUser({
+        first_name: user[0].first_name,
+        last_name: user[0].last_name,
+        email: user[0].email,
+        date_of_birth: user[0].date_of_birth,
+        nickname: user[0].nickname,
+        gender: user[0].gender,
+      });
+    }
+  }, [user]);
+  const handleChange = (e) => {
+    setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
+  };
+  const submit = (e) => {
+    e.preventDefault()
+   updateUser(currentUser,user[0].id)
+   .then(data=>{
+     console.log(data);
+   })
+  };
 
   const classes = useStyles();
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="sm" className='bg-white'>
+      <Container component="main" maxWidth="sm" className="bg-white">
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             Edit Profile
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -60,8 +92,8 @@ function EditProfile() {
                   name="first_name"
                   variant="outlined"
                   required
-                  //   value={values.first_name}
-                  //   onChange={handleChange}
+                  value={currentUser.first_name}
+                  onChange={handleChange}
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -72,9 +104,9 @@ function EditProfile() {
                 <TextField
                   variant="outlined"
                   required
-                  //   value={values.last_name}
+                  value={currentUser.last_name}
                   fullWidth
-                  //   onChange={handleChange}
+                  onChange={handleChange}
                   id="lastName"
                   label="Last Name"
                   name="last_name"
@@ -84,16 +116,13 @@ function EditProfile() {
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
-                  required
                   fullWidth
                   id="email"
-                  //   error={error[0]}
-                  //   helperText={error[0] && error[1]}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  //   value={values.email}
-                  //   onChange={handleChange}
+                  value={currentUser.email}
+                  
                 />
               </Grid>
               <Grid item xs={12}>
@@ -102,8 +131,8 @@ function EditProfile() {
                   required
                   fullWidth
                   id="nickName"
-                  //   value={values.nickname}
-                  //   onChange={handleChange}
+                  value={currentUser.nickname}
+                  onChange={handleChange}
                   label="Nick Name"
                   name="nickname"
                   autoComplete="nName"
@@ -114,8 +143,8 @@ function EditProfile() {
                   className={classes.date}
                   required
                   name="date_of_birth"
-                  //   value={values.date_of_birth}
-                  //   onChange={handleChange}
+                  value={currentUser.date_of_birth}
+                  onChange={handleChange}
                   variant="outlined"
                   id="date"
                   label="DATE OF BIRTH"
@@ -134,8 +163,9 @@ function EditProfile() {
                       <input
                         type="radio"
                         name="gender"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         value="M"
+                        checked={currentUser.gender === "M"}
                       />
                       Male
                     </label>
@@ -146,7 +176,8 @@ function EditProfile() {
                         type="radio"
                         value="F"
                         name="gender"
-                        // onChange={handleChange}
+                        checked={currentUser.gender === "F"}
+                        onChange={handleChange}
                       />
                       Female
                     </label>
@@ -199,15 +230,8 @@ function EditProfile() {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              Submit
             </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link to="/signin" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Container>
