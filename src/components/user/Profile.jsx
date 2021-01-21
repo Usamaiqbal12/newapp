@@ -1,21 +1,39 @@
 import React from "react";
 import { useStateValue } from "../../StateProvider";
+
 function Profile() {
-    const [{user},] = useStateValue()
+  const [{ user }] = useStateValue();
+
   return (
     <>
       <div className="container">
-        <div className="row">
-          <div className="col-3 bg-light mt-4">
-            <img src={user[0]?user[0].profile_picture:''} className='w-100' alt="abc" />
+        <div className="row ">
+          <div className="col-3 mt-4 border-bottom-0">
+            <img
+              style={{ borderRadius: "50%" }}
+              className="imgPro"
+              src={user[0] ? user[0].profile_picture : ""}
+              className="w-100"
+              alt="abc"
+            />
           </div>
           <div className="col-9 bg-light mt-4">
-            <h5>First Name: {user[0]?user[0].first_name:''}</h5>
-            <h5>Last Name: {user[0]?user[0].last_name:''}</h5>
-            <h5>Nickname: {user[0]?user[0].nickname:''}</h5>
-            <h5>Email: {user[0]?user[0].email:''}</h5>
-            <h5>Gender: {user[0]?user[0].gender:''}</h5>
-            <h5>Date Of Birth: {user[0]?user[0].date_of_birth:''}</h5>
+            <h5 className="mb-3  ml-5">
+              First Name: {user[0] ? user[0].first_name : ""}
+            </h5>
+            <h5 className="mb-3 ml-5">
+              Last Name: {user[0] ? user[0].last_name : ""}
+            </h5>
+            <h5 className="mb-3 ml-5">
+              Nickname: {user[0] ? user[0].nickname : ""}
+            </h5>
+            <h5 className="mb-3 ml-5">Email: {user[0] ? user[0].email : ""}</h5>
+            <h5 className="mb-3 ml-5">
+              Gender: {user[0] ? user[0].gender : ""}
+            </h5>
+            <h5 className="mb-3 ml-5">
+              Date Of Birth: {user[0] ? user[0].date_of_birth : ""}
+            </h5>
             {/* <h5>{this.state.alias}</h5> */}
             {/* <h5>{this.state.deceased}</h5> */}
             {/* <h5>{this.state.attributes}</h5> */}
