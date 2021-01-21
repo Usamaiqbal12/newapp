@@ -9,3 +9,15 @@ export const getUser = async(e) => {
     })
       .then((data) => data.json());
   };
+
+export const updateUser =(e,pk)=>{
+  return fetch(`${API_URL}user/updateuser/${pk}/`, {
+    method: "put",
+    body:JSON.stringify(e),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
+  })
+    .then((data) => data.json());
+}

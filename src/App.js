@@ -14,30 +14,30 @@ import Newparams from "./components/dataset/new";
 import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
-import Params from './components/dataset/Params'
+import Params from "./components/dataset/Params";
+import PrivateRoutes from "./PrivateRoutes";
 function App() {
-  const [,dispatch]=useStateValue();
+  const [, dispatch] = useStateValue();
   useEffect(() => {
     let mounted = true;
-    if (localStorage.getItem('jwt'))
-    {
-    getUser().then(data=>{
-      if(mounted){
-        dispatch({
-          type:"ADDUSER",
-          data:data
-        })
-      }
-    })
-    datasetListFunc().then((items) => {
-      if (mounted) {
-        dispatch({
-            type:'ADDDATASET',
-            data:items.data
-          })
-      }
-    });
-  }
+    if (localStorage.getItem("jwt")) {
+      getUser().then((data) => {
+        if (mounted) {
+          dispatch({
+            type: "ADDUSER",
+            data: data,
+          });
+        }
+      });
+      datasetListFunc().then((items) => {
+        if (mounted) {
+          dispatch({
+            type: "ADDDATASET",
+            data: items.data,
+          });
+        }
+      });
+    }
     return () => (mounted = false);
   }, []);
   return (
@@ -47,21 +47,16 @@ function App() {
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/createsearch">
-            <CreateDataset />
-          </Route>
-          <Route path="/manual">
-            <Manual />
-          </Route>
-          <Route exact path="/dataset">
-            <ListDataset />
-          </Route>
-          <Route path="/dataset/detail/:id" component={DatasetDetails}>
-          </Route>
-          <Route path='/new'><Params/> </Route>
-          <Route path='/editprofile'><EditProfile /> </Route>
-
+          <PrivateRoutes path="/profile" component={Profile} />
+          <PrivateRoutes path="/createsearch" component={CreateDataset} />
+          <PrivateRoutes path="/manual" component={Manual} />
+          <PrivateRoutes exact path="/dataset" component={ListDataset} />
+          <PrivateRoutes
+            path="/dataset/detail/:id"
+            component={DatasetDetails}
+          />
+          <PrivateRoutes path="/new" component={Params} />
+          <PrivateRoutes path="/editprofile" component={EditProfile} />
         </Switch>
       </main>
     </>
