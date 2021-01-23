@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import SignIn from "./components/SignIn";
@@ -18,6 +17,8 @@ import EditProfile from "./components/user/EditProfile";
 import Params from "./components/dataset/Params";
 import PrivateRoutes from "./PrivateRoutes";
 import DiscussionMode from "./components/dataset/DiscussionMode";
+import Footer from "./components/Footer";
+
 function App() {
   const [, dispatch] = useStateValue();
   useEffect(() => {
@@ -49,7 +50,7 @@ function App() {
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
-          <Route path='/discussionmode/:id' component={DiscussionMode} />
+          <Route path="/discussionmode/:id" component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
           <PrivateRoutes path="/createsearch" component={CreateDataset} />
           <PrivateRoutes path="/manual" component={Manual} />
@@ -62,6 +63,7 @@ function App() {
           <PrivateRoutes path="/editprofile" component={EditProfile} />
         </Switch>
       </main>
+      <Footer />
     </>
   );
 }
