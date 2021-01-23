@@ -1,18 +1,18 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 // import SignIn from "./components/SignIn";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
-import reducer, {initialState} from './reducer';
-import {StateProvider} from './StateProvider'
+import "font-awesome/css/font-awesome.min.css";
+import reducer, { initialState } from "./reducer";
+import { StateProvider } from "./StateProvider";
 
 ReactDOM.render(
   <StateProvider initialState={initialState} reducer={reducer}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StateProvider>,
   document.getElementById("root")
 );
