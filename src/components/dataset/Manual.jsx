@@ -42,7 +42,6 @@ function Manual() {
             type: "ADDDATASET",
             data: items.data,
           });
-          console.log('helo');
         });
       } else {
         alert("Please Type Dataset Name !");

@@ -10,7 +10,7 @@ function Params(props) {
   const gender = [
     { value: "M", id: 1, name: "gender", display: "Male" },
     { value: "F", id: 2, name: "gender", display: "Female" },
-    { value: "all", id: 3, name: "gender", display: "All" },
+    { value: "All", id: 3, name: "gender", display: "All" },
   ];
   const morality = [
     { value: "Living", id: 1, name: "morality" },
@@ -23,8 +23,15 @@ function Params(props) {
     { value: "100", id: 3, name: "size" },
     { value: "150", id: 4, name: "size" },
     { value: "200", id: 5, name: "size" },
-    { value: "all", id: 6, name: "size" },
+    { value: "All", id: 6, name: "size" },
   ];
+  const style = {
+    searchBox: { 
+      fontSize: '14px',
+      minHeight: '40px'
+      },
+      }
+
   const parameterForm = () => {
     return (
       <form>
@@ -36,6 +43,7 @@ function Params(props) {
               displayValue="name"
               onSelect={onSelect}
               showCheckbox={true}
+              style={style}
               onRemove={onRemove}
             />
           </div>
@@ -43,6 +51,7 @@ function Params(props) {
             <h5>Gender: </h5>
 
             <Multiselect
+            style={style}
               options={gender}
               displayValue="display"
               onSelect={handleChange}
@@ -53,15 +62,17 @@ function Params(props) {
             <h5>Mortality: </h5>
             <Multiselect
               options={morality}
+              style={style}
               displayValue="value"
               onSelect={handleChange}
-              singleSelect
+              singleSelect  
             />
           </div>
           <div className="col-sm-3 col-md-3">
             <h5>Size: </h5>
             <Multiselect
               options={size}
+              style={style}
               displayValue="value"
               onSelect={handleChange}
               singleSelect

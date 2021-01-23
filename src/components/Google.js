@@ -12,6 +12,7 @@ class Google extends Component {
         buttonText="LOGIN WITH GOOGLE"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
+        scope={'profile','email'}
         cookiePolicy={"single_host_origin"}
       />
     );

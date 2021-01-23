@@ -50,12 +50,14 @@ const getDataSet = async(e) => {
 // Auth--->
 const signIn = (e) => {
   return fetch(`${API_URL}user/login/`, {
-    method: "post",
+    method: "POST",
     body: e,
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((data) => data.json());
+  })
+  .then((data) => data.json())
+  .catch((err)=>console.log(err))
 };
 
 export const signup = (user) => {

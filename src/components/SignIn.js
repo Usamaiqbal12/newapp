@@ -63,13 +63,27 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    Email:false,
+    Password:false
+  })
   const handleChange = (e) => {
     setuserData({ ...userData, [e.target.name]: e.target.value });
   };
   const submit = (e) => {
     e.preventDefault();
+
     signIn(JSON.stringify(userData)).then((data) => {
-      if (data.data.token) {
+      if(data.status==='Failure'){
+        if (data.message==='Password'){
+          setErrors({...errors,Email:false,Password:true})
+        }
+        else if (data.message==='Email'){
+          setErrors({...errors,Email:true, Password:false})
+        }
+        
+      }
+      else if (data.data.token) {
         authenticate(data.data.token, () => {
           setuserData({ email: "", password: "" });
           getUser().then((data) => {
@@ -86,7 +100,8 @@ export default function SignIn() {
           });
         });
       }
-    });
+    })
+    .catch((err)=> console.log(err))
   };
   const performRedirect = () => {
     if (isAuthenticated()) {
@@ -110,6 +125,8 @@ export default function SignIn() {
             required
             onChange={handleChange}
             value={userData.email}
+            helperText = {errors.Email && "Invalid Email"}
+            error={errors.Email}
             fullWidth
             id="email"
             label="Email Address"
@@ -120,7 +137,9 @@ export default function SignIn() {
           <TextField
             variant="outlined"
             margin="normal"
-            value={userData.password}
+            value={userData.Password}
+            helperText = {errors.Password && "Invalid Password"}
+            error = {errors.Password}
             required
             fullWidth
             onChange={handleChange}
