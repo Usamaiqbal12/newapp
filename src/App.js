@@ -10,12 +10,13 @@ import Manual from "./components/dataset/Manual";
 import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
-import { datasetListFunc } from "./services/Api";
+import { createdataset, datasetListFunc } from "./services/Api";
 import Newparams from "./components/dataset/new";
 import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
 import Params from "./components/dataset/Params";
+import AuthorProfile from './components/Author/Profile'
 import PrivateRoutes from "./PrivateRoutes";
 import DiscussionMode from "./components/dataset/DiscussionMode";
 function App() {
@@ -51,15 +52,24 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path='/discussionmode/:id' component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
-          <PrivateRoutes path="/createsearch" component={CreateDataset} />
+          <PrivateRoutes path="/createsearch">
+            <CreateDataset create={true}/>
+            </PrivateRoutes>
           <PrivateRoutes path="/manual" component={Manual} />
           <PrivateRoutes exact path="/dataset" component={ListDataset} />
           <PrivateRoutes
             path="/dataset/detail/:id"
             component={DatasetDetails}
           />
+           <PrivateRoutes
+            path="/datasetedit"
+            update={'update'}
+            component={CreateDataset}
+          />
           <PrivateRoutes path="/new" component={Params} />
           <PrivateRoutes path="/editprofile" component={EditProfile} />
+          <PrivateRoutes path="/authorprofile/:id" component={AuthorProfile} />
+
         </Switch>
       </main>
     </>

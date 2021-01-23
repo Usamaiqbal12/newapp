@@ -4,7 +4,7 @@ import { createdataset, datasetListFunc } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import Params from "./Params";
 import "./style.css";
-function CreateDataset() {
+function CreateDataset(props) {
   const history = useHistory();
   const [, dispatch] = useStateValue();
   const [params, setparams] = useState({
@@ -50,7 +50,15 @@ function CreateDataset() {
     } else if (params.name === "") {
       alert("Please Type Dataset Name");
     } else {
-      createdataset(JSON.stringify(params));
+
+      if(props.create===true){
+        createdataset(JSON.stringify(params));
+        console.log('hylo');
+      }
+      // else if(props.update){
+
+      // }
+      
       datasetListFunc().then((items) => {
         dispatch({
           type: "ADDDATASET",

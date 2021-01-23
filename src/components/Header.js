@@ -57,7 +57,7 @@ const NavBar = () => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/createsearch">
-              Create Search
+              Create Dataset
             </NavLink>
           </li>
         </ul>

@@ -1,0 +1,5 @@
+.dataset__detail{
+    display: flex;
+    align-self: center;
+    align-items: center;
+}

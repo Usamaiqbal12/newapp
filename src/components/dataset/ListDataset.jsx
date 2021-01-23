@@ -1,12 +1,11 @@
-
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 function ListDataset() {
-  const [{datasetList},] = useStateValue();
+  const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
     <>
-      <table className="table table-striped">
+      <table className="table table-hover">
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -19,12 +18,14 @@ function ListDataset() {
           {datasetList.length > 0
             ? datasetList[0].map((v, i) => {
                 return (
-                  <tr key={i} style={{cursor:'pointer'}}>
+                  <tr
+                    onClick={() => history.push(`/dataset/detail/${v.id}`)}
+                    key={i}
+                    style={{ cursor: "pointer" }}
+                  >
                     <th scope="row">{i + 1}</th>
-                    <th onClick={() => history.push(`/dataset/detail/${v.id}`)}>
-                      {v.dataset_name}
-                    </th>
-                    <th className='pl-4'>{v.author.length}</th>
+                    <th>{v.dataset_name}</th>
+                    <th className="pl-4">{v.author.length}</th>
                     <th>{v.created_at.split(":")[0].split("T")[0]}</th>
                   </tr>
                 );

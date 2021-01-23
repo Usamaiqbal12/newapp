@@ -76,6 +76,19 @@ export const signup = (user) => {
 export const discussionmode = (e) => {
   return fetch(`${API_URL}dataset/discussionmode/${e}`, {
     method: "get",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+};
+export const getauthor = (e) => {
+  return fetch(`${API_URL}author/${e}`, {
+    method: "get",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
   })
     .then((data) => data.json())
     .catch((err) => console.log(err));
