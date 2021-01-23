@@ -3,7 +3,7 @@ import GoogleLogin from "react-google-login";
 import { googleLogin } from "../../services/user/userApi";
 import { useStateValue } from "../../StateProvider";
 import { authenticate, datasetListFunc } from "../../services/Api";
-
+import "./sociallogin.css";
 function Google() {
   const [, dispatch] = useStateValue();
 
@@ -31,19 +31,18 @@ function Google() {
     });
   };
   return (
-  
- <GoogleLogin
- clientId="918683245824-3i4siophfobp31a542q0vumpe2l5lnhj.apps.googleusercontent.com"
- onSuccess={responseGoogle}
- onFailure={responseGoogle}
- cookiePolicy={"single_host_origin"}
- scope={("profile", "email")}
- className={"google-login  rounded"}
- icon={false}
- render={(renderProps) => (
-  <p className='mx-auto text-center google'>Login with Google</p>
- )}
-/>
+    <GoogleLogin
+      clientId="918683245824-3i4siophfobp31a542q0vumpe2l5lnhj.apps.googleusercontent.com"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      cookiePolicy={"single_host_origin"}
+      scope={("profile", "email")}
+      className={"google-login  rounded"}
+      icon={false}
+      render={(renderProps) => (
+        <p className="mx-auto text-center google">Login with Google</p>
+      )}
+    />
   );
 }
 

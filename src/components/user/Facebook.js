@@ -3,6 +3,7 @@ import FacebookLogin from "react-facebook-login";
 import { authenticate, datasetListFunc } from "../../services/Api";
 import { facebookLogin } from "../../services/user/userApi";
 import { useStateValue } from "../../StateProvider";
+import './sociallogin.css'
 function Facebook() {
   const [,dispatch] = useStateValue()
   const responseFacebook = (response) => {
@@ -37,7 +38,7 @@ function Facebook() {
           appId="427757665031934"
           autoLoad={false}
           fields="name,email,picture"
-          callback={this.responseFacebook}
+          callback={responseFacebook}
           cssClass='facebook'
           // icon={"fa fa-facebook"}
         />

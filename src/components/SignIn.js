@@ -5,14 +5,15 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-// import Link from "@material-ui/core/Link";
+import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Facebook from "./Facebook";
+import Facebook from "./user/Facebook";
 import Google from "./user/Google";
 import {
   signIn,
@@ -163,9 +164,12 @@ export default function SignIn() {
             Sign In
           </Button>
           
-          <Facebook />
-
-          <Google />
+          <FacebookLoginButton>
+            <Facebook />
+          </FacebookLoginButton>
+        <GoogleLoginButton >
+        <Google />
+        </GoogleLoginButton>
           <Grid container>
             <Grid item xs>
               <Link to="/" variant="body2">
