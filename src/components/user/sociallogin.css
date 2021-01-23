@@ -1,0 +1,45 @@
+.error {
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .facebook {
+    background-color: rgb(59, 89, 152) !important;
+    color: white !important;
+    border: none !important;  
+    width: 100% !important;
+    height: 50px;
+  }
+  .facebook:hover{
+    background-color: rgb(45, 58, 109) !important;
+  }
+  .btn {
+    padding: 0 !important;
+  }
+  .fbs {
+    display: none !important;
+  }
+  .google-login {
+    background-color: rgb(203, 63, 34) !important;
+    display: flex !important;
+    width: 100%;
+    border: none !important;
+    opacity: 0 !important;
+  }
+  .google-login:hover{
+    opacity: 0 !important;
+  }
+  .text-center {
+    font-size: 25px !important;
+    color: #ffffff;
+    margin-top: 15px;
+  }
+  .icoss {
+    margin-right: 15%;
+    margin-top: 10px;
+    color: #ffffff;
+    margin-left: 5px;
+  }
+  .google{
+    font-size: 22px !important;
+  }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import FacebookLogin from "react-facebook-login";
-import { authenticate, datasetListFunc } from "../services/Api";
-import { facebookLogin } from "../services/user/userApi";
-import { useStateValue } from "../StateProvider";
+import { authenticate, datasetListFunc } from "../../services/Api";
+import { facebookLogin } from "../../services/user/userApi";
+import { useStateValue } from "../../StateProvider";
 function Facebook() {
   const [,dispatch] = useStateValue()
   const responseFacebook = (response) => {
@@ -33,14 +33,14 @@ function Facebook() {
 
   return (
     <>
-      <FacebookLogin
-        appId="427757665031934"
-        autoLoad={false}
-        fields="name,email"
-        callback={responseFacebook}
-        cssClass="btnFacebook"
-      />
-      hello
+   <FacebookLogin
+          appId="427757665031934"
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={this.responseFacebook}
+          cssClass='facebook'
+          // icon={"fa fa-facebook"}
+        />
     </>
   );
 }
