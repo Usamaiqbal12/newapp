@@ -6,7 +6,6 @@ import { authenticate, datasetListFunc } from "../../services/Api";
 import "./sociallogin.css";
 function Google() {
   const [, dispatch] = useStateValue();
-
   const responseGoogle = (e) => {
     const { name, email } = e.profileObj;
     const values = {
@@ -37,11 +36,12 @@ function Google() {
       onFailure={responseGoogle}
       cookiePolicy={"single_host_origin"}
       scope={("profile", "email")}
-      className={"google-login  rounded"}
+      className={"google"}
       icon={false}
-      render={(renderProps) => (
-        <p className="mx-auto text-center google">Login with Google</p>
-      )}
+      buttonText={'Login with Google'}
+      // render={(renderProps) => (
+      //   <p className="mx-auto text-center google">Login with Google</p>
+      // )}
     />
   );
 }

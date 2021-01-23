@@ -164,10 +164,10 @@ export default function SignIn() {
             Sign In
           </Button>
           
-          <FacebookLoginButton>
+          <FacebookLoginButton className='pl-2 pr-0'>
             <Facebook />
           </FacebookLoginButton>
-        <GoogleLoginButton >
+        <GoogleLoginButton className='google-login pr-0' >
         <Google />
         </GoogleLoginButton>
           <Grid container>
