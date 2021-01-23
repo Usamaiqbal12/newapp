@@ -3,10 +3,10 @@ import { useStateValue } from "../../StateProvider";
 
 function Profile() {
   const [{ user }] = useStateValue();
-
+  console.log(user);
   return (
     <>
-      <div className="container">
+      <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
             {/* <div class="card"> */}
@@ -54,7 +54,7 @@ function Profile() {
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {user[0] ? user[0].nickname : ""}
+                    {user[0]? user[0].nickname : ""}
                   </div>
                 </div>
                 <hr />
@@ -72,7 +72,7 @@ function Profile() {
                     <h6 className="mb-0">Gender</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {user[0] ? user[0].gender : ""}
+                    {user[0] ? (user[0].gender==='M'&&'Male')||(user[0].gender==='F'&&'Female')  : ""}
                   </div>
                 </div>
                 <hr />
@@ -88,32 +88,6 @@ function Profile() {
             </div>
           </div>
         </div>
-
-        {/* <div className="row bg-light mt-10">
-          <div>
-            <h2>BIO</h2>
-            <p>{this.state.bio}</p>
-          </div>
-        </div>
-        <div className="row bg-light">
-          <h2>Quotes</h2>
-          <p>{this.state.quotes}</p>
-        </div>
-        <div className="row">
-          <h2>Additional Resourses</h2>
-
-          <input
-            className="form-control w-20"
-            type="text"
-            aria-label="Search"
-          ></input>
-
-          <input
-            className="form-control"
-            type="text"
-            aria-label="Search"
-          ></input>
-        </div> */}
       </div>
     </>
   );

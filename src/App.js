@@ -18,7 +18,7 @@ import Params from "./components/dataset/Params";
 import AuthorProfile from './components/Author/Profile'
 import PrivateRoutes from "./PrivateRoutes";
 import DiscussionMode from "./components/dataset/DiscussionMode";
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [, dispatch] = useStateValue();
