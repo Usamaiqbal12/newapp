@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/userProfile";
 import NavBar from "./components/Header";
 import CreateSearch from "./components/createSearch";
+import DiscussionMode from "./components/DiscussionMode";
 class App extends Component {
   render() {
     return (
@@ -16,6 +17,7 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/createsearch" component={CreateSearch} />
+            <Route path="/discussion" component={DiscussionMode} />
           </Switch>
         </main>
       </>

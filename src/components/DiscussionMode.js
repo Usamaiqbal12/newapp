@@ -18,7 +18,7 @@ const DiscussionMode = () => {
   });
   return (
     <React.Fragment>
-      <div className="container">
+      <div>
         <div className="row">
           <div className="col-3 bg-light mt-4">
             <img src={data.Image} alt="abc" />

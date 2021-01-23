@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Facebook from "./Facebook";
+import { FacebookLoginButton } from "react-social-login-buttons";
 import Google from "./Google";
 function Copyright() {
   return (
@@ -97,7 +98,9 @@ export default function SignIn() {
             Sign In
           </Button>
 
-          <Facebook />
+          <FacebookLoginButton>
+            <Facebook />
+          </FacebookLoginButton>
 
           <Google />
           <Grid container>

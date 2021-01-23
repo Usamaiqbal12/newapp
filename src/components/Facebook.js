@@ -1,20 +1,6 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-// import styled from "styled-components";
-
-// const BtnFacebook = styled.button`
-//   background: #3b5998;
-//   color: white;
-//   border: 0px transparent;
-//   text-align: center;
-//   margin: 5px;
-//   display: inline-block;
-
-//   &:hover {
-//     background: #3b5998;
-//     opacity: 0.6;
-//   }
-// `;
+import "../index.css";
 
 class Facebook extends Component {
   state = {
@@ -30,7 +16,6 @@ class Facebook extends Component {
       userID: response.userID,
       name: response.name,
       email: response.email,
-      picture: response.picture.data.url,
     });
     console.log(response);
   };
@@ -50,11 +35,11 @@ class Facebook extends Component {
           autoLoad={false}
           fields="name,email,picture"
           callback={this.responseFacebook}
-          cssClass="btnFacebook"
+          icon={"fa fa-facebook"}
         />
       );
     }
-    return <div>{facebookData}</div>;
+    return <div className="btn facebook">{facebookData}</div>;
   }
 }
 
