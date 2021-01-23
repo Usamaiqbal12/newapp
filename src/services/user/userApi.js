@@ -32,3 +32,13 @@ export const facebookLogin=e=>{
   })
     .then((data) => data.json());
 }
+export const googleLogin=(e)=>{
+  return fetch(`${API_URL}user/googlelogin/`, {
+    method: "POST",
+    body:JSON.stringify(e),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json());
+}

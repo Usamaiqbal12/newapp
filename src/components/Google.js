@@ -1,8 +1,34 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
+import { googleLogin } from "../services/user/userApi";
+import { useStateValue } from "../StateProvider";
+import { authenticate, datasetListFunc } from "../services/Api";
+
 function Google() {
+  const [, dispatch] = useStateValue();
+
   const responseGoogle = (e) => {
-    console.log('hello');
+    const { name, email } = e.profileObj;
+    const values = {
+      first_name: name.split(" ")[0],
+      last_name: name.split(" ")[1],
+      email: email,
+      google_token: e.googleId,
+    };
+    googleLogin(values).then((data) => {
+      authenticate(data.data.token, () => {
+        dispatch({
+          type: "ADDUSER",
+          data: data.data,
+        });
+      });
+      datasetListFunc().then((items) => {
+        dispatch({
+          type: "ADDDATASET",
+          data: items.data,
+        });
+      });
+    });
   };
   return (
     <GoogleLogin

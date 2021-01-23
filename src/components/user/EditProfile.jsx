@@ -58,9 +58,9 @@ function EditProfile() {
         first_name: user[0].first_name,
         last_name: user[0].last_name,
         email: user[0].email,
-        date_of_birth: user[0].date_of_birth,
-        nickname: user[0].nickname,
-        gender: user[0].gender,
+        date_of_birth: user[0].date_of_birth===null?'yyyy-MM-dd':user[0].date_of_birth,
+        nickname: user[0].nickname===null?"":user[0].nickname,
+        gender: user[0].gender===null?'--':user[0].gender,
       });
     }
   }, [user]);
