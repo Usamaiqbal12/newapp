@@ -35,11 +35,12 @@ class Facebook extends Component {
           autoLoad={false}
           fields="name,email,picture"
           callback={this.responseFacebook}
-          icon={"fa fa-facebook"}
+          cssClass='facebook'
+          // icon={"fa fa-facebook"}
         />
       );
     }
-    return <div className="btn facebook">{facebookData}</div>;
+    return <>{facebookData}</>;
   }
 }
 

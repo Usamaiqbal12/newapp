@@ -6,9 +6,9 @@ class SocialButton extends React.Component {
   render() {
     return (
       <button
-        className="facebook"
+        // className="facebook"
         onClick={this.props.triggerLogin}
-        {...this.props}
+        {...this.props} 
       >
         {this.props.children}
       </button>
