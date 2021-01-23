@@ -5,15 +5,16 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-// import Link from "@material-ui/core/Link";
+import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-// import Facebook from "./Facebook";
-// import Google from "./Google";
+import Facebook from "./user/Facebook";
+import Google from "./user/Google";
 import {
   signIn,
   authenticate,
@@ -63,13 +64,27 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    Email:false,
+    Password:false
+  })
   const handleChange = (e) => {
     setuserData({ ...userData, [e.target.name]: e.target.value });
   };
   const submit = (e) => {
     e.preventDefault();
+
     signIn(JSON.stringify(userData)).then((data) => {
-      if (data.data.token) {
+      if(data.status==='Failure'){
+        if (data.message==='Password'){
+          setErrors({...errors,Email:false,Password:true})
+        }
+        else if (data.message==='Email'){
+          setErrors({...errors,Email:true, Password:false})
+        }
+        
+      }
+      else if (data.data.token) {
         authenticate(data.data.token, () => {
           setuserData({ email: "", password: "" });
           getUser().then((data) => {
@@ -86,7 +101,8 @@ export default function SignIn() {
           });
         });
       }
-    });
+    })
+    .catch((err)=> console.log(err))
   };
   const performRedirect = () => {
     if (isAuthenticated()) {
@@ -110,6 +126,8 @@ export default function SignIn() {
             required
             onChange={handleChange}
             value={userData.email}
+            helperText = {errors.Email && "Invalid Email"}
+            error={errors.Email}
             fullWidth
             id="email"
             label="Email Address"
@@ -120,7 +138,9 @@ export default function SignIn() {
           <TextField
             variant="outlined"
             margin="normal"
-            value={userData.password}
+            value={userData.Password}
+            helperText = {errors.Password && "Invalid Password"}
+            error = {errors.Password}
             required
             fullWidth
             onChange={handleChange}
@@ -143,10 +163,13 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-          {/* 
-          <Facebook />
-
-          <Google /> */}
+          
+          <FacebookLoginButton className='pl-2 pr-0'>
+            <Facebook />
+          </FacebookLoginButton>
+        <GoogleLoginButton className='google-login pr-0' >
+        <Google />
+        </GoogleLoginButton>
           <Grid container>
             <Grid item xs>
               <Link to="/" variant="body2">

@@ -26,10 +26,8 @@ function DatasetDetails(props) {
 
   const deleteDataset = (e) => {
     deleteDatasetFunc(foundedValue.id).then((data) => {
-      console.log();
       if (data.status === true) {
-        const user_id = JSON.parse(localStorage.getItem("user_id"));
-        datasetListFunc(user_id).then((items) => {
+        datasetListFunc().then((items) => {
           dispatch({
             type: "ADDDATASET",
             data: items.data,
@@ -59,6 +57,7 @@ function DatasetDetails(props) {
         </>
       )}
       <button onClick={deleteDataset}>Delete Dataset</button>
+      <button onClick={()=> foundedValue && history.push(`/discussionmode/${foundedValue.id}`)}>disucssionmode</button>
     </div>
   );
 }

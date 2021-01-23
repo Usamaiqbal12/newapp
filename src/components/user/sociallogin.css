@@ -1,0 +1,40 @@
+.error {
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .facebook {
+    background-color: rgb(59, 89, 152) !important;
+    color: white !important;
+    border: none !important;  
+    width: 100% !important; 
+    /* height: 50px; */
+  }
+  .facebook:hover{
+    background-color: rgb(45, 58, 109) !important;
+  }
+
+  .google-login {
+    background-color: rgb(203, 63, 34) !important;
+    display: flex !important;
+    width: 100%;
+    border: none !important;
+
+  }
+  .google-login:hover{
+    background-color: rgb(194, 26, 26) !important;
+  }
+  .google{
+    font-size: 19px !important;
+    width: 190%;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    border: none !important;
+    background-color: rgb(203, 63, 34) !important;
+  }
+  .google:hover{
+      background-color:rgb(194, 26, 26) !important;
+  }

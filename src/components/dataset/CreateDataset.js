@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createdataset } from "../../services/Api";
+import { createdataset, datasetListFunc } from "../../services/Api";
+import { useStateValue } from "../../StateProvider";
 import Params from "./Params";
 import "./style.css";
 function CreateDataset() {
   const history = useHistory();
+  const [, dispatch] = useStateValue();
   const [params, setparams] = useState({
     attributes: "",
     gender: "",
@@ -49,6 +51,12 @@ function CreateDataset() {
       alert("Please Type Dataset Name");
     } else {
       createdataset(JSON.stringify(params));
+      datasetListFunc().then((items) => {
+        dispatch({
+          type: "ADDDATASET",
+          data: items.data,
+        });
+      });
       setparams({ ...params, name: "" });
     }
   };

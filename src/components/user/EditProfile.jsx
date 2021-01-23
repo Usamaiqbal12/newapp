@@ -58,9 +58,9 @@ function EditProfile() {
         first_name: user[0].first_name,
         last_name: user[0].last_name,
         email: user[0].email,
-        date_of_birth: user[0].date_of_birth,
-        nickname: user[0].nickname,
-        gender: user[0].gender,
+        date_of_birth: user[0].date_of_birth===null?'yyyy-MM-dd':user[0].date_of_birth,
+        nickname: user[0].nickname===null?"":user[0].nickname,
+        gender: user[0].gender===null?'--':user[0].gender,
       });
     }
   }, [user]);
@@ -184,43 +184,14 @@ function EditProfile() {
                   </div>
                 </div>
               </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  //   value={values.password}
-                  //   onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  //   error={passError}
-                  //   helperText={passError&& 'Password do not match'}
-                  name="confirmPassword"
-                  //   onChange={(e) => setConfirmPassword(e.target.value)}
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                />
-              </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
 
             <Button
