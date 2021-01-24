@@ -26,17 +26,17 @@ function Params(props) {
     { value: "All", id: 6, name: "size" },
   ];
   const style = {
-    searchBox: { 
-      fontSize: '14px',
-      minHeight: '40px'
-      },
-      }
+    searchBox: {
+      fontSize: "14px",
+      minHeight: "40px",
+    },
+  };
 
   const parameterForm = () => {
     return (
       <form>
-        <div className="row">
-          <div className="col-sm-3 col-md-3">
+        <div className="">
+          <div className="col-sm-12 col-md-12">
             <h5>Attributes: </h5>
             <Multiselect
               options={attributes}
@@ -47,28 +47,28 @@ function Params(props) {
               onRemove={onRemove}
             />
           </div>
-          <div className="col-sm-3 col-md-3">
+          <div className="col-sm-12 col-md-12">
             <h5>Gender: </h5>
 
             <Multiselect
-            style={style}
+              style={style}
               options={gender}
               displayValue="display"
               onSelect={handleChange}
               singleSelect
             />
           </div>
-          <div className="col-sm-3 col-md-3">
+          <div className="col-sm-12 col-md-12">
             <h5>Mortality: </h5>
             <Multiselect
               options={morality}
               style={style}
               displayValue="value"
               onSelect={handleChange}
-              singleSelect  
+              singleSelect
             />
           </div>
-          <div className="col-sm-3 col-md-3">
+          <div className="col-sm-12 col-md-12">
             <h5>Size: </h5>
             <Multiselect
               options={size}

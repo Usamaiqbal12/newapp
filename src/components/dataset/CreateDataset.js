@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { createdataset, datasetListFunc } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import Params from "./Params";
+import { TextField } from "@material-ui/core";
+
 import "./style.css";
 function CreateDataset(props) {
   const history = useHistory();
@@ -50,15 +52,14 @@ function CreateDataset(props) {
     } else if (params.name === "") {
       alert("Please Type Dataset Name");
     } else {
-
-      if(props.create===true){
+      if (props.create === true) {
         createdataset(JSON.stringify(params));
-        console.log('hylo');
+        console.log("hylo");
       }
       // else if(props.update){
 
       // }
-      
+
       datasetListFunc().then((items) => {
         dispatch({
           type: "ADDDATASET",
@@ -87,11 +88,22 @@ function CreateDataset(props) {
       </div>
       <div>
         Dataset Name:
-        <input
+        {/* <input
           type="text"
-          onChange={(e) => setparams({ ...params, name: e.target.value })}
+          onChange={}
           name="name"
           value={params.name}
+        /> */}
+        <TextField
+          autoComplete="Dname"
+          name="name"
+          variant="outlined"
+          required
+          value={params.name}
+          onChange={(e) => setparams({ ...params, name: e.target.value })}
+          fullWidth
+          label="DataSet Name"
+          autoFocus
         />
         <button className="btn btn-light" onClick={onSubmit}>
           submit
