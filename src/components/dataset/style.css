@@ -7,3 +7,23 @@
 .imgPro {
 }
 
+.section {
+  text-align:center;
+  font-size: 3em;
+  
+  /* This is important to make the button position relative to the section*/
+  position:relative;
+}
+
+
+/**
+Absolute in relation to the section
+*/
+#moveRight{
+  top: 20px;
+  left: 20px;
+  position:absolute;
+  z-index:999;
+  font-size: 1em;
+  cursor:pointer;
+}

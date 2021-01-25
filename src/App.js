@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <main className="container">
+      <main>
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />

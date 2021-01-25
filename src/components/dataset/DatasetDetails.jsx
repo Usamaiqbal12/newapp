@@ -39,7 +39,7 @@ function DatasetDetails(props) {
     });
   };
   return (
-    <div className='mb-5'>
+    <div className='mb-5 container'>
       {foundedValue && (
         <>
           <div className="jumbotron pt-3 mt-3">

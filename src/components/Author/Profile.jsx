@@ -10,9 +10,6 @@ function Profile(props) {
           getauthor(params.id).then((items)=>{
             if (mounted) {
                 console.log(items.data)
-            //    const author={
-
-            //    };
           }
         })
           return () => (mounted = false);

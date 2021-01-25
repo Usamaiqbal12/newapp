@@ -3,14 +3,11 @@ import { useStateValue } from "../../StateProvider";
 
 function Profile() {
   const [{ user }] = useStateValue();
-  console.log(user);
   return (
     <>
       <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
-            {/* <div class="card"> */}
-            {/* <div class="card-body"> */}
             <div className="d-flex flex-column align-items-center text-center">
               <img
                 src={user[0] ? user[0].profile_picture : ""}
@@ -25,8 +22,6 @@ function Profile() {
                 </h4>
               </div>
             </div>
-            {/* </div> */}
-            {/* </div> */}
           </div>
           <div className="col-md-8 mt-3">
             <div className="card mb-3">
