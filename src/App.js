@@ -15,10 +15,11 @@ import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
 import Params from "./components/dataset/Params";
-import AuthorProfile from './components/Author/Profile'
+import AuthorProfile from "./components/Author/Profile";
 import PrivateRoutes from "./PrivateRoutes";
 import DiscussionMode from "./components/dataset/DiscussionMode";
 import Footer from "./components/footer/Footer";
+import CreateDatasetModal from "./components/dataset/CreateDatasetModal";
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -54,23 +55,23 @@ function App() {
           <Route path="/discussionmode/:id" component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
           <PrivateRoutes path="/createsearch">
-            <CreateDataset create={true}/>
-            </PrivateRoutes>
+            <CreateDataset create={true} />
+          </PrivateRoutes>
           <PrivateRoutes path="/manual" component={Manual} />
           <PrivateRoutes exact path="/dataset" component={ListDataset} />
           <PrivateRoutes
             path="/dataset/detail/:id"
             component={DatasetDetails}
           />
-           <PrivateRoutes
+          <PrivateRoutes
             path="/datasetedit"
-            update={'update'}
+            update={"update"}
             component={CreateDataset}
           />
           <PrivateRoutes path="/new" component={Params} />
           <PrivateRoutes path="/editprofile" component={EditProfile} />
           <PrivateRoutes path="/authorprofile/:id" component={AuthorProfile} />
-
+          <Route path="/createmodal" component={CreateDatasetModal} />
         </Switch>
       </main>
       <Footer />
