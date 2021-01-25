@@ -39,7 +39,7 @@ function DatasetDetails(props) {
     });
   };
   return (
-    <div className='mb-5 container'>
+    <div className="mb-5 container">
       {foundedValue && (
         <>
           <div className="jumbotron pt-3 mt-3">
@@ -65,39 +65,49 @@ function DatasetDetails(props) {
                 </p>
               </div>
               <div className="col-3 mt-3">
-                <p className="lead"><b>{foundedValue.dataset_name}</b></p>
-                <p className="lead"><b>{foundedValue.type_dataset}</b></p>
+                <p className="lead">
+                  <b>{foundedValue.dataset_name}</b>
+                </p>
+                <p className="lead">
+                  <b>{foundedValue.type_dataset}</b>
+                </p>
                 <p className="lead">
                   <b>{foundedValue.author ? foundedValue.author.length : ""}</b>
                 </p>
                 <p className="lead">
-                  <b>{foundedValue.created_at
-                    ? foundedValue.created_at.split(":")[0].split("T")[0]
-                    : ""}</b>
+                  <b>
+                    {foundedValue.created_at
+                      ? foundedValue.created_at.split(":")[0].split("T")[0]
+                      : ""}
+                  </b>
                 </p>
               </div>
             </div>
             <hr className="my-4" />
-            <button className='btn btn-secondary mr-3' onClick={deleteDataset}>Delete Dataset</button>
-      <button className='btn btn-secondary mr-3'
-        onClick={() =>
-          foundedValue && history.push(`/discussionmode/${foundedValue.id}`)
-        }
-      >
-        Disucssion Mode
-      </button>
-      <button className='btn btn-secondary'
-        onClick={() =>
-          foundedValue && history.push(`/datasetedit/${foundedValue.id}`)
-        }
-      >
-        Edit Dataset
-      </button>
+            <button className="btn btn-secondary mr-3" onClick={deleteDataset}>
+              Delete Dataset
+            </button>
+            <button
+              className="btn btn-secondary mr-3"
+              onClick={() =>
+                foundedValue &&
+                history.push(`/discussionmode/${foundedValue.id}`)
+              }
+            >
+              Disucssion Mode
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() =>
+                foundedValue && history.push(`/datasetedit/${foundedValue.id}`)
+              }
+            >
+              Edit Dataset
+            </button>
           </div>
           <AuthorsList foundedValue={foundedValue} />
         </>
       )}
-  
     </div>
   );
 }
