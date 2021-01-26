@@ -10,10 +10,10 @@ import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
 import { createdataset, datasetListFunc } from "./services/Api";
-// import Newparams from "./components/dataset/new";
 import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
+
 import Params from "./components/dataset/Params";
 import AuthorProfile from "./components/Author/Profile";
 import PrivateRoutes from "./PrivateRoutes";
@@ -48,7 +48,6 @@ function App() {
   return (
     <>
       <NavBar />
-      <main>
         <Switch>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
@@ -58,7 +57,9 @@ function App() {
             <CreateDataset create={true} />
           </PrivateRoutes>
           <PrivateRoutes path="/manual" component={Manual} />
+          <div className='container'>
           <PrivateRoutes exact path="/dataset" component={ListDataset} />
+          </div>
           <PrivateRoutes
             path="/dataset/detail/:id"
             component={DatasetDetails}
@@ -72,9 +73,11 @@ function App() {
           <PrivateRoutes path="/editprofile" component={EditProfile} />
           <PrivateRoutes path="/authorprofile/:id" component={AuthorProfile} />
           <Route path="/createmodal" component={CreateDatasetModal} />
+          {/* <Route path="/c" component={Edit} /> */}
+
+          
         </Switch>
-      </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

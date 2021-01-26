@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EditProfile() {
+  console.log('hello');
   const [{ user }] = useStateValue();
   const [currentUser, setCurrentUser] = useState({
     first_name: "",
