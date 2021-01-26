@@ -1,15 +1,14 @@
 import Modal from "react-modal";
 import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import CreateDataset from "./CreateDataset";
 
 const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    right: "auto",
-    bottom: "-15%",
+    right: window.screen.width<800?'auto':'60%',
+    bottom: "-40%",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
@@ -43,11 +42,10 @@ function CreateDatasetModal(props) {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   return (
     <>
-      <button className="btn col-2 text-dark" onClick={handleOpenModal}>
-        Edit
+      <button className="btn col-3 text-white btn-secondary" onClick={handleOpenModal}>
+        {props.create?'Add Dataset':'Update Dataset'}
       </button>
       <Modal
         isOpen={showModal}
@@ -56,18 +54,8 @@ function CreateDatasetModal(props) {
         style={customStyles}
       >
         <h3>Create DataSet</h3>
-        <CreateDataset />
-        <div className="px-3">
-          <Button
-            // onClick={handleEdit}
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Save
-          </Button>
-        </div>
+        <CreateDataset create={props.create} id={props.id} classes={classes} />
+       
       </Modal>
     </>
   );

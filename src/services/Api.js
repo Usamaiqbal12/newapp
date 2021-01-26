@@ -13,6 +13,19 @@ const createdataset = (e) => {
     .then((data) => console.log(data));
 };
 
+export const updatedataset = (e,id) => {
+  return fetch(`${API_URL}dataset/update/${id}`, {
+    method: "put",
+    body: e,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
+
 export const deleteDatasetFunc = async (e) => {
   return await fetch(`${API_URL}dataset/delete/${e}`, {
     method: "delete",

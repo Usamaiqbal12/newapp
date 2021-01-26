@@ -7,9 +7,10 @@ import {
 } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import AuthorsList from "./AuthorsList";
+import CreateDatasetModal from "./CreateDatasetModal";
 function DatasetDetails(props) {
   const history = useHistory();
-  const [{ datasetList }, dispatch] = useStateValue();
+  const [{ currentDataset }, dispatch] = useStateValue();
 
   const [foundedValue, setfoundedValue] = useState([]);
   useEffect(() => {
@@ -23,7 +24,7 @@ function DatasetDetails(props) {
       }
     });
     return () => (mounted = false);
-  }, []);
+  },[currentDataset]);
 
   const deleteDataset = (e) => {
     deleteDatasetFunc(foundedValue.id).then((data) => {
@@ -40,6 +41,7 @@ function DatasetDetails(props) {
   };
   return (
     <div className="mb-5 container">
+      {console.log(foundedValue)}
       {foundedValue && (
         <>
           <div className="jumbotron pt-3 mt-3">
@@ -96,14 +98,7 @@ function DatasetDetails(props) {
             >
               Disucssion Mode
             </button>
-            <button
-              className="btn btn-secondary"
-              onClick={() =>
-                foundedValue && history.push(`/datasetedit/${foundedValue.id}`)
-              }
-            >
-              Edit Dataset
-            </button>
+            <CreateDatasetModal id={foundedValue.id} create={false} />
           </div>
           <AuthorsList foundedValue={foundedValue} />
         </>

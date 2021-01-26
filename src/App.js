@@ -48,35 +48,33 @@ function App() {
   return (
     <>
       <NavBar />
-        <Switch>
+      <Switch>
+        <React.Fragment>
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/discussionmode/:id" component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
-          <PrivateRoutes path="/createsearch">
-            <CreateDataset create={true} />
-          </PrivateRoutes>
+          {/* <PrivateRoutes path="/createsearch">
+          <CreateDataset create={true} />
+        </PrivateRoutes> */}
           <PrivateRoutes path="/manual" component={Manual} />
-          <div className='container'>
-          <PrivateRoutes exact path="/dataset" component={ListDataset} />
+          <div className="container">
+            <PrivateRoutes exact path="/dataset">
+              <ListDataset create={true} />
+            </PrivateRoutes>
           </div>
           <PrivateRoutes
             path="/dataset/detail/:id"
             component={DatasetDetails}
           />
-          <PrivateRoutes
-            path="/datasetedit"
-            update={"update"}
-            component={CreateDataset}
-          />
-          <PrivateRoutes path="/new" component={Params} />
-          <PrivateRoutes path="/editprofile" component={EditProfile} />
+          <PrivateRoutes path="/datasetedit/:id" component={CreateDatasetModal} />
+          <PrivateRoutes path="/editprofile">
+            <EditProfile />
+          </PrivateRoutes>
           <PrivateRoutes path="/authorprofile/:id" component={AuthorProfile} />
-          <Route path="/createmodal" component={CreateDatasetModal} />
-          {/* <Route path="/c" component={Edit} /> */}
+        </React.Fragment>
+      </Switch>
 
-          
-        </Switch>
       {/* <Footer /> */}
     </>
   );

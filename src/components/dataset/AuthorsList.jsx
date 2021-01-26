@@ -29,7 +29,7 @@ function AuthorsList(props) {
                   <th scope="row">{i + 1}</th>
                   <td>{v.first_name}</td>
                   <td>{v.last_name}</td>
-                  <td>{v.sex}</td>
+                  <td>{(v.sex==='M'&&'Male')||(v.sex==='F'&&'Female')}</td>
                   <td>{v.date_of_birth}</td>
                 </tr>
               );

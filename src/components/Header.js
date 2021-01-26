@@ -55,11 +55,6 @@ const NavBar = () => {
               Dataset
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/createsearch">
-              Create Dataset
-            </NavLink>
-          </li>
         </ul>
         <ul className="navbar-nav">
           {isAuthenticated()? <li onClick={logout} className="nav-item">

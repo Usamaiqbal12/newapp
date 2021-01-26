@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
-function ListDataset() {
+import CreateDatasetModal from "./CreateDatasetModal";
+function ListDataset(props) {
   const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
@@ -12,6 +13,7 @@ function ListDataset() {
             <th scope="col">Dataset Name</th>
             <th scope="col"> Authors </th>
             <th scope="col">Created At</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -33,6 +35,7 @@ function ListDataset() {
             : null}
         </tbody>
       </table>
+      <CreateDatasetModal create={props.create} />
     </>
   );
 }

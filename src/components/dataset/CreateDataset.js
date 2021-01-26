@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createdataset, datasetListFunc } from "../../services/Api";
+import { createdataset, datasetListFunc, updatedataset } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import Params from "./Params";
 import { TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 import "./style.css";
 function CreateDataset(props) {
@@ -56,10 +57,17 @@ function CreateDataset(props) {
         createdataset(JSON.stringify(params));
         console.log("hylo");
       }
-      // else if(props.update){
-
-      // }
-
+      else{
+        dispatch({
+          type:'ADDCURRENTDATASET',
+          data:params
+        })
+        console.log(params)
+        updatedataset(JSON.stringify(params),props.id)
+        .then(data=>{
+          console.log(data)
+        })
+      }
       datasetListFunc().then((items) => {
         dispatch({
           type: "ADDDATASET",
@@ -78,22 +86,15 @@ function CreateDataset(props) {
         onSelect={onSelect}
         onRemove={onRemove}
       />
-      <div className=" butnA">
+      <div className="px-3 w-100 text-center">
         <button
-          className="btn btn-light"
+          className="btn btn-light my-2 w-100"
           onClick={() => history.push("/manual")}
         >
           Advance Selection
         </button>
       </div>
-      <div>
-        Dataset Name:
-        {/* <input
-          type="text"
-          onChange={}
-          name="name"
-          value={params.name}
-        /> */}
+      <div className="px-3">
         <TextField
           autoComplete="Dname"
           name="name"
@@ -102,12 +103,20 @@ function CreateDataset(props) {
           value={params.name}
           onChange={(e) => setparams({ ...params, name: e.target.value })}
           fullWidth
-          label="DataSet Name"
+          label="Dataset Name"
           autoFocus
         />
-        <button className="btn btn-light" onClick={onSubmit}>
-          submit
-        </button>
+        <div className="">
+          <Button
+            onClick={onSubmit}
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={props.classes.submit}
+          >
+            Save
+          </Button>
+        </div>
       </div>
     </>
   );
