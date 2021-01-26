@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" to='/'>
+      <Link color="inherit" to="/">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -69,7 +69,7 @@ const SignUp = () => {
     last_name: "",
     error: [false, ""],
     success: false,
-    passError:false
+    passError: false,
   });
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -85,7 +85,7 @@ const SignUp = () => {
     first_name,
     last_name,
     error,
-    passError
+    passError,
   } = values;
   function submit(e) {
     e.preventDefault();
@@ -119,9 +119,8 @@ const SignUp = () => {
           }
         })
         .catch((e) => setValues({ ...values, error: true, success: false }));
-    }
-    else{
-      setValues({...values, passError:true})
+    } else {
+      setValues({ ...values, passError: true });
     }
   }
   const signUpForm = (e) => {
@@ -257,7 +256,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   error={passError}
-                  helperText={passError&& 'Password do not match'}
+                  helperText={passError && "Password do not match"}
                   name="confirmPassword"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   label="Confirm Password"
@@ -286,7 +285,7 @@ const SignUp = () => {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link to='/signin' variant="body2">
+                <Link to="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

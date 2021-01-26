@@ -2,19 +2,16 @@ import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-// import UserProfile from "./components/userProfile";
 import NavBar from "./components/Header";
-import CreateDataset from "./components/dataset/CreateDataset";
 import Manual from "./components/dataset/Manual";
 import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
-import { createdataset, datasetListFunc } from "./services/Api";
+import { datasetListFunc } from "./services/Api";
 import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
 
-import Params from "./components/dataset/Params";
 import AuthorProfile from "./components/Author/Profile";
 import PrivateRoutes from "./PrivateRoutes";
 import DiscussionMode from "./components/dataset/DiscussionMode";
@@ -54,9 +51,7 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/discussionmode/:id" component={DiscussionMode} />
           <PrivateRoutes path="/profile" component={Profile} />
-          {/* <PrivateRoutes path="/createsearch">
-          <CreateDataset create={true} />
-        </PrivateRoutes> */}
+
           <PrivateRoutes path="/manual" component={Manual} />
           <div className="container">
             <PrivateRoutes exact path="/dataset">
@@ -67,7 +62,10 @@ function App() {
             path="/dataset/detail/:id"
             component={DatasetDetails}
           />
-          <PrivateRoutes path="/datasetedit/:id" component={CreateDatasetModal} />
+          <PrivateRoutes
+            path="/datasetedit/:id"
+            component={CreateDatasetModal}
+          />
           <PrivateRoutes path="/editprofile">
             <EditProfile />
           </PrivateRoutes>

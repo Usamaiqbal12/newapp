@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { discussionmode } from "../../services/Api";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { useHistory } from "react-router-dom";
 const DiscussionMode = (props) => {
   const [values, setValues] = useState([]);
-  const history = useHistory()
+  const history = useHistory();
   let c = 1;
   useEffect(() => {
     const {
@@ -29,10 +27,10 @@ const DiscussionMode = (props) => {
         data-ride="carousel"
         data-interval={false}
       >
-        <h4 className='text-center pt-4'>Discussion Mode</h4>
-       
+        <h4 className="text-center pt-4">Discussion Mode</h4>
+
         <div className="carousel-inner container">
-        {values
+          {values
             ? values.map((v, i) => {
                 return (
                   <div
@@ -108,7 +106,8 @@ const DiscussionMode = (props) => {
                                   <h6 className="mb-0">Gender</h6>
                                 </div>
                                 <div className="col-sm-9 text-secondary">
-                                  { (v.author.sex==='M'&&'Male')||(v.author.sex==='F'&&'Female')}
+                                  {(v.author.sex === "M" && "Male") ||
+                                    (v.author.sex === "F" && "Female")}
                                 </div>
                               </div>
 
@@ -130,21 +129,26 @@ const DiscussionMode = (props) => {
                     <div className="container px-5">
                       <div className="row mt-10">
                         <blockquote>
-                          <h4 className='w-100 pl-3'>Quote :</h4>
+                          <h4 className="w-100 pl-3">Quote :</h4>
                           <p className="ml-5 quotes">{v.quote}</p>
                         </blockquote>
                       </div>
                       <div className="row">
                         <div>
-                          <h4 className='w-100 pl-3'>Questions :</h4>
-                          <ol className='pl-5 ml-3 questions'>
+                          <h4 className="w-100 pl-3">Questions :</h4>
+                          <ol className="pl-5 ml-3 questions">
                             {v.questions.map((v, i) => {
                               return <li key={i}>{v.title}</li>;
                             })}
                           </ol>
                         </div>
                       </div>
-                      <button onClick={()=>history.goBack()} className='btn btn-secondary my-3'>Back to Dataset</button>
+                      <button
+                        onClick={() => history.goBack()}
+                        className="btn btn-secondary my-3"
+                      >
+                        Back to Dataset
+                      </button>
                     </div>
                   </div>
                 );
@@ -157,7 +161,10 @@ const DiscussionMode = (props) => {
           role="button"
           data-slide="prev"
         >
-          <span className="carousel-control-prev-icon " aria-hidden="true"></span>
+          <span
+            className="carousel-control-prev-icon "
+            aria-hidden="true"
+          ></span>
           <span className="sr-only colors-control">Previous</span>
         </a>
         <a
@@ -166,7 +173,10 @@ const DiscussionMode = (props) => {
           role="button"
           data-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
           <span className="sr-only">Next</span>
         </a>
       </div>

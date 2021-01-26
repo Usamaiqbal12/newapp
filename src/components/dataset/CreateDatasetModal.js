@@ -7,10 +7,11 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    right: window.screen.width<800?'auto':'60%',
-    bottom: "-40%",
+    // right: window.screen.width < 800 ? "auto" : "",
+    bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: window.screen.width < 700 ? "80%" : "40%",
   },
 };
 const useStyles = makeStyles((theme) => ({
@@ -44,8 +45,11 @@ function CreateDatasetModal(props) {
   };
   return (
     <>
-      <button className="btn col-3 text-white btn-secondary" onClick={handleOpenModal}>
-        {props.create?'Add Dataset':'Update Dataset'}
+      <button
+        className="btn col-3 text-white btn-secondary"
+        onClick={handleOpenModal}
+      >
+        {props.create ? "Add Dataset" : "Update Dataset"}
       </button>
       <Modal
         isOpen={showModal}
@@ -55,7 +59,6 @@ function CreateDatasetModal(props) {
       >
         <h3>Create DataSet</h3>
         <CreateDataset create={props.create} id={props.id} classes={classes} />
-       
       </Modal>
     </>
   );
