@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EditProfile() {
-  console.log('hello');
+  console.log("hello");
   const [{ user }] = useStateValue();
   const [currentUser, setCurrentUser] = useState({
     first_name: "",
@@ -59,9 +59,10 @@ function EditProfile() {
         first_name: user[0].first_name,
         last_name: user[0].last_name,
         email: user[0].email,
-        date_of_birth: user[0].date_of_birth===null?'yyyy-MM-dd':user[0].date_of_birth,
-        nickname: user[0].nickname===null?"":user[0].nickname,
-        gender: user[0].gender===null?'--':user[0].gender,
+        date_of_birth:
+          user[0].date_of_birth === null ? "yyyy-MM-dd" : user[0].date_of_birth,
+        nickname: user[0].nickname === null ? "" : user[0].nickname,
+        gender: user[0].gender === null ? "--" : user[0].gender,
       });
     }
   }, [user]);
@@ -69,11 +70,9 @@ function EditProfile() {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
   const submit = (e) => {
-    e.preventDefault()
-   updateUser(currentUser,user[0].id)
-   .then(data=>{
-     console.log(data);
-   })
+    e.preventDefault();
+    console.log(e);
+    updateUser(currentUser, user[0].id).then((data) => {});
   };
 
   const classes = useStyles();
@@ -123,7 +122,6 @@ function EditProfile() {
                   name="email"
                   autoComplete="email"
                   value={currentUser.email}
-                  
                 />
               </Grid>
               <Grid item xs={12}>

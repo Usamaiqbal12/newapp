@@ -5,6 +5,7 @@ function Profile() {
   const [{ user }] = useStateValue();
   return (
     <>
+      {console.log(user)}
       <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
@@ -49,7 +50,7 @@ function Profile() {
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {user[0]? user[0].nickname : ""}
+                    {user[0] ? user[0].nickname : ""}
                   </div>
                 </div>
                 <hr />
@@ -67,7 +68,10 @@ function Profile() {
                     <h6 className="mb-0">Gender</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {user[0] ? (user[0].gender==='M'&&'Male')||(user[0].gender==='F'&&'Female')  : ""}
+                    {user[0]
+                      ? (user[0].gender === "M" && "Male") ||
+                        (user[0].gender === "F" && "Female")
+                      : ""}
                   </div>
                 </div>
                 <hr />
