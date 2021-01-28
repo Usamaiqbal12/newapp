@@ -7,6 +7,8 @@ import App from "./App";
 // import "font-awesome/css/font-awesome.min.css";
 import reducer, { initialState } from "./reducer";
 import { StateProvider } from "./StateProvider";
+import Header from "./components/Header";
+import Dashboard from "./components/dataset/Dummy";
 
 ReactDOM.render(
   <StateProvider initialState={initialState} reducer={reducer}>
