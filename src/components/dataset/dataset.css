@@ -84,6 +84,9 @@ body {
   color: rgba(238, 238, 238, 0.8);
   font-weight: normal;
 }
+blockquote{
+    margin:0 18px 1rem;
+}
 .quote-card:after {
   font-family: Georgia, serif;
   content: "”";

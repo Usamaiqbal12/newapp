@@ -131,18 +131,17 @@ const DiscussionMode = (props) => {
                     <span className="d-none"> {(c = c + 1)} </span>
                     <div className="container px-5">
                       <div className="row mt-10">
-                        <blockquote class="quote-card">
+                        <blockquote className="quote-card">
                           <p>{v.quote}</p>
                           <cite>{v.author.short_name}</cite>
                         </blockquote>
                       </div>
                       <div className="row">
                         <div>
-                          <h4 className="w-100 pl-3">Questions :</h4>
-                          <ol className="pl-5 ml-3 questions"></ol>
+                          <h4 className="w-100 pt-4 pl-4"> <b>Questions :</b></h4>
                         </div>
                       </div>
-                      <ul class="list-group">
+                      <ul className="list-group">
                         {v.questions.map((v, i) => {
                           return (
                             <li className="list-group-item" key={i}>

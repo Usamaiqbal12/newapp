@@ -7,7 +7,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
+import EditIcon from '@material-ui/icons/Edit';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -17,11 +17,15 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import PersonIcon from '@material-ui/icons/Person';
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
+import ListIcon from '@material-ui/icons/List';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import App from "./../App";
 const drawerWidth = 240;
 
@@ -193,7 +197,7 @@ const NavBar = () => {
           <Link to="/profile"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
-                <ShoppingCartIcon />
+                <PersonIcon />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItem>
@@ -202,7 +206,7 @@ const NavBar = () => {
           <Link to="/dataset"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
-                <BarChartIcon />
+                <ListIcon />
               </ListItemIcon>
               <ListItemText primary="Datasets" />
             </ListItem>
@@ -210,7 +214,7 @@ const NavBar = () => {
           <Link to="/editprofile"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
-                <LayersIcon />
+                <EditIcon />
               </ListItemIcon>
               <ListItemText primary="Edit Profile" />
             </ListItem>
@@ -220,7 +224,7 @@ const NavBar = () => {
             <Link to="/signin"  style={{color:'black'}}>
               <ListItem button>
                 <ListItemIcon>
-                  <LayersIcon />
+                  <VpnKeyIcon />
                 </ListItemIcon>
                 <ListItemText primary="Login" />
               </ListItem>
@@ -229,7 +233,7 @@ const NavBar = () => {
             <Link onClick={logout} to="/"  style={{color:'black'}}>
               <ListItem button>
                 <ListItemIcon>
-                  <LayersIcon />
+                <ExitToAppIcon />
                 </ListItemIcon>
                 <ListItemText primary="Logout" />
               </ListItem>
@@ -238,7 +242,7 @@ const NavBar = () => {
           <Link to="/signup"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
-                <LayersIcon />
+                <LockOpenIcon />
               </ListItemIcon>
               <ListItemText primary="SignUp" />
             </ListItem>
