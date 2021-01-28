@@ -66,9 +66,11 @@ function App() {
         <Switch>
           <React.Fragment>
             <Route path="/signin" component={SignIn} />
-            {/* <Route path="/dashboard" component={Dashboard} /> */}
             <Route path="/signup" component={SignUp} />
-            <Route path="/discussionmode/:id" component={DiscussionMode} />
+            <PrivateRoutes
+              path="/discussionmode/:id"
+              component={DiscussionMode}
+            />
             <PrivateRoutes path="/profile" component={Profile} />
 
             <PrivateRoutes path="/manual" component={Manual} />

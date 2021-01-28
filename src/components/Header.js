@@ -180,7 +180,7 @@ const NavBar = () => {
         </div>
         <Divider />
         <div>
-          <Link to="/" className={classes.link}>
+          <Link to="/" style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon />
@@ -188,7 +188,7 @@ const NavBar = () => {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link to="/profile" className={classes.link}>
+          <Link to="/profile"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
                 <ShoppingCartIcon />
@@ -197,7 +197,7 @@ const NavBar = () => {
             </ListItem>
           </Link>
 
-          <Link to="/dataset" className={classes.link}>
+          <Link to="/dataset"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
                 <BarChartIcon />
@@ -205,7 +205,7 @@ const NavBar = () => {
               <ListItemText primary="DataSets" />
             </ListItem>
           </Link>
-          <Link to="/editprofile" className={classes.link}>
+          <Link to="/editprofile"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
                 <LayersIcon />
@@ -215,7 +215,7 @@ const NavBar = () => {
           </Link>
           <Divider />
           {!isAuthenticated() ? (
-            <Link to="/signin" className={classes.link}>
+            <Link to="/signin"  style={{color:'black'}}>
               <ListItem button>
                 <ListItemIcon>
                   <LayersIcon />
@@ -224,7 +224,7 @@ const NavBar = () => {
               </ListItem>
             </Link>
           ) : (
-            <Link onClick={logout} to="/" className={classes.link}>
+            <Link onClick={logout} to="/"  style={{color:'black'}}>
               <ListItem button>
                 <ListItemIcon>
                   <LayersIcon />
@@ -233,7 +233,7 @@ const NavBar = () => {
               </ListItem>
             </Link>
           )}
-          <Link to="/signup" className={classes.link}>
+          <Link to="/signup"  style={{color:'black'}}>
             <ListItem button>
               <ListItemIcon>
                 <LayersIcon />

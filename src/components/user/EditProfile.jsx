@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EditProfile() {
-  console.log("hello");
-  const [{ user }] = useStateValue();
+  const history = useHistory()
+  const [{ user,},dispatch] = useStateValue();
   const [currentUser, setCurrentUser] = useState({
     first_name: "",
     last_name: "",
@@ -60,7 +60,7 @@ function EditProfile() {
         last_name: user[0].last_name,
         email: user[0].email,
         date_of_birth:
-          user[0].date_of_birth === null ? "yyyy-MM-dd" : user[0].date_of_birth,
+          user[0].date_of_birth === null ? "" : user[0].date_of_birth,
         nickname: user[0].nickname === null ? "" : user[0].nickname,
         gender: user[0].gender === null ? "--" : user[0].gender,
       });
@@ -71,8 +71,14 @@ function EditProfile() {
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(e);
-    updateUser(currentUser, user[0].id).then((data) => {});
+    updateUser(currentUser, user[0].id).then((data) => {
+      console.log(data);
+      dispatch({
+        type:'ADDUSER',
+        data:data
+      })
+      history.push('/profile')
+    });
   };
 
   const classes = useStyles();
@@ -119,6 +125,7 @@ function EditProfile() {
                   fullWidth
                   id="email"
                   label="Email Address"
+                  disabled={true}
                   name="email"
                   autoComplete="email"
                   value={currentUser.email}
@@ -198,6 +205,8 @@ function EditProfile() {
               fullWidth
               variant="contained"
               color="primary"
+              disabled={currentUser.date_of_birth===""?true:false}
+
               className={classes.submit}
             >
               Submit

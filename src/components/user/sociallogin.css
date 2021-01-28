@@ -7,8 +7,19 @@
     background-color: rgb(59, 89, 152) !important;
     color: white !important;
     border: none !important;  
-    width: 100% !important; 
-    /* height: 50px; */
+    width: 190%;
+    /* width: 100% !important;  */
+    height: 50px;
+  }
+  .facebook-login{
+    background-color: rgb(59, 89, 152) !important;
+    display: flex !important;
+    width: 100%;
+    border: none !important;
+  }
+  .facebook-login:hover{
+    background-color: rgb(45, 58, 109) !important;
+
   }
   .facebook:hover{
     background-color: rgb(45, 58, 109) !important;
@@ -37,4 +48,14 @@
   }
   .google:hover{
       background-color:rgb(194, 26, 26) !important;
+  }
+  .spiner{
+    /* width: 100%; */
+    /* display: flex; */
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    /* justify-content: center; */
+    /* margin-top: -20px; */
+    position: absolute;
   }

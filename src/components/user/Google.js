@@ -1,12 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import GoogleLogin from "react-google-login";
 import { googleLogin } from "../../services/user/userApi";
 import { useStateValue } from "../../StateProvider";
 import { authenticate, datasetListFunc } from "../../services/Api";
 import "./sociallogin.css";
+import Loading from "../Loading";
 function Google() {
   const [, dispatch] = useStateValue();
+  const [loading,setloading] = useState(false)
   const responseGoogle = (e) => {
+    setloading(true)
     const { name, email } = e.profileObj;
     const values = {
       first_name: name.split(" ")[0],
@@ -20,6 +23,7 @@ function Google() {
           type: "ADDUSER",
           data: data.data,
         });
+        setloading(false)
       });
       datasetListFunc().then((items) => {
         dispatch({
@@ -30,6 +34,8 @@ function Google() {
     });
   };
   return (
+    <>
+    {loading&& <Loading/>}
     <GoogleLogin
       clientId="918683245824-3i4siophfobp31a542q0vumpe2l5lnhj.apps.googleusercontent.com"
       onSuccess={responseGoogle}
@@ -38,11 +44,8 @@ function Google() {
       scope={("profile", "email")}
       className={"google"}
       icon={false}
-      buttonText={'Login with Google'}
-      // render={(renderProps) => (
-      //   <p className="mx-auto text-center google">Login with Google</p>
-      // )}
     />
+    </>
   );
 }
 

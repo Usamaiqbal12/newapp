@@ -5,7 +5,6 @@ function Profile() {
   const [{ user }] = useStateValue();
   return (
     <>
-      {console.log(user)}
       <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">

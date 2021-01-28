@@ -13,7 +13,7 @@ const createdataset = (e) => {
     .then((data) => console.log(data));
 };
 
-export const updatedataset = (e,id) => {
+export const updatedataset = (e, id) => {
   return fetch(`${API_URL}dataset/update/${id}`, {
     method: "put",
     body: e,
@@ -34,7 +34,7 @@ export const deleteDatasetFunc = async (e) => {
     },
   }).then((data) => data.json());
 };
-const authorsList = async() => {
+const authorsList = async () => {
   return await fetch(`${API_URL}author/list`, {
     method: "get",
     headers: {
@@ -42,7 +42,7 @@ const authorsList = async() => {
     },
   }).then((data) => data.json());
 };
-const datasetListFunc = async(e) => {
+const datasetListFunc = async (e) => {
   return await fetch(`${API_URL}dataset/list`, {
     method: "get",
     headers: {
@@ -51,7 +51,7 @@ const datasetListFunc = async(e) => {
   }).then((data) => data.json());
 };
 
-const getDataSet = async(e) => {
+const getDataSet = async (e) => {
   return await fetch(`${API_URL}dataset/authorslist/${e}`, {
     method: "get",
     headers: {
@@ -69,8 +69,8 @@ const signIn = (e) => {
       "Content-Type": "application/json",
     },
   })
-  .then((data) => data.json())
-  .catch((err)=>console.log(err))
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
 };
 
 export const signup = (user) => {
@@ -106,7 +106,6 @@ export const getauthor = (e) => {
     .then((data) => data.json())
     .catch((err) => console.log(err));
 };
-
 
 export const authenticate = (data, next) => {
   if (typeof window !== undefined) {
