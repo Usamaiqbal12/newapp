@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:8000/";
 
-export const getUser = async (e) => {
-  return await fetch(`${API_URL}user/getuser2`, {
+export const getUser = (e) => {
+  return fetch(`${API_URL}user/getuser2`, {
     method: "get",
     headers: {
       Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
@@ -9,8 +9,8 @@ export const getUser = async (e) => {
   }).then((data) => data.json());
 };
 
-export const updateUser = async (e, id) => {
-  return await fetch(`${API_URL}user/updateuser/${id}/`, {
+export const updateUser = (e, id) => {
+  return fetch(`${API_URL}user/updateuser/${id}/`, {
     method: "put",
     body: JSON.stringify(e),
     headers: {

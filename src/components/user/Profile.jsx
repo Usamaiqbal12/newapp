@@ -6,7 +6,7 @@ function Profile() {
   return (
     <>
       <div className="container mb-5">
-        <div className="row gutters-sm">
+        <div className="row gutters-sm ">
           <div className="col-md-4 mt-5 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
               <img

@@ -5,10 +5,10 @@ const DiscussionMode = (props) => {
   const [values, setValues] = useState([]);
   const history = useHistory();
   let c = 1;
+  const {
+    match: { params },
+  } = props;
   useEffect(() => {
-    const {
-      match: { params },
-    } = props;
     let mounted = true;
 
     discussionmode(params.id).then((data) => {
@@ -27,7 +27,10 @@ const DiscussionMode = (props) => {
         data-ride="carousel"
         data-interval={false}
       >
-        <h4 className="text-center pt-4">Discussion Mode</h4>
+        <h4 className="text-center pt-4">
+          {" "}
+          <span className="bg-white px-3 py-2">Discussion Mode</span>
+        </h4>
 
         <div className="carousel-inner container">
           {values
@@ -54,7 +57,7 @@ const DiscussionMode = (props) => {
                         </div>
                         <div className="col-md-8 mt-3">
                           <div className="card mb-3">
-                            <div className="card-body bg-light">
+                            <div className="card-body bg-white">
                               <div className="row">
                                 <div className="col-sm-3">
                                   <h6 className="mb-0"> Name</h6>
@@ -128,21 +131,26 @@ const DiscussionMode = (props) => {
                     <span className="d-none"> {(c = c + 1)} </span>
                     <div className="container px-5">
                       <div className="row mt-10">
-                        <blockquote>
-                          <h4 className="w-100 pl-3">Quote :</h4>
-                          <p className="ml-5 quotes">{v.quote}</p>
+                        <blockquote class="quote-card">
+                          <p>{v.quote}</p>
+                          <cite>{v.author.short_name}</cite>
                         </blockquote>
                       </div>
                       <div className="row">
                         <div>
                           <h4 className="w-100 pl-3">Questions :</h4>
-                          <ol className="pl-5 ml-3 questions">
-                            {v.questions.map((v, i) => {
-                              return <li key={i}>{v.title}</li>;
-                            })}
-                          </ol>
+                          <ol className="pl-5 ml-3 questions"></ol>
                         </div>
                       </div>
+                      <ul class="list-group">
+                        {v.questions.map((v, i) => {
+                          return (
+                            <li className="list-group-item" key={i}>
+                             <b>{i+1}.</b> {v.title}
+                            </li>
+                          );
+                        })}
+                      </ul>
                       <button
                         onClick={() => history.goBack()}
                         className="btn btn-secondary my-3"

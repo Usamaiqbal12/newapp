@@ -9,7 +9,7 @@ function Google() {
   const [, dispatch] = useStateValue();
   const [loading,setloading] = useState(false)
   const responseGoogle = (e) => {
-    setloading(true)
+    // setloading(true)
     const { name, email } = e.profileObj;
     const values = {
       first_name: name.split(" ")[0],

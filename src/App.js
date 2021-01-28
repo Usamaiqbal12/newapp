@@ -19,6 +19,7 @@ import Footer from "./components/footer/Footer";
 import CreateDatasetModal from "./components/dataset/CreateDatasetModal";
 // import Dashboard from "./Dummy";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { TvRounded } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -87,6 +88,8 @@ function App() {
               path="/datasetedit/:id"
               component={CreateDatasetModal}
             />
+            <PrivateRoutes path='/dataseteditmanual/:id' component={Manual}
+           />
             <PrivateRoutes path="/editprofile">
               <EditProfile />
             </PrivateRoutes>

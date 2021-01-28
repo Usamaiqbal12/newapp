@@ -155,6 +155,7 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
+          <Link to='/' style={{color:'white',textDecoration:'none'}}>
           <Typography
             component="h1"
             variant="h6"
@@ -164,6 +165,7 @@ const NavBar = () => {
           >
             QOTRT
           </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -202,7 +204,7 @@ const NavBar = () => {
               <ListItemIcon>
                 <BarChartIcon />
               </ListItemIcon>
-              <ListItemText primary="DataSets" />
+              <ListItemText primary="Datasets" />
             </ListItem>
           </Link>
           <Link to="/editprofile"  style={{color:'black'}}>

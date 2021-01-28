@@ -6,8 +6,8 @@ function AuthorsList(props) {
   const history = useHistory()
   return (
     <div>
-      <h2 className="px-3 pb-2">Authors:</h2>
-      <table className="table table-hover">
+      <h2 className="px-3 pb-2 2 w-100 text-center"> <span className='px-4 py-1 bg-secondary text-white rounded'> Authors:</span></h2>
+      <table className="table table-hover bg-white">
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>

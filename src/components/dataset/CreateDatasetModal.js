@@ -10,13 +10,13 @@ const customStyles = {
     // right: window.screen.width < 800 ? "auto" : "",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -45%)",
     width: window.screen.width < 700 ? "80%" : "40%",
   },
 };
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -46,7 +46,7 @@ function CreateDatasetModal(props) {
   return (
     <>
       <button
-        className="btn col-3 text-white btn-secondary"
+        className="btn btn-secondary mr-3"
         onClick={handleOpenModal}
       >
         {props.create ? "Add Dataset" : "Update Dataset"}

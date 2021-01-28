@@ -62,7 +62,6 @@ function CreateDataset(props) {
           type:'ADDCURRENTDATASET',
           data:params
         })
-        console.log(params)
         updatedataset(JSON.stringify(params),props.id)
         .then(data=>{
           console.log(data)
@@ -89,7 +88,7 @@ function CreateDataset(props) {
       <div className="px-3 w-100 text-center">
         <button
           className="btn btn-light my-2 w-100"
-          onClick={() => history.push("/manual")}
+          onClick={() => props.create?history.push("/manual"):history.push(`/dataseteditmanual/${props.id}`)}
         >
           Advance Selection
         </button>

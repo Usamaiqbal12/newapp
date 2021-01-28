@@ -13,10 +13,11 @@ function DatasetDetails(props) {
   const [{ currentDataset }, dispatch] = useStateValue();
 
   const [foundedValue, setfoundedValue] = useState([]);
+  const {
+    match: { params },
+  } = props;
   useEffect(() => {
-    const {
-      match: { params },
-    } = props;
+   
     let mounted = true;
     getDataSet(params.id).then((items) => {
       if (mounted) {

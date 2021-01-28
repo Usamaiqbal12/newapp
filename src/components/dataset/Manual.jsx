@@ -3,9 +3,13 @@ import {
   authorsList,
   createdataset,
   datasetListFunc,
+  updatedataset,
 } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
-function Manual() {
+function Manual(props) {
+  const {
+    match: { params },
+  } = props;
   const [, dispatch] = useStateValue();
   const [authors, setauthorsList] = useState([]);
   const [authorsId, setauthorsId] = useState([]);
@@ -35,7 +39,13 @@ function Manual() {
   const submit = (e) => {
     if (authorsData.authors.length > 0) {
       if (authorsData.authors.name !== "") {
-        createdataset(JSON.stringify(authorsData));
+        if (props.location.pathname.split("/")[1] === "dataseteditmanual") {
+          updatedataset(JSON.stringify(authorsData), params.id);
+        }
+        else{
+          createdataset(JSON.stringify(authorsData));
+        }
+        
         setauthorsData({ ...authorsData, name: "" });
         datasetListFunc().then((items) => {
           dispatch({
@@ -51,8 +61,8 @@ function Manual() {
     }
   };
   return (
-    <>
-      <table className="table table-striped">
+    <div className="container">
+      <table className="table table-hover">
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -65,7 +75,7 @@ function Manual() {
           {authors
             ? authors.map((v, i) => {
                 return (
-                  <tr key={i}>
+                  <tr key={i} style={{ cursor: "pointer" }}>
                     <th scope="row">{i + 1}</th>
                     <th>{v.first_name}</th>
                     <th>{v.last_name}</th>
@@ -89,8 +99,12 @@ function Manual() {
         value={authorsData.name}
         onChange={handleDatasetName}
       />
-      <button onClick={submit}>Create</button>
-    </>
+      <button onClick={submit}>
+        {props.location.pathname.split("/")[1] === "dataseteditmanual"
+          ? "Update"
+          : "Create"}
+      </button>
+    </div>
   );
 }
 

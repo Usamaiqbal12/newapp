@@ -5,8 +5,8 @@ function ListDataset(props) {
   const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
-    <>
-      <table className="table table-hover">
+    <div className='bg-white px-2 py-1 mt-4'>
+      <table className="table table-hover mt-3">
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -36,7 +36,7 @@ function ListDataset(props) {
         </tbody>
       </table>
       <CreateDatasetModal create={props.create} />
-    </>
+    </div>
   );
 }
 
