@@ -19,7 +19,7 @@ import { useStateValue } from "../../StateProvider";
 import { updateUser } from "../../services/user/userApi";
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: window.screen.width<640?theme.spacing(4):theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -97,9 +97,9 @@ function EditProfile() {
       <Container component="main" maxWidth="sm" className="bg-white">
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Edit Profile
-          </Typography>
+          <h2 className='dataset__text rounded px-3 mt-2' >
+           <b style={{fontSize:window.screen.width<640&&'25px'}}> Edit Profile </b>
+          </h2>
           <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -116,7 +116,8 @@ function EditProfile() {
                   autoFocus
                 />
               </Grid>
-              <input type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
+             
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"
@@ -129,6 +130,10 @@ function EditProfile() {
                   name="last_name"
                   autoComplete="lname"
                 />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <span className='dataset__text px-2'> <b> Photo:</b> </span>
+              <input type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -174,30 +179,36 @@ function EditProfile() {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <div className="">
-                  Gender
-                  <div className="radio form-control">
-                    <label>
+                  <span className='dataset__text px-2'><b> Gender:</b></span>
+                  <div className="radio form-check p-2 ml-4">
+                   
                       <input
                         type="radio"
                         name="gender"
                         onChange={handleChange}
                         value="M"
+                        id='m'
+                        className='form-check-input'
                         checked={currentUser.gender === "M"}
                       />
-                      Male
-                    </label>
+                    <label className='form-check-label' htmlFor='m'> Male</label>
+                     
+                  
                   </div>
-                  <div className="radio form-control">
-                    <label>
+                  <div className="radio form-check p-2 ml-4">
+                  
                       <input
                         type="radio"
                         value="F"
+                        id='f'
                         name="gender"
+                        className='form-check-input'
                         checked={currentUser.gender === "F"}
                         onChange={handleChange}
                       />
-                      Female
-                    </label>
+                      <label className='form-check-label' htmlFor='f'> Female</label>
+                     
+                   
                   </div>
                 </div>
               </Grid>
@@ -227,7 +238,7 @@ function EditProfile() {
       </Container>
     );
   };
-  return <div>{signUpForm()}</div>;
+  return <div className='px-3'>{signUpForm()}</div>;
 }
 
 export default EditProfile;
