@@ -133,7 +133,7 @@ function EditProfile() {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <span className='dataset__text px-2'> <b> Photo:</b> </span>
-              <input type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
+              <input className='btn' type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
               </Grid>
               <Grid item xs={12}>
                 <TextField
