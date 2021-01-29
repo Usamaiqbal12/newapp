@@ -2,6 +2,7 @@
     display: flex;
     align-self: center;
     align-items: center;
+    background-color:#d9dcde;
 }
 .discussionmode{
     min-height: 100vh;
@@ -98,10 +99,36 @@ blockquote{
   color: rgba(238, 238, 238, 0.8);
   font-weight: normal;
 }
+.dataset__heading{
+  background-color: #d9dcde;
+  font-family: monospace;
+}
+.author__heading{
+  background-color: #d9dcde;
+  font-family: monospace;
+}
+.dataset__text{
+  font-family: cursive;
+}
 @media (max-width: 640px) {
   .quote-card:after {
     font-size: 22em;
     right: -25px;
+  }
+  body{
+    font-size: 13px !important;
+  }
+  .author__heading{
+    font-size: 20px !important;
+  }
+  .jumbotron{
+    margin-bottom: 3px !important;
+  }
+  .dataset__heading{
+    font-size: 30px !important;
+  }
+  .dataset__text{
+    font-size: 15px !important;
   }
 }
 .quote-card.blue-card {

@@ -5,11 +5,14 @@ import {
   datasetListFunc,
   updatedataset,
 } from "../../services/Api";
+import { TextField } from "@material-ui/core";
 import { useStateValue } from "../../StateProvider";
+import { useHistory } from "react-router-dom";
 function Manual(props) {
   const {
     match: { params },
   } = props;
+  const history = useHistory()
   const [, dispatch] = useStateValue();
   const [authors, setauthorsList] = useState([]);
   const [authorsId, setauthorsId] = useState([]);
@@ -53,6 +56,7 @@ function Manual(props) {
             data: items.data,
           });
         });
+        history.push('/dataset')
       } else {
         alert("Please Type Dataset Name !");
       }
@@ -61,7 +65,7 @@ function Manual(props) {
     }
   };
   return (
-    <div className="container">
+    <div className="container p-4 bg-white">
       <table className="table table-hover">
         <thead className="thead-dark">
           <tr>
@@ -75,7 +79,7 @@ function Manual(props) {
           {authors
             ? authors.map((v, i) => {
                 return (
-                  <tr key={i} style={{ cursor: "pointer" }}>
+                  <tr key={i} style={{ cursor: "pointer",fontFamily:'cursive' }}>
                     <th scope="row">{i + 1}</th>
                     <th>{v.first_name}</th>
                     <th>{v.last_name}</th>
@@ -93,13 +97,17 @@ function Manual(props) {
             : ""}
         </tbody>
       </table>
-      Dataset Name:{" "}
-      <input
-        type="text"
-        value={authorsData.name}
-        onChange={handleDatasetName}
-      />
-      <button onClick={submit}>
+          <TextField
+          autoComplete="Dname"
+          name="name"
+          variant="outlined"
+          required
+          value={authorsData.name}
+          onChange={handleDatasetName}
+          label="Dataset Name"
+          autoFocus
+        />
+      <button onClick={submit} className='btn btn-secondary mx-2 py-3 px-4'>
         {props.location.pathname.split("/")[1] === "dataseteditmanual"
           ? "Update"
           : "Create"}

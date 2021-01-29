@@ -15,10 +15,23 @@
   position:relative;
 }
 
-
+.profilePicture{
+  width: 250px;
+  height: 250px;
+}
+@media (max-width: 640px) {
+  .profilePicture{
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .profile__info{
+    font-size: 15px !important;
+  }
+}
 /**
 Absolute in relation to the section
 */
+
 #moveRight{
   top: 20px;
   left: 20px;

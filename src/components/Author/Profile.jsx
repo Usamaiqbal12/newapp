@@ -17,19 +17,17 @@ function Profile(props) {
   }, []);
   return (
     <>
-      {console.log(author)}
       <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
               <img
-                src={author ? author.profile_picture : ""}
+                src={author ? author.photo : ""}
                 alt="name"
-                className="rounded-circle"
-                width="250"
+                className="rounded-circle profilePicture"
               />
               <div className="mt-3">
-                <h4>
+                <h4 className="author__heading px-2 py-1">
                   {author ? author.first_name : ""}{" "}
                   {author ? author.last_name : ""}{" "}
                 </h4>
@@ -40,59 +38,77 @@ function Profile(props) {
             <div className="card mb-3">
               <div className="card-body">
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">First Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author ? author.first_name : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author ? author.first_name : ""}{" "}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">Last Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author ? author.last_name : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author ? author.last_name : ""}{" "}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author ? author.nickname : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author ? author.nickname : ""}{" "}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">Email</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author ? author.email : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author ? author.email : ""}{" "}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">Gender</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author
-                      ? (author.gender === "M" && "Male") ||
-                        (author.gender === "F" && "Female")
-                      : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author
+                        ? (author.gender === "M" && "Male") ||
+                          (author.gender === "F" && "Female")
+                        : ""}{" "}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-3 col-6">
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
-                    {author ? author.date_of_birth : ""}
+                  <div className="col-sm-9 col-6 text-secondary">
+                    <span className="profile__info">
+                      {" "}
+                      {author ? author.date_of_birth : ""}{" "}
+                    </span>
                   </div>
                 </div>
               </div>

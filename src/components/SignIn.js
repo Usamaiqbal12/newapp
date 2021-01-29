@@ -28,7 +28,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 import { getUser } from "../services/user/userApi";
 import { green, purple } from "@material-ui/core/colors";
-import Loading from "./loading";
+import Loading from "./Loading";
 
 function Copyright() {
   return (
@@ -108,12 +108,12 @@ export default function SignIn() {
           setloading(false);
           authenticate(data.data.token, () => {
             setuserData({ email: "", password: "" });
-            getUser().then((data) => {
+            // getUser().then((data) => {
               dispatch({
                 type: "ADDUSER",
-                data: data,
+                data: data.data.data,
               });
-            });
+            // });
             datasetListFunc(data.data.id).then((items) => {
               dispatch({
                 type: "ADDDATASET",

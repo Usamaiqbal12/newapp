@@ -10,12 +10,10 @@ export const getUser = (e) => {
 };
 
 export const updateUser = (e, id) => {
-  return fetch(`${API_URL}user/updateuser/${id}/`, {
+  return fetch(`${API_URL}user/updateuser/`, {
     method: "put",
-    body: JSON.stringify(e),
+    body: e,
     headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL',
       Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
     },
   }).then((data) => data.json());

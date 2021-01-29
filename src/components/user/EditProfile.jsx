@@ -52,6 +52,7 @@ function EditProfile() {
     date_of_birth: "",
     nickname: "",
     gender: "",
+    profile_picture:""
   });
   useEffect(() => {
     if (user[0] !== undefined) {
@@ -63,6 +64,8 @@ function EditProfile() {
           user[0].date_of_birth === null ? "" : user[0].date_of_birth,
         nickname: user[0].nickname === null ? "" : user[0].nickname,
         gender: user[0].gender === null ? "--" : user[0].gender,
+        profile_picture: user[0].profile_picture === null ? "--" : user[0].profile_picture,
+
       });
     }
   }, [user]);
@@ -71,11 +74,18 @@ function EditProfile() {
   };
   const submit = (e) => {
     e.preventDefault();
-    updateUser(currentUser, user[0].id).then((data) => {
-      console.log(data);
+    const formData = new FormData()
+    formData.append('first_name',currentUser.first_name)
+    formData.append('last_name',currentUser.last_name)
+    formData.append('email',currentUser.email)
+    formData.append('date_of_birth',currentUser.date_of_birth)
+    formData.append('nickname',currentUser.nickname)
+    formData.append('gender',currentUser.gender)
+    formData.append('profile_picture',currentUser.profile_picture)
+    updateUser(formData).then((data) => {
       dispatch({
         type:'ADDUSER',
-        data:data
+        data:data.data
       })
       history.push('/profile')
     });
@@ -106,6 +116,7 @@ function EditProfile() {
                   autoFocus
                 />
               </Grid>
+              <input type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
               <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"

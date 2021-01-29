@@ -173,7 +173,7 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant={window.screen.width < 800 ? "" : "permanent"}
+        variant={window.screen.width < 800 ? "temporary" : "permanent"}
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}

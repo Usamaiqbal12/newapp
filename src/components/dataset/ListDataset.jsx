@@ -23,12 +23,12 @@ function ListDataset(props) {
                   <tr
                     onClick={() => history.push(`/dataset/detail/${v.id}`)}
                     key={i}
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer",fontFamily:'cursive',fontSize:'17px' }}
                   >
-                    <th scope="row">{i + 1}</th>
-                    <th>{v.dataset_name}</th>
-                    <th className="pl-4">{v.author.length}</th>
-                    <th>{v.created_at.split(":")[0].split("T")[0]}</th>
+                    <td scope="row">{i + 1}</td>
+                    <td>{v.dataset_name}</td>
+                    <td className="pl-4">{v.author.length}</td>
+                    <td>{v.created_at.split(":")[0].split("T")[0]}</td>
                   </tr>
                 );
               })

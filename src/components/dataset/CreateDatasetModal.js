@@ -46,7 +46,7 @@ function CreateDatasetModal(props) {
   return (
     <>
       <button
-        className="btn btn-secondary mr-3"
+        className="btn btn-secondary mr-3 col-xs-12 col-sm-12 col-md-2 mb-2"
         onClick={handleOpenModal}
       >
         {props.create ? "Add Dataset" : "Update Dataset"}
@@ -57,7 +57,7 @@ function CreateDatasetModal(props) {
         onRequestClose={handleCloseModal}
         style={customStyles}
       >
-        <h3>Create DataSet</h3>
+        <h4>{props.create ? "Create Dataset" : "Update Dataset"}</h4>
         <CreateDataset create={props.create} id={props.id} classes={classes} />
       </Modal>
     </>

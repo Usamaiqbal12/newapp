@@ -42,43 +42,42 @@ function DatasetDetails(props) {
   };
   return (
     <div className="mb-5 container">
-      {console.log(foundedValue)}
       {foundedValue && (
         <>
           <div className="jumbotron pt-3 mt-3">
             <h1 className="text-center">
               {" "}
-              <span className="pt-1 px-3 pb-1 bg-light"> Dataset Details</span>
+              <span className="pt-1 px-4 pb-1 dataset__heading rounded mb-2">Dataset Details</span>
             </h1>
 
-            <div className="dataset__detail">
-              <div className="col-3">
+            <div className="dataset__detail rounded">
+              <div className="col-sm-6 col-md-3">
                 <p className="lead mt-3">
                   {" "}
-                  <b>Dataset Name: </b>
+                  <b className='dataset__text'>Dataset Name: </b>
                 </p>
                 <p className="lead">
-                  <b>Dataset Type : </b>
+                  <b className='dataset__text'>Dataset Type : </b>
                 </p>
                 <p className="lead">
-                  <b>Authors : </b>
+                  <b className='dataset__text'>Authors : </b>
                 </p>
                 <p className="lead">
-                  <b>Created At : </b>
+                  <b className='dataset__text'>Created At : </b>
                 </p>
               </div>
-              <div className="col-3 mt-3">
+              <div className="col-sm-6 mt-3 col-md-5">
                 <p className="lead">
-                  <b>{foundedValue.dataset_name}</b>
+                  <b className='dataset__text'>{foundedValue.dataset_name}</b>
                 </p>
                 <p className="lead">
-                  <b>{foundedValue.type_dataset}</b>
+                  <b className='dataset__text'>{foundedValue.type_dataset}</b>
                 </p>
                 <p className="lead">
-                  <b>{foundedValue.author ? foundedValue.author.length : ""}</b>
+                  <b className='dataset__text'>{foundedValue.author ? foundedValue.author.length : ""}</b>
                 </p>
                 <p className="lead">
-                  <b>
+                  <b className='dataset__text'>
                     {foundedValue.created_at
                       ? foundedValue.created_at.split(":")[0].split("T")[0]
                       : ""}
@@ -87,11 +86,11 @@ function DatasetDetails(props) {
               </div>
             </div>
             <hr className="my-4" />
-            <button className="btn btn-secondary mr-3" onClick={deleteDataset}>
+            <button className="btn btn-secondary mr-3 col-xs-12 mb-2 col-sm-12 col-md-2" onClick={deleteDataset}>
               Delete Dataset
             </button>
             <button
-              className="btn btn-secondary mr-3"
+              className="btn btn-secondary mr-3 col-xs-12 col-sm-12 col-md-2 mb-2"
               onClick={() =>
                 foundedValue &&
                 history.push(`/discussionmode/${foundedValue.id}`)
