@@ -2,6 +2,11 @@ footer {
     color: grey;
     margin-top: 300px;
 }
+@media (max-width: 640px) {
+    footer{
+        margin-top: 100px;
+    }
+}
 footer p, a {
 font-size: 12px;
 font-family: 'Roboto', sans-serif;

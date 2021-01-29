@@ -16,8 +16,8 @@ function Profile() {
               />
               <div className="mt-3">
                 <h4 className="author__heading px-2 py-1">
-                  {user[0] ? user[0].first_name : ""}{" "}
-                  {user[0] ? user[0].last_name : ""}{" "}
+                  {user[0] ? user[0].first_name&&user[0].first_name.toUpperCase() : ""}{" "}
+                  {user[0] ? user[0].first_name&&user[0].last_name.toUpperCase() : ""}{" "}
                 </h4>
               </div>
             </div>
