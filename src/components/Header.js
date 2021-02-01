@@ -7,7 +7,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from "@material-ui/icons/Edit";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -17,17 +17,17 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from "@material-ui/icons/Person";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
-import ListIcon from '@material-ui/icons/List';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ListIcon from "@material-ui/icons/List";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 import App from "./../App";
-const drawerWidth = 240;
+const drawerWidth = window.screen.width < 640 ? 190 : 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -159,16 +159,16 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Link to='/' style={{color:'white',textDecoration:'none'}}>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            QOTRT
-          </Typography>
+          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              QOTRT
+            </Typography>
           </Link>
         </Toolbar>
       </AppBar>
@@ -186,7 +186,7 @@ const NavBar = () => {
         </div>
         <Divider />
         <div>
-          <Link to="/" style={{color:'black'}}>
+          <Link to="/" style={{ color: "black" }}>
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon />
@@ -194,7 +194,7 @@ const NavBar = () => {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link to="/profile"  style={{color:'black'}}>
+          <Link to="/profile" style={{ color: "black" }}>
             <ListItem button>
               <ListItemIcon>
                 <PersonIcon />
@@ -203,7 +203,7 @@ const NavBar = () => {
             </ListItem>
           </Link>
 
-          <Link to="/dataset"  style={{color:'black'}}>
+          <Link to="/dataset" style={{ color: "black" }}>
             <ListItem button>
               <ListItemIcon>
                 <ListIcon />
@@ -211,7 +211,7 @@ const NavBar = () => {
               <ListItemText primary="Datasets" />
             </ListItem>
           </Link>
-          <Link to="/editprofile"  style={{color:'black'}}>
+          <Link to="/editprofile" style={{ color: "black" }}>
             <ListItem button>
               <ListItemIcon>
                 <EditIcon />
@@ -221,7 +221,7 @@ const NavBar = () => {
           </Link>
           <Divider />
           {!isAuthenticated() ? (
-            <Link to="/signin"  style={{color:'black'}}>
+            <Link to="/signin" style={{ color: "black" }}>
               <ListItem button>
                 <ListItemIcon>
                   <VpnKeyIcon />
@@ -230,16 +230,16 @@ const NavBar = () => {
               </ListItem>
             </Link>
           ) : (
-            <Link onClick={logout} to="/"  style={{color:'black'}}>
+            <Link onClick={logout} to="/" style={{ color: "black" }}>
               <ListItem button>
                 <ListItemIcon>
-                <ExitToAppIcon />
+                  <ExitToAppIcon />
                 </ListItemIcon>
                 <ListItemText primary="Logout" />
               </ListItem>
             </Link>
           )}
-          <Link to="/signup"  style={{color:'black'}}>
+          <Link to="/signup" style={{ color: "black" }}>
             <ListItem button>
               <ListItemIcon>
                 <LockOpenIcon />

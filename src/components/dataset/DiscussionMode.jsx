@@ -38,11 +38,11 @@ const DiscussionMode = (props) => {
                 return (
                   <div
                     key={i}
-                    className={`carousel-item mt-2 px-4 mb-4 bg-light ${
+                    className={`carousel-item mt-2 resp mb-4 bg-light ${
                       c == 1 && "active"
                     }`}
                   >
-                    <div className="container px-5 mb-5">
+                    <div className="container  mx-0 mb-5">
                       <div className="row gutters-sm">
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
@@ -129,23 +129,26 @@ const DiscussionMode = (props) => {
                       </div>
                     </div>
                     <span className="d-none"> {(c = c + 1)} </span>
-                    <div className="container px-5">
+                    <div className="container ">
                       <div className="row mt-10">
                         <blockquote className="quote-card">
-                          <p>{v.quote}</p>
+                          <h6>{v.quote}</h6>
                           <cite>{v.author.short_name}</cite>
                         </blockquote>
                       </div>
                       <div className="row">
                         <div>
-                          <h4 className="w-100 pt-4 pl-4"> <b>Questions :</b></h4>
+                          <h4 className="w-100 pt-4 pl-4">
+                            {" "}
+                            <b>Questions :</b>
+                          </h4>
                         </div>
                       </div>
                       <ul className="list-group">
                         {v.questions.map((v, i) => {
                           return (
                             <li className="list-group-item" key={i}>
-                             <b>{i+1}.</b> {v.title}
+                              <b>{i + 1}.</b> {v.title}
                             </li>
                           );
                         })}
