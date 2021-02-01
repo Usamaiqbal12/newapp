@@ -5,7 +5,7 @@ function ListDataset(props) {
   const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
-    <div className='bg-white px-2 py-1 mt-4'>
+    <div className='bg-white px-2 py-1 mt-4 border'>
       <table className="table table-hover mt-3">
         <thead className="thead-dark">
           <tr>
@@ -23,7 +23,7 @@ function ListDataset(props) {
                   <tr
                     onClick={() => history.push(`/dataset/detail/${v.id}`)}
                     key={i}
-                    style={{ cursor: "pointer",fontFamily:'cursive',fontSize:'17px' }}
+                    style={{ cursor: "pointer",fontFamily:'cursive' }}
                   >
                     <td scope="row">{i + 1}</td>
                     <td>{v.dataset_name}</td>

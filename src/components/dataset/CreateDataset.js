@@ -78,7 +78,7 @@ function CreateDataset(props) {
   };
 
   return (
-    <>
+    <div>
       <Params
         submit={onSubmit}
         handleChange={handleChange}
@@ -99,6 +99,7 @@ function CreateDataset(props) {
           name="name"
           variant="outlined"
           required
+          // className='px-2 py-1'
           value={params.name}
           onChange={(e) => setparams({ ...params, name: e.target.value })}
           fullWidth
@@ -117,7 +118,7 @@ function CreateDataset(props) {
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

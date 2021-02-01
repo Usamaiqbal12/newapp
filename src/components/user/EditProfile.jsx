@@ -19,7 +19,7 @@ import { useStateValue } from "../../StateProvider";
 import { updateUser } from "../../services/user/userApi";
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: window.screen.width<640?theme.spacing(4):theme.spacing(8),
+    marginTop: window.screen.width<640?theme.spacing(1):theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -64,7 +64,7 @@ function EditProfile() {
           user[0].date_of_birth === null ? "" : user[0].date_of_birth,
         nickname: user[0].nickname === null ? "" : user[0].nickname,
         gender: user[0].gender === null ? "--" : user[0].gender,
-        profile_picture: user[0].profile_picture === null ? "--" : user[0].profile_picture,
+        profile_picture:"",
 
       });
     }
@@ -94,11 +94,11 @@ function EditProfile() {
   const classes = useStyles();
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="sm" className="bg-white">
+      <Container component="main" maxWidth="sm" className="bg-white border mt-3">
         <CssBaseline />
         <div className={classes.paper}>
           <h2 className='dataset__text rounded px-3 mt-2' >
-           <b style={{fontSize:window.screen.width<640&&'25px'}}> Edit Profile </b>
+           <span style={{fontSize:window.screen.width<640&&'25px'}}> Edit Profile </span>
           </h2>
           <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>

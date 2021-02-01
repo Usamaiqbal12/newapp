@@ -7,7 +7,7 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    // right: window.screen.width < 800 ? "auto" : "",
+    
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -45%)",

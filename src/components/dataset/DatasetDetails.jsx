@@ -44,13 +44,13 @@ function DatasetDetails(props) {
     <div className="mb-5 container">
       {foundedValue && (
         <>
-          <div className="jumbotron pt-3 mt-3">
+          <div className="jumbotron pt-3 mt-3 border">
             <h1 className="text-center">
               {" "}
               <span className="pt-1 px-4 pb-1 dataset__heading rounded mb-2">Dataset Details</span>
             </h1>
 
-            <div className="dataset__detail rounded">
+            <div className="dataset__detail rounded border">
               <div className="col-sm-6 col-md-3">
                 <p className="lead mt-3">
                   {" "}

@@ -32,14 +32,14 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(0.2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -125,15 +125,15 @@ const SignUp = () => {
   }
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm" className="bg-white border mt-3">
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+          <h2 className='dataset__text rounded px-3 mt-2' >
+           <span style={{fontSize:window.screen.width<640&&'25px'}}> Sign Up </span>
+          </h2>
           <form className={classes.form} onSubmit={submit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -210,26 +210,34 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <div className="">
-                  Gender
-                  <div className="radio form-control">
-                    <label>
-                      <input
-                        type="radio"
-                        name="gender"
-                        onChange={handleChange}
-                        value="M"
-                      />
+                  <span className="dataset__text px-2">
+                    <b> Gender:</b>
+                  </span>
+                  <div className="radio form-check p-2 ml-4">
+                    <input
+                      type="radio"
+                      name="gender"
+                      onChange={handleChange}
+                      value="M"
+                      id="m"
+                      className="form-check-input"
+                    />
+                    <label className="form-check-label" htmlFor="m">
+                      {" "}
                       Male
                     </label>
                   </div>
-                  <div className="radio form-control">
-                    <label>
-                      <input
-                        type="radio"
-                        value="F"
-                        name="gender"
-                        onChange={handleChange}
-                      />
+                  <div className="radio form-check p-2 ml-4">
+                    <input
+                      type="radio"
+                      value="F"
+                      id="f"
+                      name="gender"
+                      className="form-check-input"
+                      onChange={handleChange}
+                    />
+                    <label className="form-check-label" htmlFor="f">
+                      {" "}
                       Female
                     </label>
                   </div>

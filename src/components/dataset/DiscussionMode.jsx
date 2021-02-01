@@ -29,7 +29,7 @@ const DiscussionMode = (props) => {
       >
         <h4 className="text-center pt-4">
           {" "}
-          <span className="bg-white px-3 py-2">Discussion Mode</span>
+          <span className="px-3 py-2 dataset__text">Discussion Mode</span>
         </h4>
 
         <div className="carousel-inner container">
@@ -49,9 +49,8 @@ const DiscussionMode = (props) => {
                             <img
                               src={"http://localhost:8000" + v.author.photo}
                               alt="name"
-                              className="rounded-circle"
-                              width="250"
-                              height="300"
+                              className="rounded-circle mt-3 profilePicture"
+                              
                             />
                           </div>
                         </div>
@@ -138,7 +137,7 @@ const DiscussionMode = (props) => {
                       </div>
                       <div className="row">
                         <div>
-                          <h4 className="w-100 pt-4 pl-4"> <b>Questions :</b></h4>
+                          <h4 className="w-100 pt-4 pl-4 dataset__text"> <b>Questions :</b></h4>
                         </div>
                       </div>
                       <ul className="list-group">

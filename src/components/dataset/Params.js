@@ -6,6 +6,10 @@ function Params(props) {
   const attributes = [
     { name: "Politician", id: 1 },
     { name: "Athlete", id: 2 },
+    { name: "Athlete1", id: 3 },
+    { name: "Athlete2", id: 4 },
+    { name: "Athlete3", id: 5 },
+
   ];
   const gender = [
     { value: "M", id: 1, name: "gender", display: "Male" },
@@ -55,6 +59,7 @@ function Params(props) {
               options={gender}
               displayValue="display"
               onSelect={handleChange}
+              id='input__gender'
               singleSelect
             />
           </div>
@@ -64,6 +69,7 @@ function Params(props) {
               options={morality}
               style={style}
               displayValue="value"
+              id='input__gender'
               onSelect={handleChange}
               singleSelect
             />
@@ -72,8 +78,10 @@ function Params(props) {
             <h5>Size: </h5>
             <Multiselect
               options={size}
+              placeholder='Size'
               style={style}
               displayValue="value"
+              id='input__gender'
               onSelect={handleChange}
               singleSelect
             />

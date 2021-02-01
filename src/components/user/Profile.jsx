@@ -5,9 +5,9 @@ function Profile() {
   const [{ user }] = useStateValue();
   return (
     <>
-      <div className="container mb-5">
+      <div className="container mb-5 mt-5">
         <div className="row gutters-sm ">
-          <div className="col-md-4 mt-5 mb-3">
+          <div className="col-md-4 mt-4 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
               <img
                 src={user[0] ? user[0].profile_picture : ""}

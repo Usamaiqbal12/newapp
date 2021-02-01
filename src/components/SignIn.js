@@ -53,14 +53,14 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -134,15 +134,15 @@ export default function SignIn() {
     <>{
       loading&& <Loading />
     }
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className='bg-white border mt-3'>
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <h2 className='dataset__text rounded px-3 mt-2' >
+           <span style={{fontSize:window.screen.width<640&&'25px'}}> Sign In </span>
+          </h2>
           <form className={classes.form} onSubmit={submit}>
             <TextField
               variant="outlined"

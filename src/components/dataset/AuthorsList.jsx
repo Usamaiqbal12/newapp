@@ -7,7 +7,7 @@ function AuthorsList(props) {
   return (
     <div>
       <h2 className="px-3 pb-2 w-100 text-center"> <span className='px-4 py-1 rounded author__heading'>Authors</span></h2>
-      <table className="table table-hover bg-white">
+      <table className="table table-hover bg-white border">
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -24,7 +24,7 @@ function AuthorsList(props) {
                 <tr
                   onClick={() => history.push(`/authorprofile/${v.id}`)}
                   key={i}
-                  style={{ cursor: "pointer",fontFamily:'cursive',fontSize:'17px' }}
+                  style={{ cursor: "pointer",fontFamily:'cursive'}}
                 >
                   <th scope="row">{i + 1}</th>
                   <td>{v.first_name}</td>
