@@ -21,14 +21,14 @@ import PersonIcon from "@material-ui/icons/Person";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import Button from "@material-ui/core/Button";
 import ListIcon from "@material-ui/icons/List";
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
 const drawerWidth = window.screen.width < 640 ? 190 : 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -112,21 +112,21 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
     },
   },
   sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
 }));
 
 const NavBar = () => {
-  const history = useHistory()
+  const history = useHistory();
   const [auth, setAuth] = useState(false);
   const [, dispatch] = useStateValue();
   const classes = useStyles();
@@ -136,7 +136,6 @@ const NavBar = () => {
   const isMenuOpen = Boolean(anchorEl);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -167,46 +166,60 @@ const NavBar = () => {
       type: "ADDDATASET",
       data: [],
     });
-    history.push('/signin')
+    history.push("/signin");
   };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-     <Link to='/profile' style={{color:'inherit',textDecoration:'none'}}><MenuItem name='pro' onClick={handleMenuClose}>Profile</MenuItem> </Link> 
-     <Link to='/editprofile' style={{color:'inherit',textDecoration:'none'}}> <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem> </Link>
+      <Link to="/profile" style={{ color: "inherit", textDecoration: "none" }}>
+        <MenuItem name="pro" onClick={handleMenuClose}>
+          Profile
+        </MenuItem>{" "}
+      </Link>
+      <Link
+        to="/editprofile"
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        {" "}
+        <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>{" "}
+      </Link>
     </Menu>
   );
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
-            <MailIcon />
+          <MailIcon />
         </IconButton>
         {!isAuthenticated() ? (
-              <p style={{margin:0}} onClick={()=>history.push('/signin')}>Login</p>
-            ) : (
-              <p style={{margin:0}} color="inherit" onClick={logout}>logout</p>
-            )}
+          <p style={{ margin: 0 }} onClick={() => history.push("/signin")}>
+            Login
+          </p>
+        ) : (
+          <p style={{ margin: 0 }} color="inherit" onClick={logout}>
+            logout
+          </p>
+        )}
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -214,7 +227,7 @@ const NavBar = () => {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p style={{margin:0}}>Notifications</p>
+        <p style={{ margin: 0 }}>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -225,7 +238,7 @@ const NavBar = () => {
         >
           <AccountCircle />
         </IconButton>
-        <p style={{margin:0}}>Profile</p>
+        <p style={{ margin: 0 }}>Profile</p>
       </MenuItem>
     </Menu>
   );
@@ -267,52 +280,57 @@ const NavBar = () => {
             style={{
               position: "absolute",
               right: 0,
-              marginRight: window.screen.width<600?'0px':'24px',
+              marginRight: window.screen.width < 600 ? "0px" : "24px",
             }}
           >
-          
-             <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-          {!isAuthenticated() ? (
-              <Button color="inherit" onClick={()=>history.push('/signin')}>Login</Button>
-            ) : (
-              <Button color="inherit" onClick={logout}>logout</Button>
-            )}
-            {/* <IconButton aria-label="show 4 new mails" color="inherit">
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              {!isAuthenticated() ? (
+                <Button color="inherit" onClick={() => history.push("/signin")}>
+                  Login
+                </Button>
+              ) : (
+                <Button color="inherit" onClick={logout}>
+                  logout
+                </Button>
+              )}
+              {/* <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton> */}
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={1} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            {isAuthenticated()&&
-            <IconButton
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-            }
-            
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={1} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              {isAuthenticated() && (
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              )}
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
@@ -367,6 +385,30 @@ const NavBar = () => {
               </ListItem>
             </Link>
             <Divider />
+            <Link to="#" style={{ color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <SportsEsportsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Game One" />
+              </ListItem>
+            </Link>
+            <Link to="#" style={{ color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <SportsEsportsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Game Two" />
+              </ListItem>
+            </Link>
+            <Link to="#" style={{ color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <SportsEsportsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Game three" />
+              </ListItem>
+            </Link>
           </div>
         </Drawer>
       )}

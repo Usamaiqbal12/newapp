@@ -17,7 +17,7 @@ import DiscussionMode from "./components/dataset/DiscussionMode";
 import Footer from "./components/footer/Footer";
 import CreateDatasetModal from "./components/dataset/CreateDatasetModal";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import NewHeader from './components/Newheader'
+import Home from "./components/Home";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const theme = useTheme();
-  const history = useHistory()
+  const history = useHistory();
   const [, dispatch] = useStateValue();
   useEffect(() => {
     let mounted = true;
@@ -73,17 +73,16 @@ function App() {
               component={DiscussionMode}
             />
             <PrivateRoutes path="/profile" component={Profile} />
-
+            <PrivateRoutes path="/" exact component={Home} />
             <PrivateRoutes path="/manual" component={Manual} />
             <div className="container">
-              
-                <PrivateRoutes exact path="/dataset">
-                {isAuthenticated()?(
+              <PrivateRoutes exact path="/dataset">
+                {isAuthenticated() ? (
                   <ListDataset create={true} />
-                  ):history.push('signin')}
-                  
-                </PrivateRoutes>
-           
+                ) : (
+                  history.push("signin")
+                )}
+              </PrivateRoutes>
             </div>
             <PrivateRoutes
               path="/dataset/detail/:id"
