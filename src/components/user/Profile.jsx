@@ -26,46 +26,46 @@ function Profile() {
             <div className="card mb-3">
               <div className="card-body">
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">First Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     <span className="profile__info"> {user[0] ? user[0].first_name : ""}</span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">Last Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     <span className="profile__info"> {user[0] ? user[0].last_name : ""}</span>{" "}
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     {user[0] ? user[0].nickname : ""}
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">Email</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     <span className="profile__info"> {user[0] ? user[0].email : ""}</span>{" "}
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">Gender</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     <span className="profile__info">
                       {" "}
                       {user[0]
@@ -77,10 +77,10 @@ function Profile() {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-4">
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
-                  <div className="col-sm-9 text-secondary">
+                  <div className="col-8 text-secondary">
                     <span className="profile__info"> {user[0] ? user[0].date_of_birth : ""}</span>
                   </div>
                 </div>

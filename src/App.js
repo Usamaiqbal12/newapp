@@ -17,6 +17,7 @@ import DiscussionMode from "./components/dataset/DiscussionMode";
 import Footer from "./components/footer/Footer";
 import CreateDatasetModal from "./components/dataset/CreateDatasetModal";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import NewHeader from './components/Newheader'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -59,6 +60,7 @@ function App() {
   return (
     <div className={classes.root}>
       <NavBar />
+      {/* <NewHeader /> */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
 

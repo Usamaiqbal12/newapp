@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { isAuthenticated } from "../services/Api";
 import { useStateValue } from "../StateProvider";
 import clsx from "clsx";
@@ -19,19 +19,24 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import PersonIcon from "@material-ui/icons/Person";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
+import Button from "@material-ui/core/Button";
 import ListIcon from "@material-ui/icons/List";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import App from "./../App";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import Menu from '@material-ui/core/Menu';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+
 const drawerWidth = window.screen.width < 640 ? 190 : 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+  },
+  grow: {
+    flexGrow: 1,
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: window.screen.width < 600 ? 15 : 24,
   },
   menuButtonHidden: {
     display: "none",
@@ -106,23 +111,50 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const NavBar = () => {
+  const history = useHistory()
   const [auth, setAuth] = useState(false);
   const [, dispatch] = useStateValue();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const isMenuOpen = Boolean(anchorEl);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
+  const handleMenuClose = (e) => {
+    setAnchorEl(null);
+    console.log(e);
+    handleMobileMenuClose();
+  };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
   useEffect(() => {
     if (localStorage.getItem("jwt")) {
       setAuth(true);
@@ -135,11 +167,70 @@ const NavBar = () => {
       type: "ADDDATASET",
       data: [],
     });
+    history.push('/signin')
   };
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <Link to='/profile' style={{color:'inherit',textDecoration:'none'}}><MenuItem name='pro' onClick={handleMenuClose}>Profile</MenuItem> </Link> 
+     <Link to='/editprofile' style={{color:'inherit',textDecoration:'none'}}> <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem> </Link>
+    </Menu>
+  );
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+            <MailIcon />
+        </IconButton>
+        {!isAuthenticated() ? (
+              <p style={{margin:0}} onClick={()=>history.push('/signin')}>Login</p>
+            ) : (
+              <p style={{margin:0}} color="inherit" onClick={logout}>logout</p>
+            )}
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p style={{margin:0}}>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p style={{margin:0}}>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
 
   return (
-    //
-    // <div className={classes.root}>
     <>
       <CssBaseline />
       <AppBar
@@ -147,18 +238,20 @@ const NavBar = () => {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
+          {isAuthenticated() && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(
+                classes.menuButton,
+                open && classes.menuButtonHidden
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Link to="/" style={{ color: "white", textDecoration: "none" }}>
             <Typography
               component="h1"
@@ -170,87 +263,114 @@ const NavBar = () => {
               QOTRT
             </Typography>
           </Link>
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              marginRight: window.screen.width<600?'0px':'24px',
+            }}
+          >
+          
+             <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+          {!isAuthenticated() ? (
+              <Button color="inherit" onClick={()=>history.push('/signin')}>Login</Button>
+            ) : (
+              <Button color="inherit" onClick={logout}>logout</Button>
+            )}
+            {/* <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton> */}
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={1} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            {isAuthenticated()&&
+            <IconButton
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+            }
+            
+          </div>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
+          </div>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant={window.screen.width < 800 ? "temporary" : "permanent"}
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <div>
-          <Link to="/" style={{ color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-          </Link>
-          <Link to="/profile" style={{ color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItem>
-          </Link>
-
-          <Link to="/dataset" style={{ color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <ListIcon />
-              </ListItemIcon>
-              <ListItemText primary="Datasets" />
-            </ListItem>
-          </Link>
-          <Link to="/editprofile" style={{ color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <EditIcon />
-              </ListItemIcon>
-              <ListItemText primary="Edit Profile" />
-            </ListItem>
-          </Link>
+      {renderMobileMenu}
+      {renderMenu}
+      {isAuthenticated() && (
+        <Drawer
+          variant={window.screen.width < 800 ? "temporary" : "permanent"}
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
           <Divider />
-          {!isAuthenticated() ? (
-            <Link to="/signin" style={{ color: "black" }}>
+          <div>
+            <Link to="/" style={{ color: "black" }}>
               <ListItem button>
                 <ListItemIcon>
-                  <VpnKeyIcon />
+                  <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Login" />
+                <ListItemText primary="Home" />
               </ListItem>
             </Link>
-          ) : (
-            <Link onClick={logout} to="/" style={{ color: "black" }}>
+            <Link to="/profile" style={{ color: "black" }}>
               <ListItem button>
                 <ListItemIcon>
-                  <ExitToAppIcon />
+                  <PersonIcon />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="Profile" />
               </ListItem>
             </Link>
-          )}
-          <Link to="/signup" style={{ color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <LockOpenIcon />
-              </ListItemIcon>
-              <ListItemText primary="SignUp" />
-            </ListItem>
-          </Link>
-        </div>
-      </Drawer>
+
+            <Link to="/dataset" style={{ color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <ListIcon />
+                </ListItemIcon>
+                <ListItemText primary="Datasets" />
+              </ListItem>
+            </Link>
+            <Link to="/editprofile" style={{ color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <EditIcon />
+                </ListItemIcon>
+                <ListItemText primary="Edit Profile" />
+              </ListItem>
+            </Link>
+            <Divider />
+          </div>
+        </Drawer>
+      )}
     </>
-    // </div>
   );
 };
 

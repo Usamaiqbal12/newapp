@@ -137,14 +137,10 @@ const DiscussionMode = (props) => {
                       </div>
                       <div className="row">
                         <div>
-<<<<<<< HEAD
-                          <h4 className="w-100 pt-4 pl-4 dataset__text"> <b>Questions :</b></h4>
-=======
                           <h4 className="w-100 pt-4 pl-4">
                             {" "}
                             <b>Questions :</b>
                           </h4>
->>>>>>> 3dd9e1b81818e6ec7a109197a6899bedbeb459f4
                         </div>
                       </div>
                       <ul className="list-group">
