@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -9,14 +9,14 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
+import { quoteOfTheDay } from "../services/Api";
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     display: "flex",
     overflow: "hidden",
     flexDirection: "column",
@@ -26,10 +26,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Home = () => {
+  const [qod, setQod] = useState([]);
+  useEffect(() => {
+    quoteOfTheDay().then((data) => {
+      setQod(data);
+    });
+  }, []);
   const classes = useStyles();
   return (
     <>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
@@ -49,10 +55,18 @@ const Home = () => {
                   style={{ boxShadow: "none" }}
                 >
                   <h6>
-                    lorem ipsum ipsum ipsum ipmsdsdsdj dsjdhsshj jsdjshdh
-                    jdsjdhsj jhdjshdsdj{" "}
+                    {qod &&
+                      qod.map((v, i) => {
+                        return v.quote;
+                      })}
                   </h6>
-                  <cite>Sam</cite>
+                  <cite>
+                    {" "}
+                    {qod &&
+                      qod.map((v, i) => {
+                        return v.author;
+                      })}
+                  </cite>
                 </blockquote>
               </div>
             </Paper>
@@ -69,20 +83,34 @@ const Home = () => {
               >
                 Game 1
               </Typography>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Head 1</TableCell>
-                    <TableCell>head 2</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>1</TableCell>
-                    <TableCell>2</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+
+              <table className="table table-striped bg-white border">
+                <thead className="thead-dark">
+                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Date Of Birth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                </tbody>
+              </table>
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -92,24 +120,39 @@ const Home = () => {
                 variant="h6"
                 color="primary"
                 // gutterBottom
+                noWrap
                 className={classes.title}
               >
                 Game 2
               </Typography>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Head 1</TableCell>
-                    <TableCell>head 2</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>1</TableCell>
-                    <TableCell>2</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+
+              <table className="table table-striped bg-white border">
+                <thead className="thead-dark">
+                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Date Of Birth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                </tbody>
+              </table>
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -118,32 +161,43 @@ const Home = () => {
                 component="h2"
                 variant="h6"
                 color="primary"
-                gutterBottom
+                // gutterBottom
                 noWrap
                 className={classes.title}
               >
                 Game 3
               </Typography>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Head 1</TableCell>
-                    <TableCell>head 2</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>1</TableCell>
-                    <TableCell>2</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+
+              <table className="table table-striped bg-white border">
+                <thead className="thead-dark">
+                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Date Of Birth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                  </tr>
+                </tbody>
+              </table>
             </Paper>
           </Grid>
         </Grid>
-        {/* <Box pt={4}>
-            <Copyright />
-          </Box> */}
       </Container>
     </>
   );

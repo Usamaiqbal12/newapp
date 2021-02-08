@@ -60,6 +60,14 @@ const getDataSet = (e) => {
   }).then((data) => data.json());
 };
 
+export const quoteOfTheDay = (e) => {
+  return fetch(`${API_URL}quotes/quoteoftheday`, {
+    method: "get",
+    headers: {
+      Authorization: `Token ${JSON.parse(localStorage.getItem("jwt"))} `,
+    },
+  }).then((data) => data.json());
+};
 // Auth--->
 const signIn = (e) => {
   return fetch(`${API_URL}user/login/`, {

@@ -18,6 +18,8 @@ import Footer from "./components/footer/Footer";
 import CreateDatasetModal from "./components/dataset/CreateDatasetModal";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Home from "./components/Home";
+import EmailActivation404 from "./components/user/EmailActivation404";
+import EmailActivation from "./components/user/EmailActivation";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -68,6 +70,10 @@ function App() {
           <React.Fragment>
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route
+              path="/emailactivation"
+              component={EmailActivation}
+            />
             <PrivateRoutes
               path="/discussionmode/:id"
               component={DiscussionMode}
@@ -77,17 +83,18 @@ function App() {
             <PrivateRoutes path="/manual" component={Manual} />
             <div className="container">
               <PrivateRoutes exact path="/dataset">
-                {isAuthenticated() ? (
                   <ListDataset create={true} />
-                ) : (
-                  history.push("signin")
-                )}
               </PrivateRoutes>
             </div>
             <PrivateRoutes
               path="/dataset/detail/:id"
               component={DatasetDetails}
             />
+            <Route
+              path="/emailactivation404"
+              component={EmailActivation404}
+            />
+           
             <PrivateRoutes
               path="/datasetedit/:id"
               component={CreateDatasetModal}

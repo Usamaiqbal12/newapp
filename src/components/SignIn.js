@@ -24,7 +24,7 @@ import {
   isAuthenticated,
   datasetListFunc,
 } from "../services/Api";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 import { getUser } from "../services/user/userApi";
 import { green, purple } from "@material-ui/core/colors";
@@ -81,6 +81,7 @@ export default function SignIn() {
   const [, dispatch] = useStateValue();
   const classes = useStyles();
   const [loading, setloading] = useState(false);
+  const history = useHistory()
   const [userData, setuserData] = useState({
     email: "",
     password: "",
@@ -102,18 +103,20 @@ export default function SignIn() {
             setErrors({ ...errors, Email: false, Password: true });
           } else if (data.message === "Email") {
             setErrors({ ...errors, Email: true, Password: false });
+          } else if (data.message==='Activation'){
+            history.push('/emailactivation404')
           }
           setloading(false);
         } else if (data.data.token) {
           setloading(false);
           authenticate(data.data.token, () => {
             setuserData({ email: "", password: "" });
-            // getUser().then((data) => {
-              dispatch({
-                type: "ADDUSER",
-                data: data.data.data,
-              });
-            // });
+
+            dispatch({
+              type: "ADDUSER",
+              data: data.data.data,
+            });
+
             datasetListFunc(data.data.id).then((items) => {
               dispatch({
                 type: "ADDDATASET",
@@ -131,17 +134,23 @@ export default function SignIn() {
     }
   };
   return (
-    <>{
-      loading&& <Loading />
-    }
-      <Container component="main" maxWidth="xs" className='bg-white border mt-3'>
+    <div className="px-3">
+      {loading && <Loading />}
+      <Container
+        component="main"
+        maxWidth="xs"
+        className="bg-white border mt-3"
+      >
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <h2 className='dataset__text rounded px-3 mt-2' >
-           <span style={{fontSize:window.screen.width<640&&'25px'}}> Sign In </span>
+          <h2 className="dataset__text rounded px-3 mt-2">
+            <span style={{ fontSize: window.screen.width < 640 && "25px" }}>
+              {" "}
+              Sign In{" "}
+            </span>
           </h2>
           <form className={classes.form} onSubmit={submit}>
             <TextField
@@ -212,6 +221,6 @@ export default function SignIn() {
         </Box>
         {performRedirect()}
       </Container>
-    </>
+    </div>
   );
 }

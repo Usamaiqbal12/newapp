@@ -167,6 +167,7 @@ const NavBar = () => {
       data: [],
     });
     history.push("/signin");
+    window.location.reload()
   };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -207,16 +208,16 @@ const NavBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={() => !isAuthenticated()?history.push("/signin"):logout()}>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <MailIcon />
         </IconButton>
         {!isAuthenticated() ? (
-          <p style={{ margin: 0 }} onClick={() => history.push("/signin")}>
+          <p style={{ margin: 0 }} >
             Login
           </p>
         ) : (
-          <p style={{ margin: 0 }} color="inherit" onClick={logout}>
+          <p style={{ margin: 0 }} color="inherit">
             logout
           </p>
         )}

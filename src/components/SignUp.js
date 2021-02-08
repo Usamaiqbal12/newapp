@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core";
 import { signup } from "../services/Api";
 import { Link, useHistory } from "react-router-dom";
+import Loading from "./Loading";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUp = () => {
+  const [loading, setloading] = useState(false);
   const history = useHistory();
   const classes = useStyles();
   const [values, setValues] = useState({
@@ -89,6 +91,7 @@ const SignUp = () => {
   } = values;
   function submit(e) {
     e.preventDefault();
+    setloading(true);
     if (confirmPassword === password) {
       signup({
         email,
@@ -115,6 +118,7 @@ const SignUp = () => {
               first_name: "",
               last_name: "",
             });
+            setloading(false);
             history.push("/signin");
           }
         })
@@ -126,6 +130,7 @@ const SignUp = () => {
   const signUpForm = (e) => {
     return (
       <Container component="main" maxWidth="sm" className="bg-white border mt-3">
+        {loading && <Loading />}
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>

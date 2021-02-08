@@ -49,6 +49,9 @@
     align-items: center;
     border: none !important;
     /* padding-left: -20px; */
+    box-shadow:none !important;
+    border-radius: none !important;
+    opacity: 1 !important;
     background-color: rgb(203, 63, 34) !important;
   }
   .google:hover{
@@ -62,9 +65,9 @@
   }
   @media (max-width: 640px) {
   .facebook{
-    width: 155%;
+    width: 135%;
   }
   .google{
-    width:148%;
+    width:130%;
   }
 }

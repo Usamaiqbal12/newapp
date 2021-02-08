@@ -10,14 +10,24 @@ function Profile() {
           <div className="col-md-4 mt-4 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
               <img
-                src={user[0] ? user[0].profile_picture : ""}
+                src={
+                  user[0]
+                    ? user[0].profile_picture != null
+                      ? user[0].profile_picture
+                      : "/assets/defaultimage.png"
+                    : ""
+                }
                 alt="name"
                 className="rounded-circle profilePicture"
               />
               <div className="mt-3">
                 <h4 className="author__heading px-2 py-1">
-                  {user[0] ? user[0].first_name&&user[0].first_name.toUpperCase() : ""}{" "}
-                  {user[0] ? user[0].first_name&&user[0].last_name.toUpperCase() : ""}{" "}
+                  {user[0]
+                    ? user[0].first_name && user[0].first_name.toUpperCase()
+                    : ""}{" "}
+                  {user[0]
+                    ? user[0].first_name && user[0].last_name.toUpperCase()
+                    : ""}{" "}
                 </h4>
               </div>
             </div>
@@ -30,7 +40,10 @@ function Profile() {
                     <h6 className="mb-0">First Name</h6>
                   </div>
                   <div className="col-8 text-secondary">
-                    <span className="profile__info"> {user[0] ? user[0].first_name : ""}</span>
+                    <span className="profile__info">
+                      {" "}
+                      {user[0] ? user[0].first_name : ""}
+                    </span>
                   </div>
                 </div>
                 <hr />
@@ -39,7 +52,10 @@ function Profile() {
                     <h6 className="mb-0">Last Name</h6>
                   </div>
                   <div className="col-8 text-secondary">
-                    <span className="profile__info"> {user[0] ? user[0].last_name : ""}</span>{" "}
+                    <span className="profile__info">
+                      {" "}
+                      {user[0] ? user[0].last_name : ""}
+                    </span>{" "}
                   </div>
                 </div>
                 <hr />
@@ -57,7 +73,10 @@ function Profile() {
                     <h6 className="mb-0">Email</h6>
                   </div>
                   <div className="col-8 text-secondary">
-                    <span className="profile__info"> {user[0] ? user[0].email : ""}</span>{" "}
+                    <span className="profile__info">
+                      {" "}
+                      {user[0] ? user[0].email : ""}
+                    </span>{" "}
                   </div>
                 </div>
                 <hr />
@@ -81,7 +100,10 @@ function Profile() {
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
                   <div className="col-8 text-secondary">
-                    <span className="profile__info"> {user[0] ? user[0].date_of_birth : ""}</span>
+                    <span className="profile__info">
+                      {" "}
+                      {user[0] ? user[0].date_of_birth : ""}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -23,7 +23,11 @@ function Profile(props) {
           <div className="col-md-4 mt-5 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
               <img
-                src={author ? author.photo : ""}
+                src=  {author?
+                author.photo != null
+                  ? author.photo
+                  : "/assets/defaultimage.png"
+                : ""}
                 alt="name"
                 className="rounded-circle profilePicture"
               />
