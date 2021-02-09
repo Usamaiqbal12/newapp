@@ -105,6 +105,7 @@ const SignUp = () => {
         .then((data) => {
           if (data.status === "failure") {
             setValues({ ...values, error: [true, data.message] });
+            setloading(false);
           } else {
             setValues({
               ...values,

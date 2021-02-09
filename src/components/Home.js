@@ -35,7 +35,7 @@ const Home = () => {
   const classes = useStyles();
   return (
     <>
-      <Container maxWidth="md" className={classes.container}>
+      <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
@@ -71,7 +71,7 @@ const Home = () => {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={4}>
             <Paper className={classes.paper}>
               <Typography
                 component="h2"
@@ -113,7 +113,7 @@ const Home = () => {
               </table>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={4}>
             <Paper className={classes.paper}>
               <Typography
                 component="h2"
@@ -155,7 +155,7 @@ const Home = () => {
               </table>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={4}>
             <Paper className={classes.paper}>
               <Typography
                 component="h2"

@@ -159,7 +159,7 @@ export default function SignIn() {
               required
               onChange={handleChange}
               value={userData.email}
-              helperText={errors.Email && "Invalid Email"}
+              helperText={errors.Email && "Email does not exist"}
               error={errors.Email}
               fullWidth
               id="email"

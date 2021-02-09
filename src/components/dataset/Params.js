@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
+import { listAttributes } from "../../services/Api";
 
 function Params(props) {
+  const [attributes,setAttributes] = useState([])
+  useEffect(()=>{
+    let mounted=true;
+    listAttributes().then(data=>{
+      if(mounted){
+        setAttributes(data)
+      }
+    })
+    return ()=> mounted=false;
+  },[])
   const { handleChange, onSelect, onRemove } = props;
-  const attributes = [
-    { name: "Politician", id: 1 },
-    { name: "Athlete", id: 2 },
-    { name: "Athlete1", id: 3 },
-    { name: "Athlete2", id: 4 },
-    { name: "Athlete3", id: 5 },
+  // const attributes = [
+  //   { name: "Politician", },
+  //   { name: "Athlete", },
+  //   { name: "Athlete1", },
+  //   { name: "Athlete2", },
+  //   { name: "Athlete3", },
 
-  ];
+  // ];
   const gender = [
     { value: "M", id: 1, name: "gender", display: "Male" },
     { value: "F", id: 2, name: "gender", display: "Female" },
@@ -43,7 +54,7 @@ function Params(props) {
           <div className="col-sm-12 col-md-12">
             <h5>Attributes: </h5>
             <Multiselect
-              options={attributes}
+              options={attributes&&attributes}
               displayValue="name"
               onSelect={onSelect}
               showCheckbox={true}

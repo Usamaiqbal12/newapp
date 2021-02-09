@@ -17,7 +17,6 @@ function Profile(props) {
   }, []);
   return (
     <>
-    {console.log(author)}
       <div className="container mb-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
