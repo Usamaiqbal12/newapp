@@ -24,7 +24,7 @@ function AuthorsList(props) {
                 <tr
                   onClick={() => history.push(`/authorprofile/${v.id}`)}
                   key={i}
-                  style={{ cursor: "pointer",fontFamily:'cursive'}}
+                  style={{ cursor: "pointer",}}
                 >
                   <th scope="row">{i + 1}</th>
                   <td>{v.first_name}</td>

@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    backgroundColor:'#78909c',
+    height:'100vh'
   },
   paper: {
     padding: theme.spacing(1),
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color:'black'
   },
 }));
 const Home = () => {
@@ -38,7 +41,7 @@ const Home = () => {
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} style={{backgroundColor:'#f5f5f5'}}>
               <Typography
                 component="h2"
                 variant="h6"
@@ -52,7 +55,7 @@ const Home = () => {
               <div className="mt-10">
                 <blockquote
                   className="quote-card"
-                  style={{ boxShadow: "none" }}
+                  style={{ boxShadow: "none",backgroundColor:"#fafafa" }}
                 >
                   <h6>
                     {qod &&
@@ -72,7 +75,7 @@ const Home = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} style={{backgroundColor:"#e0e0e0"}}>
               <Typography
                 component="h2"
                 variant="h6"
@@ -81,17 +84,16 @@ const Home = () => {
                 noWrap
                 className={classes.title}
               >
-                Game 1
+                Multiple choice
               </Typography>
 
               <table className="table table-striped bg-white border">
                 <thead className="thead-dark">
-                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Sex</th>
-                    <th scope="col">Date Of Birth</th>
+                    <th scope="col">Score</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -99,22 +101,20 @@ const Home = () => {
                     <th scope="row">1</th>
                     <td>dummy</td>
                     <td>dummy</td>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                  
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>dummy</td>
                     <td>dummy</td>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                 
                   </tr>
                 </tbody>
               </table>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} style={{backgroundColor:"#eeeeee"}}>
               <Typography
                 component="h2"
                 variant="h6"
@@ -123,17 +123,16 @@ const Home = () => {
                 noWrap
                 className={classes.title}
               >
-                Game 2
+                Name to quote
               </Typography>
 
               <table className="table table-striped bg-white border">
                 <thead className="thead-dark">
-                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Sex</th>
-                    <th scope="col">Date Of Birth</th>
+                    <th scope="col">Score</th>
+                
                   </tr>
                 </thead>
                 <tbody>
@@ -141,22 +140,20 @@ const Home = () => {
                     <th scope="row">1</th>
                     <td>dummy</td>
                     <td>dummy</td>
-                    <td>dummy</td>
-                    <td>dummy</td>
+              
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>dummy</td>
                     <td>dummy</td>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                  
                   </tr>
                 </tbody>
               </table>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} style={{backgroundColor:'#f5f5f5'}}>
               <Typography
                 component="h2"
                 variant="h6"
@@ -165,17 +162,15 @@ const Home = () => {
                 noWrap
                 className={classes.title}
               >
-                Game 3
+                Photo to quote
               </Typography>
 
               <table className="table table-striped bg-white border">
                 <thead className="thead-dark">
-                  <tr style={{ cursor: "pointer",fontFamily:'cursive'}}>
+                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Sex</th>
-                    <th scope="col">Date Of Birth</th>
+                    <th scope="col">Score</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,13 +178,11 @@ const Home = () => {
                     <th scope="row">1</th>
                     <td>dummy</td>
                     <td>dummy</td>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                 
+                    
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
                     <td>dummy</td>
                     <td>dummy</td>
                   </tr>

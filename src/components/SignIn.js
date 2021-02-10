@@ -53,7 +53,7 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(-5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -81,7 +81,7 @@ export default function SignIn() {
   const [, dispatch] = useStateValue();
   const classes = useStyles();
   const [loading, setloading] = useState(false);
-  const history = useHistory()
+  const history = useHistory();
   const [userData, setuserData] = useState({
     email: "",
     password: "",
@@ -103,8 +103,8 @@ export default function SignIn() {
             setErrors({ ...errors, Email: false, Password: true });
           } else if (data.message === "Email") {
             setErrors({ ...errors, Email: true, Password: false });
-          } else if (data.message==='Activation'){
-            history.push('/emailactivation404')
+          } else if (data.message === "Activation") {
+            history.push("/emailactivation404");
           }
           setloading(false);
         } else if (data.data.token) {
@@ -134,93 +134,95 @@ export default function SignIn() {
     }
   };
   return (
-    <div className="px-3">
+    <div className="px-3 signin">
       {loading && <Loading />}
-      <Container
-        component="main"
-        maxWidth="xs"
-        className="bg-white border mt-3"
-      >
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <h2 className="dataset__text rounded px-3 mt-2">
-            <span style={{ fontSize: window.screen.width < 640 && "25px" }}>
-              {" "}
-              Sign In{" "}
-            </span>
-          </h2>
-          <form className={classes.form} onSubmit={submit}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              onChange={handleChange}
-              value={userData.email}
-              helperText={errors.Email && "Email does not exist"}
-              error={errors.Email}
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              value={userData.Password}
-              helperText={errors.Password && "Invalid Password"}
-              error={errors.Password}
-              required
-              fullWidth
-              onChange={handleChange}
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <ColorButton
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </ColorButton>
+      <div className="row">
+        <div className="col-12">
+          <Container component="main" maxWidth="xs" className="bg-white mt-3">
+            {" "}
+            <Grid xs={12} item>
+              <CssBaseline />
+              <div className={classes.paper}>
+                {/* <Avatar className={classes.avatar}>
+                  <LockOutlinedIcon />
+                </Avatar> */}
+                <h2 className="dataset__text rounded px-3 mt-2">
+                  <span
+                    style={{ fontSize: window.screen.width < 640 && "25px" }}
+                  >
+                    {" "}
+                    Sign In{" "}
+                  </span>
+                </h2>
+                <form className={classes.form} onSubmit={submit}>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    onChange={handleChange}
+                    value={userData.email}
+                    helperText={errors.Email && "Email does not exist"}
+                    error={errors.Email}
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    value={userData.Password}
+                    helperText={errors.Password && "Invalid Password"}
+                    error={errors.Password}
+                    required
+                    fullWidth
+                    onChange={handleChange}
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                  <ColorButton
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign In
+                  </ColorButton>
 
-            <FacebookLoginButton className="pl-2 facebook-login pr-0 mt-2">
-              <Facebook />
-            </FacebookLoginButton>
-            <GoogleLoginButton className="google-login pr-0 mt-2">
-              <Google />
-            </GoogleLoginButton>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+                  <FacebookLoginButton className="pl-2 facebook-login pr-0 mt-2">
+                    <Facebook />
+                  </FacebookLoginButton>
+                  <GoogleLoginButton className="google-login pr-0 mt-2">
+                    <Google />
+                  </GoogleLoginButton>
+                  <Grid container>
+                    <Grid item xs>
+                      <Link to="/" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link to="/signup" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </form>
+              </div>
+              {performRedirect()}
             </Grid>
-          </form>
+          </Container>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-        {performRedirect()}
-      </Container>
+      </div>
     </div>
   );
 }

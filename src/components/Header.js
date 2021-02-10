@@ -300,6 +300,8 @@ const NavBar = () => {
                 <MailIcon />
               </Badge>
             </IconButton> */}
+             {isAuthenticated() && (
+               <>
               <IconButton
                 aria-label="show 17 new notifications"
                 color="inherit"
@@ -308,7 +310,7 @@ const NavBar = () => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              {isAuthenticated() && (
+             
                 <IconButton
                   edge="end"
                   aria-label="account of current user"
@@ -319,6 +321,7 @@ const NavBar = () => {
                 >
                   <AccountCircle />
                 </IconButton>
+                </>
               )}
             </div>
             <div className={classes.sectionMobile}>

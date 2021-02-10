@@ -110,7 +110,7 @@ function App() {
           </React.Fragment>
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );
