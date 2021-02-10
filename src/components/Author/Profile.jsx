@@ -40,7 +40,7 @@ function Profile(props) {
           </div>
           <div className="col-md-8 mt-3">
             <div className="card mb-3">
-              <div className="card-body">
+              <div className="card-body login">
                 <div className="row">
                   <div className="col-sm-3 col-6">
                     <h6 className="mb-0">First Name</h6>

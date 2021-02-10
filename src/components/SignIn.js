@@ -67,10 +67,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(2, 0.5, 0.1),
-    width: "98%",
-    height: "50px",
-    fontSize: "19px",
+    margin: theme.spacing(2, 5, 0.1),
+    width: "78%",
+    height: window.screen.width<600?"40px":'50px',
+    fontSize: window.screen.width<600?"16px":"19px",
     textTransform: "capitalize",
     backgroundColor: "#455a64",
     color: "white",
@@ -138,7 +138,7 @@ export default function SignIn() {
       {loading && <Loading />}
       <div className="row">
         <div className="col-12">
-          <Container component="main" maxWidth="xs" className="bg-white mt-3">
+          <Container component="main" maxWidth="xs" className=" login mt-3">
             {" "}
             <Grid xs={12} item>
               <CssBaseline />
@@ -204,13 +204,13 @@ export default function SignIn() {
                   <GoogleLoginButton className="google-login pr-0 mt-2">
                     <Google />
                   </GoogleLoginButton>
-                  <Grid container>
-                    <Grid item xs>
+                  <Grid container className="my-3">
+                    <Grid item sm={5} xs={12}>
                       <Link to="/" variant="body2">
                         Forgot password?
                       </Link>
                     </Grid>
-                    <Grid item>
+                    <Grid item sm={7}>
                       <Link to="/signup" variant="body2">
                         {"Don't have an account? Sign Up"}
                       </Link>
