@@ -82,10 +82,6 @@
     align-self: center;
     align-content: center;
   }
-  .userprofile{
-    background-color:#eceff1;
-    height: 70vh;
-  }
   .login{
     background-color: hsla(351, 7%, 97%, 1) !important;
   }

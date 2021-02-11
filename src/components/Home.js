@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    backgroundColor:'#78909c',
     height:'100vh'
   },
   paper: {
@@ -58,17 +57,17 @@ const Home = () => {
                   style={{ boxShadow: "none",backgroundColor:"#fafafa" }}
                 >
                   <h6>
-                    {qod &&
+                    {qod ?
                       qod.map((v, i) => {
                         return v.quote;
-                      })}
+                      }):''}
                   </h6>
                   <cite>
                     {" "}
-                    {qod &&
+                    {qod ?
                       qod.map((v, i) => {
                         return v.author;
-                      })}
+                      }):''}
                   </cite>
                 </blockquote>
               </div>
