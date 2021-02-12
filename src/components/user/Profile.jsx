@@ -1,5 +1,6 @@
 import React from "react";
 import { useStateValue } from "../../StateProvider";
+import RSkeleton from "../RSkeleton";
 
 function Profile() {
   const [{ user }] = useStateValue();
@@ -15,7 +16,7 @@ function Profile() {
                     ? user[0].profile_picture != null
                       ? user[0].profile_picture
                       : "/assets/defaultimage.png"
-                    : ""
+                    : '/assets/defaultimage.png'
                 }
                 alt="name"
                 className="rounded-circle profilePicture"
@@ -27,7 +28,7 @@ function Profile() {
                     : ""}{" "}
                   {user[0]
                     ? user[0].first_name && user[0].last_name.toUpperCase()
-                    : ""}{" "}
+                    : "Loading..."}{" "}
                 </h4>
               </div>
             </div>
@@ -36,73 +37,75 @@ function Profile() {
             <div className="card mb-3">
               <div className="card-body bg-light">
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">First Name</h6>
                   </div>
-                  <div className="col-8 text-secondary">
+                  <div className="col-6 col-sm-8 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {user[0] ? user[0].first_name : ""}
+                      {user[0] ? user[0].first_name : <RSkeleton />}
                     </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Last Name</h6>
                   </div>
-                  <div className="col-8 text-secondary">
+                  <div className="col-6 col-sm-8 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {user[0] ? user[0].last_name : ""}
+                      {user[0] ? user[0].last_name : <RSkeleton />}
                     </span>{" "}
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
-                  <div className="col-8 text-secondary">
-                    {user[0] ? user[0].nickname : ""}
+                  <div className="col-6 col-sm-8 text-secondary">
+                  <span className="profile__info">
+                    {user[0] ? user[0].nickname : <RSkeleton />}
+                    </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Email</h6>
                   </div>
-                  <div className="col-8 text-secondary">
+                  <div className="col-6 col-sm-8 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {user[0] ? user[0].email : ""}
+                      {user[0] ? user[0].email : <RSkeleton />}
                     </span>{" "}
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Gender</h6>
                   </div>
-                  <div className="col-8 text-secondary">
+                  <div className="col-6 col-sm-8 text-secondary">
                     <span className="profile__info">
                       {" "}
                       {user[0]
                         ? (user[0].gender === "M" && "Male") ||
                           (user[0].gender === "F" && "Female")
-                        : ""}
+                        : <RSkeleton />}
                     </span>
                   </div>
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
-                  <div className="col-8 text-secondary">
+                  <div className="col-6 col-sm-8 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {user[0] ? user[0].date_of_birth : ""}
+                      {user[0] ? user[0].date_of_birth : <RSkeleton />}
                     </span>
                   </div>
                 </div>

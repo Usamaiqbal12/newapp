@@ -58,7 +58,7 @@ function CreateDatasetModal(props) {
         style={customStyles}
       >
         <h4>{props.create ? "Create Dataset" : "Update Dataset"}</h4>
-        <CreateDataset create={props.create} id={props.id} classes={classes} />
+        <CreateDataset handleClose={handleCloseModal} create={props.create} id={props.id} classes={classes} />
       </Modal>
     </>
   );

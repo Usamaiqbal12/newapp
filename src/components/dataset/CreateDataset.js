@@ -7,9 +7,11 @@ import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 import "./style.css";
+import Loading from "../Loading";
 function CreateDataset(props) {
   const history = useHistory();
   const [, dispatch] = useStateValue();
+  const [loading,setLoading]=useState(false);
   const [params, setparams] = useState({
     attributes: "",
     gender: "",
@@ -43,6 +45,7 @@ function CreateDataset(props) {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true)
     if (
       params.attributes == [] ||
       params.gender === "" ||
@@ -50,12 +53,16 @@ function CreateDataset(props) {
       params.size === 0
     ) {
       alert("Please Select Parameters!");
+      setLoading(false)
     } else if (params.name === "") {
       alert("Please Type Dataset Name");
+      setLoading(false)
     } else {
       if (props.create === true) {
-        createdataset(JSON.stringify(params));
-        console.log("hylo");
+        createdataset(JSON.stringify(params)).then(data=>{
+      setLoading(false)
+        })
+        
       }
       else{
         dispatch({
@@ -64,7 +71,7 @@ function CreateDataset(props) {
         })
         updatedataset(JSON.stringify(params),props.id)
         .then(data=>{
-          console.log(data)
+          console.log('ok')
         })
       }
       datasetListFunc().then((items) => {
@@ -73,12 +80,15 @@ function CreateDataset(props) {
           data: items.data,
         });
       });
+      setLoading(false)
       setparams({ ...params, name: "" });
+      props.handleClose();
     }
   };
 
   return (
     <div>
+      {loading&&<Loading/>}
       <Params
         submit={onSubmit}
         handleChange={handleChange}

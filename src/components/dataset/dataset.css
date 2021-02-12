@@ -39,23 +39,21 @@ hr {
 }
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200italic);
-/* body {
-  background: #eee;
+body {
+  /* background: #eee; */
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
-} */
+}
 
 .quote-card {
-  background: #fff;
+  /* background: #fff; */
   color: #222222;
   padding: 20px;
-  padding-left: 50px;
+  /* padding-left: 50px; */
   box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(34, 34, 34, 0.12);
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 120px;
 }
 .quote-card p {
   font-size: 22px;
@@ -71,19 +69,20 @@ hr {
   opacity: 0.8;
 }
 .quote-card:before {
-  font-family: Georgia, serif;
+  /* font-family: Georgia, serif;
   content: "“";
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 0;
   font-size: 5em;
   color: rgba(238, 238, 238, 0.8);
   font-weight: normal;
+  line-height: 1; */
 }
 blockquote {
   margin: 0 18px 1rem;
 }
-.quote-card:after {
+/* .quote-card:after {
   font-family: Georgia, serif;
   content: "”";
   position: absolute;
@@ -93,7 +92,7 @@ blockquote {
   font-size: 25em;
   color: rgba(238, 238, 238, 0.8);
   font-weight: normal;
-}
+} */
 .dataset__heading {
   background-color: #d9dcde;
   font-family: monospace;
@@ -103,15 +102,16 @@ blockquote {
   font-family: monospace;
 }
 .dataset__text {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: cursive;
 }
 @media (max-width: 640px) {
   .quote-card:after {
     font-size: 22em;
     right: -25px;
   }
+  
   body {
-    font-size: 14px !important;
+    font-size: 13px !important;
   }
   .author__heading {
     font-size: 20px !important;
@@ -120,11 +120,14 @@ blockquote {
     margin-bottom: 3px !important;
   }
   .dataset__heading {
-    font-size: 25px !important;
+    font-size: 28px !important;
   }
   .dataset__text {
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
+  .discussioninfo{
+    height:300px !important;
+    }
 }
 .quote-card.blue-card {
   background: #0078ff;
@@ -144,7 +147,9 @@ blockquote {
 .quote-card.green-card:after {
   color: #59e063;
 }
-
+.discussioninfo{
+height:250px
+}
 .quote-card.red-card {
   background: #f61e32;
   color: #ffffff;
@@ -173,4 +178,72 @@ blockquote {
 .resp {
   padding-left: 40px;
   padding-right: 40px;
+  background-color: white;
+  min-height: 100vh;
+  /* background-image: linear-gradient(#32b9b5, #c8c8c9) */
+}
+.testimonial_auth_name {
+  position: relative;
+}
+.testimonial_auth_name:before {
+  /* position: relative;
+  content: '';
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #343a40; */
+}
+.text-user_info {
+  color: #c6c6c6;
+}
+.questions_list {
+  /* border-left: 2px solid #3f51b5; */
+  /* border-left: 2px solid #343a40; */
+}
+.questions_list li {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.questions_list li span {
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  background: #3f51b5;
+  background: #343a40;
+  color: #fff;
+  display: block;
+  position: absolute;
+  left: -0;
+  top: 4px;
+}
+.quote-card_wrap:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  border-left: 2px solid #343a40;
+  border-top: 2px solid #343a40;
+  pointer-events: none;
+}
+.quote-card_wrap:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 50%;
+  border-right: 2px solid #343a40;
+  border-bottom: 2px solid #343a40;
+  pointer-events: none;
+}
+.testimonial_txt {
+  font-size: 14px;
 }

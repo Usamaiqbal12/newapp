@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { discussionmode } from "../../services/Api";
 import { useHistory } from "react-router-dom";
+import Loading from "../Loading";
 const DiscussionMode = (props) => {
   const [values, setValues] = useState([]);
   const history = useHistory();
+  const [loading, setloading] = useState(true);
   let c = 1;
   const {
     match: { params },
@@ -14,112 +16,103 @@ const DiscussionMode = (props) => {
     discussionmode(params.id).then((data) => {
       if (mounted) {
         setValues([...data.data]);
-        console.log(data);
+        setloading(false)
       }
     });
     return () => (mounted = false);
   }, []);
   return (
     <React.Fragment>
+      {loading&& <Loading />}
       <div
         id="carouselExampleControls"
         className="carousel slide "
         data-ride="carousel"
         data-interval={false}
       >
-        <h4 className="text-center pt-4">
-          {" "}
-          <span className="px-3 py-2 dataset__text">Discussion Mode</span>
-        </h4>
-
-        <div className="carousel-inner container">
+        <div className="carousel-inner">
           {values
             ? values.map((v, i) => {
                 return (
                   <div
                     key={i}
-                    className={`carousel-item mt-2 resp mb-4 bg-light ${
+                    className={`carousel-item border resp ${
                       c == 1 && "active"
                     }`}
                   >
-                    <div className="container  mx-0 mb-5">
-                      <div className="row gutters-sm">
+                    <h4 className="text-center pt-4">
+                      {" "}
+                      <span className="px-3 py-2 dataset__text">
+                        Discussion Mode
+                      </span>
+                    </h4>
+                    <div className="container  mb-4">
+                      <div className="row gutters-sm align-items-center">
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
                             <img
-                              src={"http://localhost:8000" + v.author.photo}
+                              // src={"http://localhost:8000" + v.author.photo}
+                              src={
+                                "https://via.placeholder.com/150" +
+                                v.author.photo
+                              }
                               alt="name"
-                              className="rounded-circle mt-3 profilePicture"
-                              
+                              className=" profilePicture"
                             />
                           </div>
                         </div>
-                        <div className="col-md-8 mt-3">
-                          <div className="card mb-3">
-                            <div className="card-body bg-white">
+                        <div className="col-md-8 mt-3 mt-md-0">
+                          <div className="card mb-0 mt-1">
+                            <div className="card-body discussioninfo bg-dark">
                               <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0"> Name</h6>
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white"> Name</h6>
+                                  <div className="text-user_info">
+                                    {v.author.short_name}
+                                  </div>
                                 </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {v.author.short_name}
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white">Alias</h6>
+                                  <div className="text-user_info">
+                                    {v.author.alias === null
+                                      ? "None"
+                                      : v.author.alias}
+                                  </div>
                                 </div>
-                              </div>
-                              <hr />
-                              <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0">Alias</h6>
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white">Morality</h6>
+                                  <div className="text-user_info">
+                                    {v.author.date_of_birth !== null
+                                      ? "Living"
+                                      : "Deceased"}
+                                  </div>
                                 </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {v.author.alias === null
-                                    ? "None"
-                                    : v.author.alias}
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white">
+                                    Attributes
+                                  </h6>
+                                  <div className="text-user_info">
+                                    {v.author.attribute.length > 0
+                                      ? v.author.attribute.map((v, i) => {
+                                          return <span key={i}>{v}</span>;
+                                        })
+                                      : "None"}
+                                  </div>
                                 </div>
-                              </div>
-                              <hr />
-
-                              <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0">Morality</h6>
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white">Gender</h6>
+                                  <div className="text-user_info">
+                                    {(v.author.sex === "M" && "Male") ||
+                                      (v.author.sex === "F" && "Female")}
+                                  </div>
                                 </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {v.author.date_of_birth !== null
-                                    ? "Living"
-                                    : "Deceased"}
-                                </div>
-                              </div>
-                              <hr />
-                              <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0">Attributes</h6>
-                                </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {v.author.attribute.length > 0
-                                    ? v.author.attribute.map((v, i) => {
-                                        return <span key={i}>{v}</span>;
-                                      })
-                                    : "None"}
-                                </div>
-                              </div>
-
-                              <hr />
-                              <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0">Gender</h6>
-                                </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {(v.author.sex === "M" && "Male") ||
-                                    (v.author.sex === "F" && "Female")}
-                                </div>
-                              </div>
-
-                              <hr />
-                              <div className="row">
-                                <div className="col-sm-3">
-                                  <h6 className="mb-0">Date of Birth</h6>
-                                </div>
-                                <div className="col-sm-9 text-secondary">
-                                  {v.author.date_of_birth}
+                                <div className="col-md-6 col-6 py-3">
+                                  <h6 className="mb-2 text-white">
+                                    Date of Birth
+                                  </h6>
+                                  <div className="text-user_info">
+                                    {v.author.date_of_birth}
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -130,24 +123,35 @@ const DiscussionMode = (props) => {
                     <span className="d-none"> {(c = c + 1)} </span>
                     <div className="container ">
                       <div className="row mt-10">
-                        <blockquote className="quote-card">
-                          <h6>{v.quote}</h6>
-                          <cite>{v.author.short_name}</cite>
-                        </blockquote>
+                        <div className="col-12">
+                          <div className="quote-card_wrap position-relative">
+                            <div className="quote-card ">
+                              <h6 className="text-secondary mb-0 font-normal font-italic testimonial_txt">
+                                &quot;{v.quote}&quot;
+                              </h6>
+                              <h6 className="testimonial_auth_name text-dark mb-0 text-right mt-2 text-capitalize">
+                                - {v.author.short_name}
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="row">
+                      <div className="">
                         <div>
-                          <h4 className="w-100 pt-4 pl-4">
+                          <h4 className="w-100 pt-4 dataset__text">
                             {" "}
-                            <b>Questions :</b>
+                            Questions:
                           </h4>
                         </div>
                       </div>
-                      <ul className="list-group">
+                      <ul className="questions_list list-unstyled mb-0">
                         {v.questions.map((v, i) => {
                           return (
-                            <li className="list-group-item" key={i}>
-                              <b>{i + 1}.</b> {v.title}
+                            <li className="" key={i}>
+                              <span>
+                                <b>{i + 1}</b>
+                              </span>
+                              {v.title}
                             </li>
                           );
                         })}
@@ -162,7 +166,7 @@ const DiscussionMode = (props) => {
                   </div>
                 );
               })
-            : ""}
+            :''}
         </div>
         <a
           className="carousel-control-prev"

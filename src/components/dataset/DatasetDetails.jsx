@@ -1,17 +1,22 @@
+import { LinearProgress } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
+
 import {
   deleteDatasetFunc,
   getDataSet,
   datasetListFunc,
 } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
+import Loading from "../Loading";
+import RSkeleton from "../RSkeleton";
 import AuthorsList from "./AuthorsList";
 import CreateDatasetModal from "./CreateDatasetModal";
 function DatasetDetails(props) {
   const history = useHistory();
   const [{ currentDataset }, dispatch] = useStateValue();
-
+  const [loading,setLoading] = useState(false)
   const [foundedValue, setfoundedValue] = useState([]);
   const {
     match: { params },
@@ -28,6 +33,7 @@ function DatasetDetails(props) {
   },[currentDataset]);
 
   const deleteDataset = (e) => {
+    setLoading(true);
     deleteDatasetFunc(foundedValue.id).then((data) => {
       if (data.status === true) {
         datasetListFunc().then((items) => {
@@ -35,6 +41,7 @@ function DatasetDetails(props) {
             type: "ADDDATASET",
             data: items.data,
           });
+          setLoading(false)
         });
         history.push("/dataset");
       }
@@ -42,6 +49,7 @@ function DatasetDetails(props) {
   };
   return (
     <div className="mb-5 container">
+      {loading&& <Loading />}
       {foundedValue && (
         <>
           <div className="jumbotron pt-3 mt-3 border">
@@ -51,8 +59,8 @@ function DatasetDetails(props) {
             </h1>
 
             <div className="dataset__detail rounded border">
-              <div className="col-sm-6 col-md-3">
-                <p className="lead mt-3">
+              <div className="col-sm-6 col-7 col-md-3">
+                <p className="lead mt-0 ">
                   {" "}
                   <b className='dataset__text'>Dataset Name: </b>
                 </p>
@@ -66,21 +74,21 @@ function DatasetDetails(props) {
                   <b className='dataset__text'>Created At : </b>
                 </p>
               </div>
-              <div className="col-sm-6 mt-3 col-md-5">
-                <p className="lead">
-                  <b className='dataset__text'>{foundedValue.dataset_name}</b>
+              <div className="col-sm-6 col-5 col-md-5">
+                <p className="lead mt-0">
+                  <b className='dataset__text'>{foundedValue.dataset_name?foundedValue.dataset_name:<RSkeleton  />}</b>
+                </p>
+                <p className="lead">  
+                  <b className='dataset__text'>{foundedValue.type_dataset?foundedValue.type_dataset:<RSkeleton />}</b>
                 </p>
                 <p className="lead">
-                  <b className='dataset__text'>{foundedValue.type_dataset}</b>
-                </p>
-                <p className="lead">
-                  <b className='dataset__text'>{foundedValue.author ? foundedValue.author.length : ""}</b>
+                  <b className='dataset__text'>{foundedValue.author ? foundedValue.author.length : <RSkeleton />}</b>
                 </p>
                 <p className="lead">
                   <b className='dataset__text'>
                     {foundedValue.created_at
                       ? foundedValue.created_at.split(":")[0].split("T")[0]
-                      : ""}
+                      : <RSkeleton />}
                   </b>
                 </p>
               </div>

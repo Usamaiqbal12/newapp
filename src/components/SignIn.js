@@ -138,14 +138,11 @@ export default function SignIn() {
       {loading && <Loading />}
       <div className="row">
         <div className="col-12">
-          <Container component="main" maxWidth="xs" className=" login mt-3">
+          <Container component="main" maxWidth="xs" className="bg-white mt-3">
             {" "}
             <Grid xs={12} item>
               <CssBaseline />
               <div className={classes.paper}>
-                {/* <Avatar className={classes.avatar}>
-                  <LockOutlinedIcon />
-                </Avatar> */}
                 <h2 className="dataset__text rounded px-3 mt-2">
                   <span
                     style={{ fontSize: window.screen.width < 640 && "25px" }}

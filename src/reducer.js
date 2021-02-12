@@ -2,6 +2,8 @@ export const initialState = {
   datasetList: [],
   user: [],
   currentDataset: [],
+  attributes:[],
+  qod:[]
 };
 
 const reducer = (state, action) => {
@@ -10,6 +12,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         datasetList: [action.data],
+      };
+      case "qod":
+        return {
+          ...state,
+          qod: action.data,
+        };
+      case "GETATTRIBUTES":
+      return {
+        ...state,
+        attributes: action.data,
       };
     case "ADDCURRENTDATASET":
       return {

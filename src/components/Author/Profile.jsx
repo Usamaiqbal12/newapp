@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getauthor } from "../../services/Api";
+import RSkeleton from "../RSkeleton";
 
 function Profile(props) {
   const [author, setAuthor] = useState([]);
@@ -32,8 +33,8 @@ function Profile(props) {
               />
               <div className="mt-3">
                 <h4 className="author__heading px-2 py-1">
-                  {author ? author.first_name&&author.first_name.toUpperCase() : ""}{" "}
-                  {author ? author.last_name&&author.last_name.toUpperCase() : ""}{" "}
+                  {author ? author.first_name&&author.first_name.toUpperCase() : ''}{" "}
+                  {author ? author.last_name&&author.last_name.toUpperCase() : ''}{" "}
                 </h4>
               </div>
             </div>
@@ -48,7 +49,7 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author ? author.first_name : ""}{" "}
+                      {author.first_name ? author.first_name : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>
@@ -60,7 +61,7 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author ? author.last_name : ""}{" "}
+                      {author.last_name ? author.last_name : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>
@@ -72,7 +73,7 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author ? (author.alias==null&&'None')||(author.alias) : ""}{" "}
+                      {author.alias ? author.alias : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>
@@ -84,7 +85,7 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author ? (author.bio==""&&'None')||(author.bio):''}{" "}
+                      {author.bio ? (author.bio):<RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>
@@ -98,7 +99,7 @@ function Profile(props) {
                       {" "}
                       {author.attribute ? author.attribute.map((v,i)=>{
                         return <span key={i} className='m-0 p-0' style={{display:window.screen.width<600&&'block'}}>{v}<b>, </b></span>
-                      }):'' }
+                      }):<RSkeleton />}
                     </span>
                   </div>
                 </div>
@@ -110,10 +111,10 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author
+                      {author.sex
                         ? (author.sex === "M" && "Male") ||
                           (author.sex === "F" && "Female")
-                        : ""}{" "}
+                        : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>
@@ -125,7 +126,7 @@ function Profile(props) {
                   <div className="col-sm-9 col-6 text-secondary">
                     <span className="profile__info">
                       {" "}
-                      {author ? author.date_of_birth : ""}{" "}
+                      {author.date_of_birth ? author.date_of_birth : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>

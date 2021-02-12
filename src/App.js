@@ -7,7 +7,7 @@ import Manual from "./components/dataset/Manual";
 import ListDataset from "./components/dataset/ListDataset";
 import { useStateValue } from "./StateProvider";
 import DatasetDetails from "./components/dataset/DatasetDetails";
-import { datasetListFunc, isAuthenticated } from "./services/Api";
+import { datasetListFunc, isAuthenticated, listAttributes } from "./services/Api";
 import { getUser } from "./services/user/userApi";
 import Profile from "./components/user/Profile";
 import EditProfile from "./components/user/EditProfile";
@@ -56,6 +56,14 @@ function App() {
           });
         }
       });
+      listAttributes().then(data=>{
+        if(mounted){
+          dispatch({
+            type:"GETATTRIBUTES",
+            data:data
+          })
+        }
+      })
     }
     return () => (mounted = false);
   }, []);
