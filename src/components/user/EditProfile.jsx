@@ -17,9 +17,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { updateUser } from "../../services/user/userApi";
+import Loading from "../Loading";
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: window.screen.width<640?theme.spacing(1):theme.spacing(2),
+    marginTop: window.screen.width < 640 ? theme.spacing(1) : theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -43,8 +44,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EditProfile() {
-  const history = useHistory()
-  const [{ user,},dispatch] = useStateValue();
+  const history = useHistory();
+  const [loading,setLoading] = useState(false)
+  const [{ user }, dispatch] = useStateValue();
   const [currentUser, setCurrentUser] = useState({
     first_name: "",
     last_name: "",
@@ -52,7 +54,7 @@ function EditProfile() {
     date_of_birth: "",
     nickname: "",
     gender: "",
-    profile_picture:""
+    profile_picture: "",
   });
   useEffect(() => {
     if (user[0] !== undefined) {
@@ -64,8 +66,7 @@ function EditProfile() {
           user[0].date_of_birth === null ? "" : user[0].date_of_birth,
         nickname: user[0].nickname === null ? "" : user[0].nickname,
         gender: user[0].gender === null ? "--" : user[0].gender,
-        profile_picture:"",
-
+        profile_picture: "",
       });
     }
   }, [user]);
@@ -74,31 +75,45 @@ function EditProfile() {
   };
   const submit = (e) => {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append('first_name',currentUser.first_name)
-    formData.append('last_name',currentUser.last_name)
-    formData.append('email',currentUser.email)
-    formData.append('date_of_birth',currentUser.date_of_birth)
-    formData.append('nickname',currentUser.nickname)
-    formData.append('gender',currentUser.gender)
-    formData.append('profile_picture',currentUser.profile_picture)
+    setLoading(true)
+    const formData = new FormData();
+    formData.append("first_name", currentUser.first_name);
+    formData.append("last_name", currentUser.last_name);
+    formData.append("email", currentUser.email);
+    formData.append("date_of_birth", currentUser.date_of_birth);
+    formData.append("nickname", currentUser.nickname);
+    formData.append("gender", currentUser.gender);
+    formData.append("profile_picture", currentUser.profile_picture);
     updateUser(formData).then((data) => {
       dispatch({
-        type:'ADDUSER',
-        data:data.data
-      })
-      history.push('/profile')
+        type: "ADDUSER",
+        data: data.data,
+      });
+      setLoading(false)
+      history.push("/profile");
     });
   };
 
   const classes = useStyles();
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="sm" className="bg-white border mt-3">
+      <Container
+        component="main"
+        maxWidth="sm"
+        style={{ backgroundColor: "#E0E0E0" }}
+        className="rounded border mt-3 mb-3"
+      >
+        {loading&&<Loading />}
         <CssBaseline />
         <div className={classes.paper}>
-          <h2 className='dataset__text rounded px-3 mt-2' >
-           <span style={{fontSize:window.screen.width<640&&'25px'}}> Edit Profile </span>
+          <h2 className="dataset__text rounded px-3 mt-2">
+            <span
+              className="text-dark"
+              style={{ fontSize: window.screen.width < 640 ? "25px" : "30px" }}
+            >
+              {" "}
+              Edit Profile{" "}
+            </span>
           </h2>
           <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>
@@ -116,8 +131,7 @@ function EditProfile() {
                   autoFocus
                 />
               </Grid>
-             
-              
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"
@@ -132,8 +146,20 @@ function EditProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
-                <span className='dataset__text px-2'> <b> Photo:</b> </span>
-              <input className='btn' type="file" onChange={(e)=>setCurrentUser({...currentUser,profile_picture:e.target.files[0]})}/>
+                <span className="dataset__text px-2">
+                  {" "}
+                  <b className="text-dark"> Photo:</b>{" "}
+                </span>
+                <input
+                  className="btn"
+                  type="file"
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      profile_picture: e.target.files[0],
+                    })
+                  }
+                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -179,47 +205,41 @@ function EditProfile() {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <div className="">
-                  <span className='dataset__text px-2'><b> Gender:</b></span>
+                  <span className="dataset__text px-2">
+                    <b className="text-dark"> Gender:</b>
+                  </span>
                   <div className="radio form-check p-2 ml-4">
-                   
-                      <input
-                        type="radio"
-                        name="gender"
-                        onChange={handleChange}
-                        value="M"
-                        id='m'
-                        className='form-check-input'
-                        checked={currentUser.gender === "M"}
-                      />
-                    <label className='form-check-label' htmlFor='m'> Male</label>
-                     
-                  
+                    <input
+                      type="radio"
+                      name="gender"
+                      onChange={handleChange}
+                      value="M"
+                      id="m"
+                      className="form-check-input"
+                      checked={currentUser.gender === "M"}
+                    />
+                    <label className="form-check-label" htmlFor="m">
+                      {" "}
+                      Male
+                    </label>
                   </div>
                   <div className="radio form-check p-2 ml-4">
-                  
-                      <input
-                        type="radio"
-                        value="F"
-                        id='f'
-                        name="gender"
-                        className='form-check-input'
-                        checked={currentUser.gender === "F"}
-                        onChange={handleChange}
-                      />
-                      <label className='form-check-label' htmlFor='f'> Female</label>
-                     
-                   
+                    <input
+                      type="radio"
+                      value="F"
+                      id="f"
+                      name="gender"
+                      className="form-check-input"
+                      checked={currentUser.gender === "F"}
+                      onChange={handleChange}
+                    />
+                    <label className="form-check-label" htmlFor="f">
+                      {" "}
+                      Female
+                    </label>
                   </div>
                 </div>
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
 
             <Button
@@ -227,18 +247,17 @@ function EditProfile() {
               fullWidth
               variant="contained"
               color="primary"
-              disabled={currentUser.date_of_birth===""?true:false}
-
+              disabled={currentUser.date_of_birth === "" ? true : false}
               className={classes.submit}
             >
-              Submit
+              Save
             </Button>
           </form>
         </div>
       </Container>
     );
   };
-  return <div className='px-3'>{signUpForm()}</div>;
+  return <div className="px-3">{signUpForm()}</div>;
 }
 
 export default EditProfile;

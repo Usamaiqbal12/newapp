@@ -34,13 +34,13 @@ function Profile() {
             </div>
           </div>
           <div className="col-md-8 mt-3">
-            <div className="card mb-3">
-              <div className="card-body bg-light">
+            <div className="card mb-3" style={{backgroundColor:'#443F39'}}>
+              <div className="card-body text-light" >
                 <div className="row">
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">First Name</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
                       {user[0] ? user[0].first_name : <RSkeleton />}
@@ -52,19 +52,19 @@ function Profile() {
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Last Name</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
                       {user[0] ? user[0].last_name : <RSkeleton />}
                     </span>{" "}
                   </div>
                 </div>
-                <hr />
+                <hr  />
                 <div className="row">
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Nick Name</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                   <span className="profile__info">
                     {user[0] ? user[0].nickname : <RSkeleton />}
                     </span>
@@ -75,7 +75,7 @@ function Profile() {
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Email</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
                       {user[0] ? user[0].email : <RSkeleton />}
@@ -87,7 +87,7 @@ function Profile() {
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Gender</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
                       {user[0]
@@ -102,7 +102,7 @@ function Profile() {
                   <div className="col-6 col-sm-4">
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
-                  <div className="col-6 col-sm-8 text-secondary">
+                  <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
                       {user[0] ? user[0].date_of_birth : <RSkeleton />}

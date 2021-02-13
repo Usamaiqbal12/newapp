@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    color: "black",
+    color: "white",
   },
 }));
 const Home = () => {
@@ -51,7 +51,7 @@ const Home = () => {
           <Grid item xs={12}>
             <Paper
               className={classes.paper}
-              style={{ backgroundColor: "#f5f5f5" }}
+              style={{ backgroundColor: "#353431" }}
             >
               <Typography
                 component="h2"
@@ -66,10 +66,10 @@ const Home = () => {
               <div className="mt-10">
                 <blockquote
                   className="quote-card"
-                  style={{ boxShadow: "none", backgroundColor: "#fafafa" }}
+                  style={{ boxShadow: "none", backgroundColor: "#353431" }}
                 >
-                  <h6>{qod[0] ? qod[0].quote : <Skeleton count={3} />}</h6>
-                  <cite>
+                  <h6 className='text-light' >{qod[0] ? qod[0].quote : <RSkeleton count={3} width={'100%'}/>}</h6>
+                  <cite className='text-light'>
                     {" "}
                     {qod
                       ? qod.map((v, i) => {
@@ -84,7 +84,7 @@ const Home = () => {
           <Grid item xs={12} sm={4}>
             <Paper
               className={classes.paper}
-              style={{ backgroundColor: "#e0e0e0" }}
+              style={{ backgroundColor: "#353431" }}
             >
               <Typography
                 component="h2"
@@ -97,8 +97,8 @@ const Home = () => {
                 Multiple choice
               </Typography>
 
-              <table className="table table-striped bg-white border">
-                <thead className="thead-dark">
+              <table className="table table-dark table-hover rounded">
+                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
                   <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -108,13 +108,13 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Afnan</td>
+                    <td>1</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Mubeen</td>
+                    <td>2</td>
                   </tr>
                 </tbody>
               </table>
@@ -123,7 +123,7 @@ const Home = () => {
           <Grid item xs={12} sm={4}>
             <Paper
               className={classes.paper}
-              style={{ backgroundColor: "#eeeeee" }}
+              style={{ backgroundColor: "#353429" }}
             >
               <Typography
                 component="h2"
@@ -136,8 +136,8 @@ const Home = () => {
                 Name to quote
               </Typography>
 
-              <table className="table table-striped bg-white border">
-                <thead className="thead-dark">
+              <table className="table table-hover table-dark rounded">
+                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
                   <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -147,13 +147,13 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Afnan</td>
+                    <td>1</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Mubeen</td>
+                    <td>0</td>
                   </tr>
                 </tbody>
               </table>
@@ -162,7 +162,7 @@ const Home = () => {
           <Grid item xs={12} sm={4}>
             <Paper
               className={classes.paper}
-              style={{ backgroundColor: "#f5f5f5" }}
+              style={{ backgroundColor: "#353439" }}
             >
               <Typography
                 component="h2"
@@ -175,8 +175,8 @@ const Home = () => {
                 Photo to quote
               </Typography>
 
-              <table className="table table-striped bg-white border">
-                <thead className="thead-dark">
+              <table className="table table-hover table-dark">
+                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
                   <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -186,13 +186,13 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Afnan</td>
+                    <td>2</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>dummy</td>
-                    <td>dummy</td>
+                    <td>Mubeen</td>
+                    <td>4</td>
                   </tr>
                 </tbody>
               </table>

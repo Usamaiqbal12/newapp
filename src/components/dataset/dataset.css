@@ -2,7 +2,7 @@
   display: flex;
   align-self: center;
   align-items: center;
-  background-color: #d9dcde;
+  margin-top: 20px;
 }
 .discussionmode {
   min-height: 100vh;
@@ -68,31 +68,13 @@ body {
   font-weight: 200;
   opacity: 0.8;
 }
-.quote-card:before {
-  /* font-family: Georgia, serif;
-  content: "“";
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 5em;
-  color: rgba(238, 238, 238, 0.8);
-  font-weight: normal;
-  line-height: 1; */
+body {
+  font-size: 17px !important;
 }
 blockquote {
   margin: 0 18px 1rem;
 }
-/* .quote-card:after {
-  font-family: Georgia, serif;
-  content: "”";
-  position: absolute;
-  bottom: -110px;
-  line-height: 100px;
-  right: -32px;
-  font-size: 25em;
-  color: rgba(238, 238, 238, 0.8);
-  font-weight: normal;
-} */
+
 .dataset__heading {
   background-color: #d9dcde;
   font-family: monospace;
@@ -102,14 +84,29 @@ blockquote {
   font-family: monospace;
 }
 .dataset__text {
-  font-family: cursive;
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: white;
+}
+.dataset__date {
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: white;
+}
+.tt:hover {
+  background-color: white;
 }
 @media (max-width: 640px) {
   .quote-card:after {
     font-size: 22em;
     right: -25px;
   }
-  
+
+  .dataset__date {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: white;
+  }
   body {
     font-size: 13px !important;
   }
@@ -120,14 +117,19 @@ blockquote {
     margin-bottom: 3px !important;
   }
   .dataset__heading {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
+  .dataset__text {
+    font-size: 16px !important;
+  }
+  .discussioninfo {
+    height: 300px !important;
+  }
+}
+@media (max-width: 340px) {
   .dataset__text {
     font-size: 13px !important;
   }
-  .discussioninfo{
-    height:300px !important;
-    }
 }
 .quote-card.blue-card {
   background: #0078ff;
@@ -147,8 +149,8 @@ blockquote {
 .quote-card.green-card:after {
   color: #59e063;
 }
-.discussioninfo{
-height:250px
+.discussioninfo {
+  height: 250px;
 }
 .quote-card.red-card {
   background: #f61e32;
@@ -223,7 +225,7 @@ height:250px
   top: 4px;
 }
 .quote-card_wrap:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -234,7 +236,7 @@ height:250px
   pointer-events: none;
 }
 .quote-card_wrap:before {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   bottom: 0;
@@ -245,5 +247,6 @@ height:250px
   pointer-events: none;
 }
 .testimonial_txt {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
 }

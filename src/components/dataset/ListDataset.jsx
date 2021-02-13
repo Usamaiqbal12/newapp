@@ -1,14 +1,15 @@
 import Skeleton from "react-loading-skeleton";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
+import RSkeleton from "../RSkeleton";
 import CreateDatasetModal from "./CreateDatasetModal";
 function ListDataset(props) {
   const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
-    <div className="bg-white px-2 py-1 mt-4 border">
-      <table className="table table-hover mt-3">
-        <thead className="thead-dark">
+    <div className="px-2 py-1 mt-4 rounded" >
+      <table className="table mt-3 table-hover table-dark">
+        <thead className="thead text-light" style={{backgroundColor:'#443F39'}}>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Dataset Name</th>
@@ -23,7 +24,7 @@ function ListDataset(props) {
                 <tr
                   onClick={() => history.push(`/dataset/detail/${v.id}`)}
                   key={i}
-                  style={{ cursor: "pointer", fontFamily: "cursive" }}
+                  style={{ cursor: "pointer", fontFamily: "monospace",fontWeight:500 }}
                 >
                   <td scope="row">{i + 1}</td>
                   <td>{v.dataset_name}</td>
@@ -37,44 +38,44 @@ function ListDataset(props) {
               {" "}
               <tr>
                 <td scope="row">
-                  <Skeleton />
+                  <RSkeleton width={100} />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td className="pl-4">
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
               </tr>
               <tr>
                 <td scope="row">
-                  <Skeleton />
+                  <RSkeleton width={100} />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td className="pl-4">
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
               </tr>
               <tr>
                 <td scope="row">
-                  <Skeleton />
+                  <RSkeleton width={100} />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td className="pl-4">
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
                 <td>
-                  <Skeleton />
+                  <RSkeleton />
                 </td>
               </tr>
             </>

@@ -8,7 +8,10 @@ import {
 import { TextField } from "@material-ui/core";
 import { useStateValue } from "../../StateProvider";
 import { useHistory } from "react-router-dom";
+import RSkeleton from "../RSkeleton";
+import Loading from "../Loading";
 function Manual(props) {
+  const [loading, setLoading] = useState(false);
   const {
     match: { params },
   } = props;
@@ -40,23 +43,41 @@ function Manual(props) {
     setauthorsData({ ...authorsData, name: e.target.value });
   };
   const submit = (e) => {
+    
     if (authorsData.authors.length > 0) {
       if (authorsData.authors.name !== "") {
+        setLoading(true)
         if (props.location.pathname.split("/")[1] === "dataseteditmanual") {
-          updatedataset(JSON.stringify(authorsData), params.id);
+          updatedataset(JSON.stringify(authorsData), params.id).then(data=>{
+            datasetListFunc().then((items) => {
+              dispatch({
+                type: "ADDDATASET",
+                data: items.data,
+              });
+              history.push('/dataset')
+              setLoading(false)
+            });
+            
+          })
+          
         }
         else{
-          createdataset(JSON.stringify(authorsData));
+          createdataset(JSON.stringify(authorsData)).then(data=>{
+            datasetListFunc().then((items) => {
+              dispatch({
+                type: "ADDDATASET",
+                data: items.data,
+              });
+              history.push('/dataset')
+              setLoading(false)
+            });
+            
+          })
+         
         }
+      
         
-        setauthorsData({ ...authorsData, name: "" });
-        datasetListFunc().then((items) => {
-          dispatch({
-            type: "ADDDATASET",
-            data: items.data,
-          });
-        });
-        history.push('/dataset')
+
       } else {
         alert("Please Type Dataset Name !");
       }
@@ -65,9 +86,10 @@ function Manual(props) {
     }
   };
   return (
-    <div className="container p-4 bg-white">
-      <table className="table table-hover">
-        <thead className="thead-dark">
+    <div className="container mt-5">
+      {loading&&<Loading />}
+      <table className="table table-hover table-dark">
+        <thead className="thead"  style={{backgroundColor:'#443F39'}}>
           <tr>
             <th scope="col">#</th>
             <th scope="col">First Name</th>
@@ -76,7 +98,7 @@ function Manual(props) {
           </tr>
         </thead>
         <tbody>
-          {authors
+          {authors.length>1
             ? authors.map((v, i) => {
                 return (
                   <tr key={i} style={{ cursor: "pointer",fontFamily:'cursive' }}>
@@ -94,20 +116,107 @@ function Manual(props) {
                   </tr>
                 );
               })
-            : ""}
+            : <>
+             <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+                <th className="pl-4">
+                  <RSkeleton width={100} />
+                </th>
+                <th>
+                  <RSkeleton width={100} />
+                </th>
+              </tr>
+            </>}
         </tbody>
       </table>
           <TextField
           autoComplete="Dname"
           name="name"
-          variant="outlined"
+          variant="filled"
           required
+          color={'primary'}
           value={authorsData.name}
           onChange={handleDatasetName}
           label="Dataset Name"
           autoFocus
+          className='bg-white ml-1 text-dark rounded'
         />
-      <button onClick={submit} className='btn btn-secondary mx-2 py-3 px-4'>
+      <button onClick={submit} className='btn mx-2 py-3 px-4' style={{backgroundColor:'#443F39'}}>
         {props.location.pathname.split("/")[1] === "dataseteditmanual"
           ? "Update"
           : "Create"}

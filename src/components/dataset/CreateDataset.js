@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createdataset, datasetListFunc, updatedataset } from "../../services/Api";
+import {
+  createdataset,
+  datasetListFunc,
+  updatedataset,
+} from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import Params from "./Params";
-import { TextField } from "@material-ui/core";
+import { LinearProgress, TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 import "./style.css";
@@ -11,7 +15,7 @@ import Loading from "../Loading";
 function CreateDataset(props) {
   const history = useHistory();
   const [, dispatch] = useStateValue();
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
   const [params, setparams] = useState({
     attributes: "",
     gender: "",
@@ -45,7 +49,7 @@ function CreateDataset(props) {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     if (
       params.attributes == [] ||
       params.gender === "" ||
@@ -53,42 +57,43 @@ function CreateDataset(props) {
       params.size === 0
     ) {
       alert("Please Select Parameters!");
-      setLoading(false)
+      setLoading(false);
     } else if (params.name === "") {
       alert("Please Type Dataset Name");
-      setLoading(false)
+      setLoading(false);
     } else {
       if (props.create === true) {
-        createdataset(JSON.stringify(params)).then(data=>{
-      setLoading(false)
-        })
-        
-      }
-      else{
-        dispatch({
-          type:'ADDCURRENTDATASET',
-          data:params
-        })
-        updatedataset(JSON.stringify(params),props.id)
-        .then(data=>{
-          console.log('ok')
-        })
-      }
-      datasetListFunc().then((items) => {
-        dispatch({
-          type: "ADDDATASET",
-          data: items.data,
+        createdataset(JSON.stringify(params)).then((data) => {
+          datasetListFunc().then((items) => {
+            dispatch({
+              type: "ADDDATASET",
+              data: items.data,
+            });
+            setLoading(false);
+          });
+          props.handleClose();
         });
-      });
-      setLoading(false)
-      setparams({ ...params, name: "" });
-      props.handleClose();
+      } else {
+        dispatch({
+          type: "ADDCURRENTDATASET",
+          data: params,
+        });
+        updatedataset(JSON.stringify(params), props.id).then((data) => {
+          datasetListFunc().then((items) => {
+            dispatch({
+              type: "ADDDATASET",
+              data: items.data,
+            });
+            setLoading(false)
+          })
+          props.handleClose();
+        });
+      }
     }
   };
 
   return (
     <div>
-      {loading&&<Loading/>}
       <Params
         submit={onSubmit}
         handleChange={handleChange}
@@ -98,7 +103,11 @@ function CreateDataset(props) {
       <div className="px-3 w-100 text-center">
         <button
           className="btn btn-light my-2 w-100"
-          onClick={() => props.create?history.push("/manual"):history.push(`/dataseteditmanual/${props.id}`)}
+          onClick={() =>
+            props.create
+              ? history.push("/manual")
+              : history.push(`/dataseteditmanual/${props.id}`)
+          }
         >
           Advance Selection
         </button>
@@ -116,6 +125,7 @@ function CreateDataset(props) {
           label="Dataset Name"
           autoFocus
         />
+        {loading&&<LinearProgress />}
         <div className="">
           <Button
             onClick={onSubmit}

@@ -250,6 +250,7 @@ const NavBar = () => {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        style={{backgroundColor:'#443F39'}}
       >
         <Toolbar className={classes.toolbar}>
           {isAuthenticated() && (

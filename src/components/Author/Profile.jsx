@@ -18,7 +18,7 @@ function Profile(props) {
   }, []);
   return (
     <>
-      <div className="container mb-5">
+      <div className="container mb-5 mt-5">
         <div className="row gutters-sm">
           <div className="col-md-4 mt-5 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
@@ -39,14 +39,14 @@ function Profile(props) {
               </div>
             </div>
           </div>
-          <div className="col-md-8 mt-3">
-            <div className="card mb-3">
-              <div className="card-body login">
+          <div className="col-md-8 mt-4 rounded" >
+            <div className="card mb-3 text-light " style={{backgroundColor:'#443F39'}}>
+              <div className="card-body" style={{backgroundColor:'#443F39'}}>
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">First Name</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
                       {author.first_name ? author.first_name : <RSkeleton />}{" "}
@@ -55,10 +55,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Last Name</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
                       {author.last_name ? author.last_name : <RSkeleton />}{" "}
@@ -67,10 +67,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Alias</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6 ">
                     <span className="profile__info">
                       {" "}
                       {author.alias ? author.alias : <RSkeleton />}{" "}
@@ -79,10 +79,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Bio</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
                       {author.bio ? (author.bio):<RSkeleton />}{" "}
@@ -91,10 +91,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Attributes</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6 ">
                     <span className="profile__info">
                       {" "}
                       {author.attribute ? author.attribute.map((v,i)=>{
@@ -105,10 +105,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Gender</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6 ">
                     <span className="profile__info">
                       {" "}
                       {author.sex
@@ -120,10 +120,10 @@ function Profile(props) {
                 </div>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-3 col-6">
+                  <div className="col-sm-4 col-6">
                     <h6 className="mb-0">Date of Birth</h6>
                   </div>
-                  <div className="col-sm-9 col-6 text-secondary">
+                  <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
                       {author.date_of_birth ? author.date_of_birth : <RSkeleton />}{" "}

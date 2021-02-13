@@ -4,7 +4,9 @@
     font-weight: 600;
   }
   body{
-    background-image: url("https://opticalcortex.com/app/uploads/2014/08/grad-670x376.jpg") !important;
+    /* background-image: url("https://opticalcortex.com/app/uploads/2014/08/grad-670x376.jpg") !important;
+     */
+     background-color: #121212 !important;
     background-repeat: no-repeat !important;
     background-size: cover;
   }
@@ -67,6 +69,7 @@
   }
   .spiner{
     z-index: 1;
+    overflow: visible;
     left: 50%;
     top: 50%;
     position: absolute;

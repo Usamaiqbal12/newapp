@@ -42,7 +42,7 @@ const DiscussionMode = (props) => {
                   >
                     <h4 className="text-center pt-4">
                       {" "}
-                      <span className="px-3 py-2 dataset__text">
+                      <span className="px-3 py-2 dataset__text text-dark">
                         Discussion Mode
                       </span>
                     </h4>
@@ -63,7 +63,7 @@ const DiscussionMode = (props) => {
                         </div>
                         <div className="col-md-8 mt-3 mt-md-0">
                           <div className="card mb-0 mt-1">
-                            <div className="card-body discussioninfo bg-dark">
+                            <div className="card-body discussioninfo rounded bg-dark">
                               <div className="row">
                                 <div className="col-md-6 col-6 py-3">
                                   <h6 className="mb-2 text-white"> Name</h6>
@@ -126,7 +126,7 @@ const DiscussionMode = (props) => {
                         <div className="col-12">
                           <div className="quote-card_wrap position-relative">
                             <div className="quote-card ">
-                              <h6 className="text-secondary mb-0 font-normal font-italic testimonial_txt">
+                              <h6 className="text-dark mb-0 font-normal font-italic testimonial_txt">
                                 &quot;{v.quote}&quot;
                               </h6>
                               <h6 className="testimonial_auth_name text-dark mb-0 text-right mt-2 text-capitalize">
