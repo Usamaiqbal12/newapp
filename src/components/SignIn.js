@@ -138,12 +138,12 @@ export default function SignIn() {
       {loading && <Loading />}
       <div className="row">
         <div className="col-12">
-          <Container component="main" maxWidth="xs" className="bg-white mt-3">
+          <Container component="main" maxWidth="xs" className="bg-white mt-3 rounded">
             {" "}
             <Grid xs={12} item>
               <CssBaseline />
               <div className={classes.paper}>
-                <h2 className="dataset__text rounded px-3 mt-2">
+                <h2 className="dataset__text rounded text-dark px-3 mt-2">
                   <span
                     style={{ fontSize: window.screen.width < 640 && "25px" }}
                   >
@@ -161,6 +161,7 @@ export default function SignIn() {
                     helperText={errors.Email && "Email does not exist"}
                     error={errors.Email}
                     fullWidth
+                    size={'small'}
                     id="email"
                     label="Email Address"
                     name="email"
@@ -170,6 +171,7 @@ export default function SignIn() {
                   <TextField
                     variant="outlined"
                     margin="normal"
+                    size={'small'}
                     value={userData.Password}
                     helperText={errors.Password && "Invalid Password"}
                     error={errors.Password}

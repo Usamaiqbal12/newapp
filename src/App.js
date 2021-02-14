@@ -118,7 +118,7 @@ function App() {
             />
           </React.Fragment>
         </Switch>
-        {window.screen.width<600&&<MobileFooter />}
+        {isAuthenticated()&&window.screen.width<600&&<MobileFooter />}
         {window.screen.width>600&& <Footer /> }
       </main>
     </div>
