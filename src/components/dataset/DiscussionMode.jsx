@@ -38,9 +38,9 @@ const DiscussionMode = (props) => {
                     key={i}
                     className={`carousel-item  ${c == 1 && "active"}`}
                   >
-                    <h4 className="text-center pt-4">
+                    <h4 className="text-center pt-4 mb-4">
                       {" "}
-                      <span className="px-3 py-2 dataset__text">
+                      <span className="px-3 py-2 bg-light rounded text-dark dataset__text">
                         Discussion Mode
                       </span>
                     </h4>
@@ -51,15 +51,15 @@ const DiscussionMode = (props) => {
                             <img
                               // src={"http://localhost:8000" + v.author.photo}
                               src={
-                                "https://via.placeholder.com/150" +
-                                v.author.photo
+                                "https://via.placeholder.com/150"
+                                // v.author.photo
                               }
                               alt="name"
                               className=" profilePicture rounded"
                             />
                           </div>
                         </div>
-                        <div className="col-md-8 mt-3 mt-md-0">
+                        <div className="col-md-8 mt-3 mb-2 rounded mt-md-0 ">
                           <div className="card mb-0 mt-1" style={{ backgroundColor: "#353429" }}>
                             <div className="card-body discussioninfo rounded" style={{backgroundColor:'#443F39'}}>
                               <div className="row">
@@ -120,7 +120,7 @@ const DiscussionMode = (props) => {
                     </div>
                     <span className="d-none"> {(c = c + 1)} </span>
                     <div
-                      className="container rounded text-light"
+                      className="container rounded mb-4 text-light"
                       style={{ backgroundColor: "#353429" }}
                     >
                       <div className="row">
@@ -159,7 +159,8 @@ const DiscussionMode = (props) => {
                       </ul>
                       <button
                         onClick={() => history.goBack()}
-                        className="btn btn-secondary my-3"
+                        className="btn text-light my-3 col-12 col-sm-3"
+                        style={{backgroundColor:'#443F39'}}
                       >
                         Back to Dataset
                       </button>

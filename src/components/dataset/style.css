@@ -29,6 +29,7 @@
   .profilePicture{
     width: 120px !important;
     height: 120px !important;
+    border-radius: 50% !important;
   }
   .profile__info{
     font-size: 15px !important;
