@@ -26,16 +26,18 @@ function Google() {
             data: data.data.data,
           });
           setloading(false);
-        });
+        })
+        return () => (mounted = false);
+      });
         datasetListFunc().then((items) => {
           dispatch({
             type: "ADDDATASET",
             data: items.data,
           });
         });
-      });
-    }
-    return () => (mounted = false);
+      };
+    
+    
   };
   return (
     <>

@@ -35,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const theme = useTheme();
-  const history = useHistory();
   const [, dispatch] = useStateValue();
   useEffect(() => {
     let mounted = true;
