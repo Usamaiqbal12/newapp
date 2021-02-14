@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(4, 0, 4),
   },
   form1: {
     width: "100%",
@@ -101,7 +101,7 @@ function EditProfile() {
         component="main"
         maxWidth="sm"
         style={{ backgroundColor: "#E0E0E0" }}
-        className="rounded border mt-3 mb-3"
+        className="rounded border mt-3 mb-5"
       >
         {loading&&<Loading />}
         <CssBaseline />
@@ -126,6 +126,7 @@ function EditProfile() {
                   value={currentUser.first_name}
                   onChange={handleChange}
                   fullWidth
+                  size={'small'}
                   id="firstName"
                   label="First Name"
                   autoFocus
@@ -141,6 +142,8 @@ function EditProfile() {
                   onChange={handleChange}
                   id="lastName"
                   label="Last Name"
+                  size={'small'}
+
                   name="last_name"
                   autoComplete="lname"
                 />
@@ -169,6 +172,8 @@ function EditProfile() {
                   label="Email Address"
                   disabled={true}
                   name="email"
+                  size={'small'}
+
                   autoComplete="email"
                   value={currentUser.email}
                 />
@@ -181,6 +186,8 @@ function EditProfile() {
                   id="nickName"
                   value={currentUser.nickname}
                   onChange={handleChange}
+                  size={'small'}
+
                   label="Nick Name"
                   name="nickname"
                   autoComplete="nName"
@@ -197,6 +204,8 @@ function EditProfile() {
                   id="date"
                   label="DATE OF BIRTH"
                   type="date"
+                  size={'small'}
+
                   // defaultValue="2017-05-24"
                   InputLabelProps={{
                     shrink: true,

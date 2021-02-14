@@ -42,53 +42,53 @@ function AuthorsList(props) {
             <>
              <tr>
                 <td scope="row">
-                  <RSkeleton width={70} />
+                  <RSkeleton width={window.screen.width<600?30:70} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
               </tr>
               <tr>
                 <td scope="row">
-                  <RSkeleton width={70} />
+                  <RSkeleton width={window.screen.width<600?30:70} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
               </tr>
               <tr>
                 <td scope="row">
-                  <RSkeleton width={70} />
+                  <RSkeleton width={window.screen.width<600?30:70} />
                 </td>
                 <td>
-                  <RSkeleton width={100}/>
+                  <RSkeleton width={window.screen.width<600?30:100}/>
                 </td>
                 <td className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </td>
                 <td>
-                  <RSkeleton width={100}/>
+                  <RSkeleton width={window.screen.width<600?30:100}/>
                 </td>
                 <td>
-                  <RSkeleton width={100}/>
+                  <RSkeleton width={window.screen.width<600?30:100}/>
                 </td>
               </tr>
             </>}

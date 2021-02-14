@@ -29,12 +29,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   footer: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(2, 2),
     marginTop: "auto",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800],
+    backgroundColor:'#443F39',
+    color:'white'
   },
 }));
 
@@ -49,7 +47,7 @@ export default function StickyFooter() {
           <Typography variant="body1" className="text-center">
             QOTRT
           </Typography>
-          <Copyright />
+          <Copyright/>
         </Container>
       </footer>
     </div>

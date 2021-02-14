@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    marginLeft:window.screen.width<600&&'10px'
   },
   drawerPaper: {
     position: "relative",
@@ -230,6 +231,7 @@ const NavBar = () => {
         </IconButton>
         <p style={{ margin: 0 }}>Notifications</p>
       </MenuItem>
+      
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -253,7 +255,7 @@ const NavBar = () => {
         style={{backgroundColor:'#443F39'}}
       >
         <Toolbar className={classes.toolbar}>
-          {isAuthenticated() && (
+          {isAuthenticated() && window.screen.width>600 && (
             <IconButton
               edge="start"
               color="inherit"

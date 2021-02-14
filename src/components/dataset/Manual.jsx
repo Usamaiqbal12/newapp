@@ -86,8 +86,12 @@ function Manual(props) {
     }
   };
   return (
-    <div className="container mt-5">
+    <div className="container mt-5" >
       {loading&&<Loading />}
+      <div style={{ 
+      height: '300px', 
+      overflowX: 'hidden',
+      overflowY: 'auto' }}>
       <table className="table table-hover table-dark">
         <thead className="thead"  style={{backgroundColor:'#443F39'}}>
           <tr>
@@ -119,104 +123,105 @@ function Manual(props) {
             : <>
              <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
               <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
               <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
               <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
               <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
               <tr>
                 <th scope="row">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th className="pl-4">
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
                 <th>
-                  <RSkeleton width={100} />
+                  <RSkeleton width={window.screen.width<600?30:100} />
                 </th>
               </tr>
             </>}
         </tbody>
       </table>
+      </div>
           <TextField
-          autoComplete="Dname"
+          autoComplete="off"
           name="name"
           variant="filled"
           required
-          color={'primary'}
+          color={'secondary'}
           value={authorsData.name}
           onChange={handleDatasetName}
           label="Dataset Name"
-          autoFocus
-          className='bg-white ml-1 text-dark rounded'
+          size={'small'}
+          className='bg-light text-light col-12  rounded'
         />
-      <button onClick={submit} className='btn mx-2 py-3 px-4' style={{backgroundColor:'#443F39'}}>
+      <button onClick={submit} className='btn mt-2 py-2 text-light px-4 col-12 col-sm-3 mb-5' style={{backgroundColor:'#443F39'}}>
         {props.location.pathname.split("/")[1] === "dataseteditmanual"
           ? "Update"
           : "Create"}

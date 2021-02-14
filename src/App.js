@@ -20,6 +20,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Home from "./components/Home";
 import EmailActivation404 from "./components/user/EmailActivation404";
 import EmailActivation from "./components/user/EmailActivation";
+import MobileFooter from './components/footer/MobileFooter'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -117,8 +118,8 @@ function App() {
             />
           </React.Fragment>
         </Switch>
-
-        {/* <Footer /> */}
+        {window.screen.width<600&&<MobileFooter />}
+        {window.screen.width>600&& <Footer /> }
       </main>
     </div>
   );

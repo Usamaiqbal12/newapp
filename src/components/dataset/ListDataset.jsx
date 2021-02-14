@@ -7,7 +7,7 @@ function ListDataset(props) {
   const [{ datasetList }] = useStateValue();
   const history = useHistory();
   return (
-    <div className="px-2 py-1 mt-4 rounded" >
+    <div className="px-2 py-1 mt-4 rounded mb-5" >
       <table className="table mt-3 table-hover table-dark">
         <thead className="thead text-light" style={{backgroundColor:'#443F39'}}>
           <tr>
