@@ -231,8 +231,8 @@ blockquote {
   top: 0;
   width: 50%;
   height: 50%;
-  border-left: 2px solid #343a40;
-  border-top: 2px solid #343a40;
+  border-left: 2px solid #a2a4a7;
+  border-top: 2px solid #a2a4a7;
   pointer-events: none;
 }
 .quote-card_wrap:before {
@@ -242,8 +242,8 @@ blockquote {
   bottom: 0;
   width: 50%;
   height: 50%;
-  border-right: 2px solid #343a40;
-  border-bottom: 2px solid #343a40;
+  border-right: 2px solid #a2a4a7;
+  border-bottom: 2px solid #a2a4a7;
   pointer-events: none;
 }
 .testimonial_txt {

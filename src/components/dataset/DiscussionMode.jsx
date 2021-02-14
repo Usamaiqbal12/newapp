@@ -16,14 +16,14 @@ const DiscussionMode = (props) => {
     discussionmode(params.id).then((data) => {
       if (mounted) {
         setValues([...data.data]);
-        setloading(false)
+        setloading(false);
       }
     });
     return () => (mounted = false);
   }, []);
   return (
     <React.Fragment>
-      {loading&& <Loading />}
+      {loading && <Loading />}
       <div
         id="carouselExampleControls"
         className="carousel slide "
@@ -36,17 +36,15 @@ const DiscussionMode = (props) => {
                 return (
                   <div
                     key={i}
-                    className={`carousel-item border resp ${
-                      c == 1 && "active"
-                    }`}
+                    className={`carousel-item  ${c == 1 && "active"}`}
                   >
                     <h4 className="text-center pt-4">
                       {" "}
-                      <span className="px-3 py-2 dataset__text text-dark">
+                      <span className="px-3 py-2 dataset__text">
                         Discussion Mode
                       </span>
                     </h4>
-                    <div className="container  mb-4">
+                    <div className="container rounded mb-4" style={{ backgroundColor: "#353429" }}>
                       <div className="row gutters-sm align-items-center">
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
@@ -57,13 +55,13 @@ const DiscussionMode = (props) => {
                                 v.author.photo
                               }
                               alt="name"
-                              className=" profilePicture"
+                              className=" profilePicture rounded"
                             />
                           </div>
                         </div>
                         <div className="col-md-8 mt-3 mt-md-0">
-                          <div className="card mb-0 mt-1">
-                            <div className="card-body discussioninfo rounded bg-dark">
+                          <div className="card mb-0 mt-1" style={{ backgroundColor: "#353429" }}>
+                            <div className="card-body discussioninfo rounded" style={{backgroundColor:'#443F39'}}>
                               <div className="row">
                                 <div className="col-md-6 col-6 py-3">
                                   <h6 className="mb-2 text-white"> Name</h6>
@@ -121,15 +119,18 @@ const DiscussionMode = (props) => {
                       </div>
                     </div>
                     <span className="d-none"> {(c = c + 1)} </span>
-                    <div className="container ">
-                      <div className="row mt-10">
-                        <div className="col-12">
+                    <div
+                      className="container rounded text-light"
+                      style={{ backgroundColor: "#353429" }}
+                    >
+                      <div className="row">
+                        <div className="col-12 mt-4">
                           <div className="quote-card_wrap position-relative">
                             <div className="quote-card ">
-                              <h6 className="text-dark mb-0 font-normal font-italic testimonial_txt">
+                              <h6 className="mb-0 font-normal font-italic text-light testimonial_txt">
                                 &quot;{v.quote}&quot;
                               </h6>
-                              <h6 className="testimonial_auth_name text-dark mb-0 text-right mt-2 text-capitalize">
+                              <h6 className="testimonial_auth_name mb-0 text-right mt-2 text-capitalize text-light">
                                 - {v.author.short_name}
                               </h6>
                             </div>
@@ -166,7 +167,7 @@ const DiscussionMode = (props) => {
                   </div>
                 );
               })
-            :''}
+            : ""}
         </div>
         <a
           className="carousel-control-prev"
