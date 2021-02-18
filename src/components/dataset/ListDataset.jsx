@@ -18,8 +18,8 @@ function ListDataset(props) {
           </tr>
         </thead>
         <tbody>
-          {datasetList.length > 0 ? (
-            datasetList[0].map((v, i) => {
+          {datasetList ? (
+            datasetList.map((v, i) => {
               return (
                 <tr
                   onClick={() => history.push(`/dataset/detail/${v.id}`)}

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const [, dispatch] = useStateValue();
+  const [{datasetList}, dispatch] = useStateValue();
   useEffect(() => {
     let mounted = true;
     if (localStorage.getItem("jwt")) {
@@ -65,7 +65,7 @@ function App() {
       })
     }
     return () => (mounted = false);
-  }, []);
+  }, [datasetList]);
   return (
     <div className={classes.root}>
       <NavBar />

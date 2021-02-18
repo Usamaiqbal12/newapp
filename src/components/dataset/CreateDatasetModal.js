@@ -46,7 +46,7 @@ function CreateDatasetModal(props) {
   return (
     <>
       <button
-        className="btn text-light mr-3 col-xs-12 col-sm-12 col-md-3 mb-4"
+        className="btn text-light mr-3 col-xs-12 col-sm-12 mt-2 col-md-3 mb-3"
         style={{ backgroundColor: "#353431" }}
         onClick={handleOpenModal}
       >

@@ -9,7 +9,6 @@ function Google() {
   const [, dispatch] = useStateValue();
   const [loading, setloading] = useState(false);
   const responseGoogle = (e) => {
-    // setloading(true)
     const { name, email } = e.profileObj;
     const values = {
       first_name: name.split(" ")[0],
@@ -20,21 +19,28 @@ function Google() {
     let mounted = true;
     if (mounted) {
       googleLogin(values).then((data) => {
+        if (data.status=='failure'){
+          if(data.message=='USERNOTGOOGLE'){
+              alert('User signed up without google.Try with login password')
+          }
+        }
+        else{
         authenticate(data.data.token, () => {
           dispatch({
             type: "ADDUSER",
             data: data.data.data,
           });
           setloading(false);
+          datasetListFunc().then((items) => {
+            dispatch({
+              type: "ADDDATASET",
+              data: items.data,
+            });
+          });
         })
+      }
         return () => (mounted = false);
       });
-        datasetListFunc().then((items) => {
-          dispatch({
-            type: "ADDDATASET",
-            data: items.data,
-          });
-        });
       };
     
     

@@ -137,8 +137,14 @@ const SignUp = () => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <h2 className='dataset__text rounded px-3 mt-2' >
-           <span style={{fontSize:window.screen.width<640&&'25px'}}> Sign Up </span>
+          <h2 className="dataset__text rounded px-3 mt-2">
+            <span
+              className="text-dark"
+              style={{ fontSize: window.screen.width < 640 ? "25px" : "30px" }}
+            >
+              {" "}
+              Sign up{" "}
+            </span>
           </h2>
           <form className={classes.form} onSubmit={submit}>
             <Grid container spacing={2}>
@@ -216,8 +222,8 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <div className="">
-                  <span className="dataset__text px-2">
-                    <b> Gender:</b>
+                <span className="dataset__text px-2">
+                    <b className="text-dark"> Gender:</b>
                   </span>
                   <div className="radio form-check p-2 ml-4">
                     <input

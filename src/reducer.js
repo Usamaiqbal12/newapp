@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     case "ADDDATASET":
       return {
         ...state,
-        datasetList: [action.data],
+        datasetList: action.data,
       };
       case "qod":
         return {
