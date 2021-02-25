@@ -105,7 +105,7 @@ function Manual(props) {
           {authors.length>1
             ? authors.map((v, i) => {
                 return (
-                  <tr key={i} style={{ cursor: "pointer",fontFamily:'cursive' }}>
+                  <tr key={i} style={{ cursor: "pointer",fontFamily: "monospace" }}>
                     <th scope="row">{i + 1}</th>
                     <th>{v.first_name}</th>
                     <th>{v.last_name}</th>
