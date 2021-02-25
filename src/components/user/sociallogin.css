@@ -75,20 +75,49 @@
     position: absolute;
   }
   .signin{
-    background-image: url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_850154658_2000132920009280134_384709.jpg' );
+    /* background-image: url('/public/assets/signinimage.jpeg' ); */
     background-size: cover;
+    /* background-repeat: no-repeat; */
     display: flex;
-    justify-content:right;
+    /* justify-content:center; */
     flex-direction: row;
-    min-height: 100vh;
+    /* min-height: 140vh; */
     align-items: center;
     align-self: center;
     align-content: center;
+    margin-bottom: -200px;
   }
   .login{
     background-color: hsla(351, 7%, 97%, 1) !important;
   }
-  @media (max-width: 640px) {
+ 
+  @media(min-width:1000px){
+    .facebook{
+      width: 110% !important;
+      font-size:1rem;
+    }
+    .google{
+      width: 100% !important;
+      font-size:1rem !important;
+    }
+  }
+  @media(min-width:1010px){
+    .facebook{
+      width: 140% !important;
+      font-size:1rem;
+    }
+    .google{
+      width: 140% !important;
+      font-size:1rem !important;
+    }
+  }
+  @media (max-width: 1000px) {
+    .signinimage{
+      display:none;
+    }
+  }
+
+  @media (max-width: 500px) {
   .facebook{
     font-size: 16px;
     width: 100%;

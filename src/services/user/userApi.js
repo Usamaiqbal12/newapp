@@ -1,6 +1,6 @@
-const API_URL = "http://localhost:8000/";
+// const API_URL = "http://localhost:8000/";
 
-// const API_URL = "http://ec2-13-59-99-30.us-east-2.compute.amazonaws.com:8000/";
+const API_URL = "http://ec2-13-59-99-30.us-east-2.compute.amazonaws.com:8000/";
 
 export const getUser = (e) => {
   return fetch(`${API_URL}user/getuser2`, {

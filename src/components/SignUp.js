@@ -130,7 +130,7 @@ const SignUp = () => {
   }
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="sm" className="bg-white border mt-3">
+      <Container component="main" maxWidth="sm" className="bg-white mt-3">
         {loading && <Loading />}
         <CssBaseline />
         <div className={classes.paper}>

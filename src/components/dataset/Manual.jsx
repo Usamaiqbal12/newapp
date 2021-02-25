@@ -86,22 +86,22 @@ function Manual(props) {
     }
   };
   return (
-    <div className="container mt-5" >
+    <div className='container'>
+    <div className="mt-4" style={{overflowY: 'auto', height: '350px'}} >
       {loading&&<Loading />}
-      <div style={{ 
-      height: '300px', 
-      overflowX: 'hidden',
-      overflowY: 'auto' }}>
+     
       <table className="table table-hover table-dark">
         <thead className="thead"  style={{backgroundColor:'#443F39'}}>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Select</th>
+            <th style={{position: 'sticky', top: -1,backgroundColor:'#443F39'}} scope="col">#</th>
+            <th style={{position: 'sticky', top: -1,backgroundColor:'#443F39'}} scope="col">First Name</th>
+            <th style={{position: 'sticky', top: -1,backgroundColor:'#443F39'}} scope="col">Last Name</th>
+            <th style={{position: 'sticky', top: -1,backgroundColor:'#443F39'}} scope="col">Select</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <div > */}
+        <tbody >
+     
           {authors.length>1
             ? authors.map((v, i) => {
                 return (
@@ -206,7 +206,9 @@ function Manual(props) {
                 </th>
               </tr>
             </>}
+     
         </tbody>
+        {/* </div> */}
       </table>
       </div>
           <TextField
@@ -219,13 +221,15 @@ function Manual(props) {
           onChange={handleDatasetName}
           label="Dataset Name"
           size={'small'}
-          className='bg-light text-light col-12  rounded'
+          className='bg-light text-light mt-3 col-md-3  rounded'
         />
-      <button onClick={submit} className='btn mt-2 py-2 text-light px-4 col-12 col-sm-3 mb-5' style={{backgroundColor:'#443F39'}}>
+        <br/>
+      <button onClick={submit} className='btn mt-2 py-2 text-light px-4 col-12 col-md-3 mb-5' style={{backgroundColor:'#443F39'}}>
         {props.location.pathname.split("/")[1] === "dataseteditmanual"
           ? "Update"
           : "Create"}
       </button>
+    
     </div>
   );
 }
