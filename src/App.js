@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory,hashHistory } from "react-router-dom";
+import { Route, Switch,BrowserRouter as Router,hashHistory } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import NavBar from "./components/Header";
@@ -65,14 +65,13 @@ function App() {
       })
     }
     return () => (mounted = false);
-  }, [datasetList]);
+  }, []);
   return (
     <div className={classes.root}>
       <NavBar />
       {/* <NewHeader /> */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-
         <Switch>
           <React.Fragment>
             <Route path="/signin" component={SignIn} />
@@ -94,7 +93,7 @@ function App() {
               </PrivateRoutes>
             </div>
             <PrivateRoutes
-              path="/dataset/detail/:id"
+              path="/dataset/detail/:slug"
               component={DatasetDetails}
             />
             <Route
@@ -118,6 +117,7 @@ function App() {
         </Switch>
         {isAuthenticated()&&window.screen.width<600&&<MobileFooter />}
         {window.screen.width>600&& <Footer /> }
+     
       </main>
     </div>
   );

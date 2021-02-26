@@ -130,7 +130,8 @@ const SignUp = () => {
   }
   const signUpForm = (e) => {
     return (
-      <Container component="main" maxWidth="sm" className="bg-white mt-3">
+      <div className='mx-2 my-2'>
+      <Container component="main" maxWidth="sm" className="bg-white rounded mt-3">
         {loading && <Loading />}
         <CssBaseline />
         <div className={classes.paper}>
@@ -316,6 +317,7 @@ const SignUp = () => {
           <Copyright />
         </Box>
       </Container>
+      </div>
     );
   };
 

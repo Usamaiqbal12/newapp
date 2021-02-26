@@ -22,7 +22,7 @@ function DatasetDetails(props) {
   } = props;
   useEffect(() => {
     let mounted = true;
-    getDataSet(params.id).then((items) => {
+    getDataSet(params.slug).then((items) => {
       if (mounted) {
         setfoundedValue(items.data);
       }

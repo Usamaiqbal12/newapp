@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter,HashRouter } from "react-router-dom";
 // import SignIn from "./components/SignIn";
 import App from "./App";
 // import "bootstrap/dist/css/bootstrap.css";
@@ -12,7 +12,7 @@ import Dashboard from "./components/dataset/Dummy";
 
 ReactDOM.render(
   <StateProvider initialState={initialState} reducer={reducer}>
-    <BrowserRouter>
+    <BrowserRouter history={HashRouter}>
       <App />
     </BrowserRouter>
   </StateProvider>,

@@ -100,7 +100,7 @@ const Home = () => {
 
               <table className="table table-dark table-hover rounded">
                 <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
+                  <tr style={{ cursor: "pointer", fontFamily: "monospace" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
@@ -139,7 +139,7 @@ const Home = () => {
 
               <table className="table table-hover table-dark rounded">
                 <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
+                  <tr style={{ cursor: "pointer", fontFamily:"monospace" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
@@ -178,7 +178,7 @@ const Home = () => {
 
               <table className="table table-hover table-dark">
                 <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily: "cursive" }}>
+                  <tr style={{ cursor: "pointer", fontFamily: "monospace" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>

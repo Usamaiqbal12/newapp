@@ -30,6 +30,8 @@ const DiscussionMode = (props) => {
         data-ride="carousel"
         data-interval={false}
       >
+
+
         <div className="carousel-inner">
           {values
             ? values.map((v, i) => {
@@ -49,11 +51,11 @@ const DiscussionMode = (props) => {
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
                             <img
-                              // src={"http://localhost:8000" + v.author.photo}
-                              src={
-                                "https://via.placeholder.com/150"
-                                // v.author.photo
-                              }
+                              src={v.author.photo==null?"https://via.placeholder.com/150":v.author.photo}
+                              // src={
+                              //   "https://via.placeholder.com/150"
+                              //   // v.author.photo
+                              // }
                               alt="name"
                               className=" profilePicture rounded"
                             />
@@ -159,7 +161,7 @@ const DiscussionMode = (props) => {
                       </ul>
                       <button
                         onClick={() => history.goBack()}
-                        className="btn text-light my-3 col-12 col-sm-3"
+                        className="btn text-light mt-3 mb-5 col-12 col-sm-3"
                         style={{backgroundColor:'#443F39'}}
                       >
                         Back to Dataset
