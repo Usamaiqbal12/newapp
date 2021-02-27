@@ -1,5 +1,8 @@
-const API_URL = "http://localhost:8000/";
-// const API_URL = "http://ec2-13-59-99-30.us-east-2.compute.amazonaws.com:8000/";
+let API_URL = "http://localhost:8000/"
+if (process.env.NODE_ENV!=='development'){
+ const API_URL = "http://ec2-13-59-99-30.us-east-2.compute.amazonaws.com:8000/";
+}
+
 
 const createdataset = (e) => {
   return fetch(`${API_URL}dataset/create/`, {

@@ -92,7 +92,8 @@ function App() {
                   <ListDataset create={true} />
               </PrivateRoutes>
             </div>
-            <PrivateRoutes
+          
+            <Route
               path="/dataset/detail/:slug"
               component={DatasetDetails}
             />

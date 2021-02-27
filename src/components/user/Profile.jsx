@@ -10,6 +10,7 @@ function Profile() {
         <div className="row gutters-sm ">
           <div className="col-md-4 mt-4 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
+              {console.log(user[0])}
               <img
                 src={
                   user[0]

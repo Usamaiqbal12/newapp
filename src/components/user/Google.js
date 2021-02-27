@@ -49,7 +49,7 @@ function Google() {
     <>
       {loading && <Loading />}
       <GoogleLogin
-        clientId="918683245824-3i4siophfobp31a542q0vumpe2l5lnhj.apps.googleusercontent.com"
+        clientId="585916164666-dvh6eka6k4d6qmongr75smpc53togegq.apps.googleusercontent.com"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={"single_host_origin"}

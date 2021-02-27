@@ -50,12 +50,9 @@ const DiscussionMode = (props) => {
                       <div className="row gutters-sm align-items-center">
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
+                            
                             <img
-                              src={v.author.photo==null?"https://via.placeholder.com/150":v.author.photo}
-                              // src={
-                              //   "https://via.placeholder.com/150"
-                              //   // v.author.photo
-                              // }
+                              src={v.author.photo==null?"https://via.placeholder.com/150":"http://localhost:8000"+v.author.photo}
                               alt="name"
                               className=" profilePicture rounded"
                             />
