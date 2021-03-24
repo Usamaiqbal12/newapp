@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 import { listAttributes } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
+import TextField from "@material-ui/core/TextField";
 
-function Params(props) {
-  
-  const [{attributes},] = useStateValue()
+function UpdateParams(props) {
+  const [{ attributes }] = useStateValue();
 
-  const { handleChange, onSelect, onRemove } = props;
+  const { handleChange, onSelect, onRemove, values } = props;
   const gender = [
     { value: "M", id: 1, name: "gender", display: "Male" },
     { value: "F", id: 2, name: "gender", display: "Female" },
@@ -32,53 +32,83 @@ function Params(props) {
       minHeight: "40px",
     },
   };
-  console.log(attributes);
+  let newAttr = props.values.attributes.replace("[", "");
+  newAttr = newAttr.replace("]", "").split("',");
+  newAttr = newAttr.map((v) => v.replace("'", ""));
+  newAttr = newAttr.map((v) => v.replace("'", ""));
+  let updateAttr = [];
+  let updateGender = [];
+  let updateMorality = [];
+  let updateSize = [];
+  newAttr = newAttr.map((v) => updateAttr.push({ name: v.trim() }));
+  let nameGender = "";
+  if (props.values.gender == "M") {
+    nameGender = "Male";
+  } else if (props.values.gender == "F") {
+    nameGender = "Female";
+  } else {
+    nameGender = "All";
+  }
+  updateGender.push({
+    name: "gender",
+    value: props.values.gender,
+    display: nameGender,
+  });
+  updateMorality.push({ name: "morality", value: props.values.morality });
+  updateSize.push({ name: "size", value: props.values.size });
   const parameterForm = () => {
     return (
       <form>
         <div className="">
           <div className="col-sm-12 col-md-12">
-            <h5>Attributes: </h5>
+            <h6>Attributes update: </h6>
             <Multiselect
-              options={attributes&&attributes}
+              options={attributes && attributes}
               displayValue="name"
               onSelect={onSelect}
               showCheckbox={true}
+              selectedValues={updateAttr}
               style={style}
               onRemove={onRemove}
             />
           </div>
           <div className="col-sm-12 col-md-12">
-            <h5>Gender: </h5>
+            <h6 className="mt-1 mb-2">Gender: </h6>
 
             <Multiselect
               style={style}
               options={gender}
               displayValue="display"
+              selectedValues={updateGender}
               onSelect={handleChange}
-              id='input__gender'
+              id="input__gender"
+              placeholder="hello"
+              label="he"
               singleSelect
             />
           </div>
           <div className="col-sm-12 col-md-12">
-            <h5>Mortality: </h5>
-            <Multiselect
-              options={morality}
-              style={style}
-              displayValue="value"
-              id='input__gender'
-              onSelect={handleChange}
-              singleSelect
-            />
+            <h6 className="mt-1 mb-2">Mortality: </h6>
+                <Multiselect
+                  options={morality}
+                  style={style}
+                  displayValue="value"
+                  selectedValues={updateMorality}
+                  id="input__gender"
+                  onSelect={handleChange}
+                  singleSelect
+                />
           </div>
           <div className="col-sm-12 col-md-12">
-            <h5>Size: </h5>
+            <h6 className="mt-1 mb-2">Size: </h6>
+
             <Multiselect
               options={size}
-              placeholder='Size'
+              placeholder="Size"
+              selectedValues={updateSize}
               style={style}
               displayValue="value"
-              id='input__gender'
+              id="input__gender"
               onSelect={handleChange}
               singleSelect
             />
@@ -90,4 +120,4 @@ function Params(props) {
   return <>{parameterForm()}</>;
 }
 
-export default Params;
+export default UpdateParams;

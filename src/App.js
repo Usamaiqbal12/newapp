@@ -38,6 +38,16 @@ function App() {
   const [{datasetList}, dispatch] = useStateValue();
   useEffect(() => {
     let mounted = true;
+    // let mounted=true;
+    listAttributes().then(data=>{
+      if(mounted){
+        dispatch({
+          type:"GETATTRIBUTES",
+          data:data
+        })
+      }
+    })
+    // return () => (mounted = false);
     if (localStorage.getItem("jwt")) {
       getUser().then((data) => {
         if (mounted) {
@@ -55,14 +65,6 @@ function App() {
           });
         }
       });
-      listAttributes().then(data=>{
-        if(mounted){
-          dispatch({
-            type:"GETATTRIBUTES",
-            data:data
-          })
-        }
-      })
     }
     return () => (mounted = false);
   }, []);

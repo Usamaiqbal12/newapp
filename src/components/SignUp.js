@@ -15,6 +15,13 @@ import {
   makeStyles,
   Container,
 } from "@material-ui/core";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
 import { signup } from "../services/Api";
 import { Link, useHistory } from "react-router-dom";
 import Loading from "./Loading";
@@ -73,10 +80,27 @@ const SignUp = () => {
     success: false,
     passError: false,
   });
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  function getFormattedDate(date) {
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+  
+    return year+ '-' + month + '-' + day;
+}
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setValues({...values,date_of_birth:getFormattedDate(date)})
+  };
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passLength, setPassLength] = useState(false);
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    if (values.password.length > 7) {
+      setPassLength(false);
+    }
+    setloading(false);
   };
   const {
     email,
@@ -92,231 +116,259 @@ const SignUp = () => {
   function submit(e) {
     e.preventDefault();
     setloading(true);
-    if (confirmPassword === password) {
-      signup({
-        email,
-        password,
-        nickname,
-        date_of_birth,
-        gender,
-        first_name,
-        last_name,
-      })
-        .then((data) => {
-          if (data.status === "failure") {
-            setValues({ ...values, error: [true, data.message] });
-            setloading(false);
-          } else {
-            setValues({
-              ...values,
-              email: "",
-              password: "",
-              error: "",
-              success: true,
-              nickname: "",
-              date_of_birth: "",
-              gender: "",
-              first_name: "",
-              last_name: "",
-            });
-            setloading(false);
-            history.push("/signin");
-          }
-        })
-        .catch((e) => setValues({ ...values, error: true, success: false }));
+    if (password.length < 8) {
+      setPassLength(true);
     } else {
-      setValues({ ...values, passError: true });
+      if (confirmPassword === password) {
+        signup({
+          email,
+          password,
+          nickname,
+          date_of_birth,
+          gender,
+          first_name,
+          last_name,
+        })
+          .then((data) => {
+            if (data.status === "failure") {
+              setValues({ ...values, error: [true, data.message] });
+              setloading(false);
+            } else {
+              setValues({
+                ...values,
+                email: "",
+                password: "",
+                error: "",
+                success: true,
+                nickname: "",
+                date_of_birth: "",
+                gender: "",
+                first_name: "",
+                last_name: "",
+              });
+              setloading(false);
+              history.push("/signin");
+            }
+          })
+          .catch((e) => setValues({ ...values, error: true, success: false }));
+      } else {
+        setValues({ ...values, passError: true });
+      }
     }
   }
   const signUpForm = (e) => {
     return (
-      <div className='mx-2 my-2'>
-      <Container component="main" maxWidth="sm" className="bg-white rounded mt-3">
-        {loading && <Loading />}
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <h2 className="dataset__text rounded px-3 mt-2">
-            <span
-              className="text-dark"
-              style={{ fontSize: window.screen.width < 640 ? "25px" : "30px" }}
-            >
-              {" "}
-              Sign up{" "}
-            </span>
-          </h2>
-          <form className={classes.form} onSubmit={submit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="first_name"
-                  variant="outlined"
-                  required
-                  value={values.first_name}
-                  onChange={handleChange}
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  value={values.last_name}
-                  fullWidth
-                  onChange={handleChange}
-                  id="lastName"
-                  label="Last Name"
-                  name="last_name"
-                  autoComplete="lname"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  error={error[0]}
-                  helperText={error[0] && error[1]}
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="nickName"
-                  value={values.nickname}
-                  onChange={handleChange}
-                  label="Nick Name"
-                  name="nickname"
-                  autoComplete="nName"
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <TextField
-                  className={classes.date}
-                  required
-                  name="date_of_birth"
-                  value={values.date_of_birth}
-                  onChange={handleChange}
-                  variant="outlined"
-                  id="date"
-                  label="DATE OF BIRTH"
-                  type="date"
-                  // defaultValue="2017-05-24"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={12}>
-                <div className="">
-                <span className="dataset__text px-2">
-                    <b className="text-dark"> Gender:</b>
-                  </span>
-                  <div className="radio form-check p-2 ml-4">
-                    <input
-                      type="radio"
-                      name="gender"
-                      onChange={handleChange}
-                      value="M"
-                      id="m"
-                      className="form-check-input"
+      <div className="mx-2 my-2">
+        <Container
+          component="main"
+          maxWidth="sm"
+          className="bg-white rounded mt-3"
+        >
+          {loading && <Loading />}
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <h2 className="rounded px-3 mt-2">
+              <span
+                className="text-dark"
+                style={{
+                  fontSize: window.screen.width < 640 ? "25px" : "30px",
+                }}
+              >
+                {" "}
+                Sign up{" "}
+              </span>
+            </h2>
+            <form className={classes.form} onSubmit={submit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    name="first_name"
+                    variant="outlined"
+                    required
+                    value={values.first_name}
+                    onChange={handleChange}
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    value={values.last_name}
+                    fullWidth
+                    onChange={handleChange}
+                    id="lastName"
+                    label="Last Name"
+                    name="last_name"
+                    autoComplete="lname"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    error={error[0]}
+                    helperText={error[0] && "Email already exists"}
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="nickName"
+                    value={values.nickname}
+                    onChange={handleChange}
+                    label="Nick Name"
+                    name="nickname"
+                    autoComplete="nName"
+                  />
+                </Grid>
+                {/* <Grid item xs={12} sm={12}>
+                  <TextField
+                    className={classes.date}
+                    required
+                    name="date_of_birth"
+                    value={values.date_of_birth}
+                    onChange={handleChange}
+                    variant="outlined"
+                    id="date"
+                    label="DATE OF BIRTH"
+                    type="date"
+                    // defaultValue="2017-05-24"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid> */}
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <Grid className='col-md-12'  sm={12} xs={12}>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      id="date-picker-inline"
+                      label="Date of Birth"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date",
+                      }}
                     />
-                    <label className="form-check-label" htmlFor="m">
-                      {" "}
-                      Male
-                    </label>
+                  </Grid>
+                </MuiPickersUtilsProvider>
+                <Grid item xs={12} sm={12}>
+                  <div className="">
+                    <span className="px-2">
+                      <b className="text-dark"> Gender:</b>
+                    </span>
+                    <div className="radio form-check p-2 ml-4">
+                      <input
+                        type="radio"
+                        name="gender"
+                        onChange={handleChange}
+                        value="M"
+                        id="m"
+                        className="form-check-input"
+                      />
+                      <label className="form-check-label" htmlFor="m">
+                        {" "}
+                        Male
+                      </label>
+                    </div>
+                    <div className="radio form-check p-2 ml-4">
+                      <input
+                        type="radio"
+                        value="F"
+                        id="f"
+                        name="gender"
+                        className="form-check-input"
+                        onChange={handleChange}
+                      />
+                      <label className="form-check-label" htmlFor="f">
+                        {" "}
+                        Female
+                      </label>
+                    </div>
                   </div>
-                  <div className="radio form-check p-2 ml-4">
-                    <input
-                      type="radio"
-                      value="F"
-                      id="f"
-                      name="gender"
-                      className="form-check-input"
-                      onChange={handleChange}
-                    />
-                    <label className="form-check-label" htmlFor="f">
-                      {" "}
-                      Female
-                    </label>
-                  </div>
-                </div>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={values.password}
+                    onChange={handleChange}
+                    error={passLength}
+                    helperText={
+                      passLength && "Password length must be 8 characters"
+                    }
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    error={passError}
+                    helperText={passError && "Password do not match"}
+                    name="confirmPassword"
+                    onChange={(e) => {
+                      setConfirmPassword(e.target.value);
+                      setloading(false);
+                      setValues({ ...values, passError: false });
+                    }}
+                    label="Confirm Password"
+                    type="password"
+                    id="confirmPassword"
+                  />
+                </Grid>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={values.password}
-                  onChange={handleChange}
-                />
+              <Button
+                type="submit"
+                fullWidth
+                // disabled={password!==confirmPassword}
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Sign Up
+              </Button>
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link to="/signin" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  error={passError}
-                  helperText={passError && "Password do not match"}
-                  name="confirmPassword"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign Up
-            </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link to="/signin" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
+            </form>
+          </div>
+          <Box mt={5}>
+            <Copyright />
+          </Box>
+        </Container>
       </div>
     );
   };

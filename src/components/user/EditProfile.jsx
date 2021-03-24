@@ -13,6 +13,13 @@ import {
   makeStyles,
   Container,
 } from "@material-ui/core";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
@@ -47,6 +54,15 @@ function EditProfile() {
   const history = useHistory();
   const [loading,setLoading] = useState(false)
   const [{ user }, dispatch] = useStateValue();
+  const [selectedDate, setSelectedDate] =React.useState(new Date('2014-08-18T21:11:54'));
+  function getFormattedDate(date) {
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+  
+    return year+ '-' + month + '-' + day;
+}
+ 
   const [currentUser, setCurrentUser] = useState({
     first_name: "",
     last_name: "",
@@ -72,6 +88,10 @@ function EditProfile() {
   }, [user]);
   const handleChange = (e) => {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
+  };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setCurrentUser({...currentUser,date_of_birth:getFormattedDate(date)})
   };
   const submit = (e) => {
     e.preventDefault();
@@ -106,7 +126,7 @@ function EditProfile() {
         {loading&&<Loading />}
         <CssBaseline />
         <div className={classes.paper}>
-          <h2 className="dataset__text rounded px-3 mt-2">
+          <h2 className="rounded px-3 mt-2">
             <span
               className="text-dark"
               style={{ fontSize: window.screen.width < 640 ? "25px" : "30px" }}
@@ -149,7 +169,7 @@ function EditProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
-                <span className="dataset__text px-2">
+                <span className=" px-2">
                   {" "}
                   <b className="text-dark"> Photo:</b>{" "}
                 </span>
@@ -193,12 +213,12 @@ function EditProfile() {
                   autoComplete="nName"
                 />
               </Grid>
-              <Grid item xs={12} sm={12}>
+              {/* <Grid item xs={12} sm={12}>
                 <TextField
                   className={classes.date}
                   required
                   name="date_of_birth"
-                  value={currentUser.date_of_birth}
+                  // value={currentUser.date_of_birth}
                   onChange={handleChange}
                   variant="outlined"
                   id="date"
@@ -206,15 +226,32 @@ function EditProfile() {
                   type="date"
                   size={'small'}
 
-                  // defaultValue="2017-05-24"
+                  defaultValue="2017-05-24"
                   InputLabelProps={{
                     shrink: true,
                   }}
                 />
-              </Grid>
+              </Grid> */}
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <Grid className='col-md-12'>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      id="date-picker-inline"
+                      label="Date of Birth"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date",
+                      }}
+                    />
+                  </Grid>
+                </MuiPickersUtilsProvider>
               <Grid item xs={12} sm={12}>
                 <div className="">
-                  <span className="dataset__text px-2">
+                  <span className="px-2">
                     <b className="text-dark"> Gender:</b>
                   </span>
                   <div className="radio form-check p-2 ml-4">

@@ -92,6 +92,7 @@ export default function SignIn() {
   });
   const handleChange = (e) => {
     setuserData({ ...userData, [e.target.name]: e.target.value });
+
   };
   const submit = (e) => {
     e.preventDefault();
@@ -134,22 +135,24 @@ export default function SignIn() {
     }
   };
   return (
+    <>
+  
     <div className="px-3 mt-5 signin">
-      <img className='col-md-8 signinimage' style={{width:'70%',display:window.screen.width<800&&'none', height:'100%',borderRadius:'3%'}} src="/assets/signinimage.jpeg" />
+      <img className='col-md-8 signinimage' style={{width:'70%',display:window.screen.width<800&&'none', height:'500px',borderRadius:'3%'}} src="/assets/signinimage.jpeg" />
       {loading && <Loading />}
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md-12"  style={{marginTop:window.screen.width<800&&'90px',}}>
           <Container component="main" maxWidth="xs" className="bg-white mt-3 rounded">
             {" "}
             <Grid xs={12} item>
               <CssBaseline />
               <div className={classes.paper}>
-                <h2 className="dataset__text rounded text-dark px-3 mt-2">
+                <h2 className="rounded text-dark px-3 mt-2">
                   <span
                     style={{ fontSize: window.screen.width < 640 && "25px" }}
                   >
                     {" "}
-                    Sign In{" "}
+                    QOTRT{" "}
                   </span>
                 </h2>
                 <form className={classes.form} onSubmit={submit}>
@@ -198,20 +201,20 @@ export default function SignIn() {
                     Sign In
                   </ColorButton>
 
-                  <FacebookLoginButton className="pl-2 facebook-login pr-0 mt-2">
+                  {/* <FacebookLoginButton className="pl-2 facebook-login pr-0 mt-2">
                     <Facebook />
                   </FacebookLoginButton>
                   <GoogleLoginButton className="google-login pr-0 mt-2">
                     <Google />
-                  </GoogleLoginButton>
+                  </GoogleLoginButton> */}
                   <Grid container className="my-3">
-                    <Grid item sm={5} xs={12}>
-                      <Link to="/" variant="body2">
+                    {/* <Grid item sm={5} xs={12}>
+                      <Link to="/" style={{fontSize:'0.8rem'}} variant="body2">
                         Forgot password?
                       </Link>
-                    </Grid>
-                    <Grid item sm={7}>
-                      <Link to="/signup" variant="body2">
+                    </Grid> */}
+                    <Grid item sm={12}>
+                      <Link to="/signup" style={{fontSize:'0.8rem'}} variant="body2">
                         {"Don't have an account? Sign Up"}
                       </Link>
                     </Grid>
@@ -224,5 +227,6 @@ export default function SignIn() {
         </div>
       </div>
     </div>
+    </>
   );
 }

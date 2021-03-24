@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     // height: "100vh",
-    marginBottom:'50px'
-    },
+    marginBottom: "50px",
+  },
   paper: {
     padding: theme.spacing(1),
     display: "flex",
@@ -33,16 +33,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Home = () => {
-  const [{qod},dispatch] = useStateValue()
+  const [{ qod }, dispatch] = useStateValue();
   useEffect(() => {
-    if (qod.length<1){
-    quoteOfTheDay().then((data) => {
-      dispatch({
-        type: "qod",
-        data: data,
+    if (qod.length < 1) {
+      quoteOfTheDay().then((data) => {
+        dispatch({
+          type: "qod",
+          data: data,
+        });
       });
-    });
-  }
+    }
   }, []);
   const classes = useStyles();
   return (
@@ -69,8 +69,14 @@ const Home = () => {
                   className="quote-card"
                   style={{ boxShadow: "none", backgroundColor: "#353431" }}
                 >
-                  <h6 className='text-light' >{qod[0] ? qod[0].quote : <RSkeleton count={3} width={'100%'}/>}</h6>
-                  <cite className='text-light'>
+                  <h6 className="text-light">
+                    {qod[0] ? (
+                      qod[0].quote
+                    ) : (
+                      <RSkeleton count={3} width={"100%"} />
+                    )}
+                  </h6>
+                  <cite className="text-light">
                     {" "}
                     {qod
                       ? qod.map((v, i) => {
@@ -99,8 +105,8 @@ const Home = () => {
               </Typography>
 
               <table className="table table-dark table-hover rounded">
-                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily: "monospace" }}>
+                <thead className="thead" style={{ backgroundColor: "#443F39" }}>
+                  <tr style={{ cursor: "pointer" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
@@ -116,6 +122,23 @@ const Home = () => {
                     <th scope="row">2</th>
                     <td>Mubeen</td>
                     <td>2</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr> <tr>
+                    <th scope="row">4</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr> <tr>
+                    <th scope="row">5</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr> <tr>
+                    <th scope="row">6</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
                   </tr>
                 </tbody>
               </table>
@@ -138,8 +161,8 @@ const Home = () => {
               </Typography>
 
               <table className="table table-hover table-dark rounded">
-                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily:"monospace" }}>
+                <thead className="thead" style={{ backgroundColor: "#443F39" }}>
+                  <tr style={{ cursor: "pointer" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
@@ -153,6 +176,24 @@ const Home = () => {
                   </tr>
                   <tr>
                     <th scope="row">2</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr> <tr>
+                    <th scope="row">5</th>
+                    <td>Mubeen</td>
+                    <td>0</td>
+                  </tr> <tr>
+                    <th scope="row">6</th>
                     <td>Mubeen</td>
                     <td>0</td>
                   </tr>
@@ -177,8 +218,8 @@ const Home = () => {
               </Typography>
 
               <table className="table table-hover table-dark">
-                <thead className="thead"  style={{backgroundColor:'#443F39'}}>
-                  <tr style={{ cursor: "pointer", fontFamily: "monospace" }}>
+                <thead className="thead" style={{ backgroundColor: "#443F39" }}>
+                  <tr style={{ cursor: "pointer" }}>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Score</th>
@@ -192,6 +233,26 @@ const Home = () => {
                   </tr>
                   <tr>
                     <th scope="row">2</th>
+                    <td>Mubeen</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Mubeen</td>
+                    <td>4</td>
+                  </tr>{" "}
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Mubeen</td>
+                    <td>4</td>
+                  </tr>{" "}
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>Mubeen</td>
+                    <td>4</td>
+                  </tr>{" "}
+                  <tr>
+                    <th scope="row">6</th>
                     <td>Mubeen</td>
                     <td>4</td>
                   </tr>

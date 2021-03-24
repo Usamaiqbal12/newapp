@@ -6,6 +6,7 @@ import {
   deleteDatasetFunc,
   getDataSet,
   datasetListFunc,
+  listAttributes
 } from "../../services/Api";
 import { useStateValue } from "../../StateProvider";
 import Loading from "../Loading";
@@ -60,7 +61,7 @@ function DatasetDetails(props) {
             </h1>
 
             <div className="dataset__detail rounded">
-              <div className="col-sm-6 col-7 col-md-4">
+              <div className="col-sm-6   col-7 col-md-4">
                 <p className="lead mt-0 ">
                   {" "}
                   <b className="dataset__text">Dataset Name: </b>
@@ -75,7 +76,7 @@ function DatasetDetails(props) {
                   <b className="dataset__text">Created At : </b>
                 </p>
               </div>
-              <div className="col-sm-6 col-5 col-md-5">
+              <div className="col-sm-6 col-6 col-md-5">
                 <p className="lead mt-0">
                   <b className="dataset__text">
                     {foundedValue.dataset_name ? (
@@ -132,7 +133,7 @@ function DatasetDetails(props) {
             >
               Disucssion Mode
             </button>
-            <CreateDatasetModal id={foundedValue.id} create={false} />
+            <CreateDatasetModal id={foundedValue.id} values={foundedValue} create={false} />
           </div>
           <AuthorsList foundedValue={foundedValue} />
         </>

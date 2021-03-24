@@ -1,16 +1,17 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import RSkeleton from "../RSkeleton";
 
 function Profile() {
   const [{ user }] = useStateValue();
+  const history= useHistory()
   return (
     <>
       <div className="container mb-5 mt-5 userprofile">
         <div className="row gutters-sm ">
           <div className="col-md-4 mt-4 mb-3">
             <div className="d-flex flex-column align-items-center text-center">
-              {console.log(user[0])}
               <img
                 src={
                   user[0]
@@ -114,6 +115,9 @@ function Profile() {
             </div>
           </div>
         </div>
+      </div>
+      <div className='ml-2'>
+      <button onClick={()=>history.push('/editprofile')} className='btn btn-secondary col-md-2'>Edit Profile</button>
       </div>
     </>
   );
