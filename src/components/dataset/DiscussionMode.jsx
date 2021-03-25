@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { discussionmode } from "../../services/Api";
 import { useHistory } from "react-router-dom";
 import Loading from "../Loading";
 const DiscussionMode = (props) => {
   const [values, setValues] = useState([]);
   const history = useHistory();
+  const carouselRef = useRef(null);
   const [loading, setloading] = useState(true);
+  const [pagination, setpagination] = useState(0);
   let c = 1;
   const {
     match: { params },
   } = props;
   useEffect(() => {
     let mounted = true;
-
     discussionmode(params.id).then((data) => {
       if (mounted) {
         setValues([...data.data]);
@@ -21,6 +22,24 @@ const DiscussionMode = (props) => {
     });
     return () => (mounted = false);
   }, []);
+  const carouselArrow = () => {
+    if (
+      carouselRef &&
+      carouselRef.current.children[0].className === "carousel-item  active"
+    ) {
+      setpagination(1);
+    } else if (
+      carouselRef &&
+      carouselRef.current.children[values.length - 2].className ===
+        "carousel-item false active"
+    ) {
+      setpagination(3);
+    }
+    else{
+      setpagination(2)
+    }
+  };
+
   return (
     <React.Fragment>
       {loading && <Loading />}
@@ -28,11 +47,10 @@ const DiscussionMode = (props) => {
         id="carouselExampleControls"
         className="carousel slide "
         data-ride="carousel"
+        data-wrap={false}
         data-interval={false}
       >
-
-
-        <div className="carousel-inner">
+        <div className="carousel-inner" ref={carouselRef}>
           {values
             ? values.map((v, i) => {
                 return (
@@ -46,21 +64,33 @@ const DiscussionMode = (props) => {
                         Discussion Mode
                       </span>
                     </h4>
-                    <div className="container rounded mb-4" style={{ backgroundColor: "#353429" }}>
+                    <div
+                      className="container rounded mb-4"
+                      style={{ backgroundColor: "#353429" }}
+                    >
                       <div className="row gutters-sm align-items-center">
                         <div className="col-md-4 mt-4 mb-3">
                           <div className="d-flex flex-column align-items-center text-center">
-                            
                             <img
-                              src={v.author.photo==null?"https://via.placeholder.com/150":"http://localhost:8000"+v.author.photo}
+                              src={
+                                v.author.photo == null
+                                  ? "https://via.placeholder.com/150"
+                                  : "http://localhost:8000" + v.author.photo
+                              }
                               alt="name"
                               className=" profilePicture rounded"
                             />
                           </div>
                         </div>
                         <div className="col-md-8 mt-3 mb-2 rounded mt-md-0 ">
-                          <div className="card mb-0 mt-1" style={{ backgroundColor: "#353429" }}>
-                            <div className="card-body discussioninfo rounded" style={{backgroundColor:'#443F39'}}>
+                          <div
+                            className="card mb-0 mt-1"
+                            style={{ backgroundColor: "#353429" }}
+                          >
+                            <div
+                              className="card-body discussioninfo rounded"
+                              style={{ backgroundColor: "#443F39" }}
+                            >
                               <div className="row">
                                 <div className="col-md-6 col-6 py-3">
                                   <h6 className="mb-2 text-white"> Name</h6>
@@ -159,40 +189,49 @@ const DiscussionMode = (props) => {
                       <button
                         onClick={() => history.goBack()}
                         className="btn text-light mt-3 mb-5 col-12 col-sm-3"
-                        style={{backgroundColor:'#443F39'}}
+                        style={{ backgroundColor: "#443F39" }}
                       >
                         Back to Dataset
                       </button>
+                    </div>
+                    <div className="text-center text-white">
+                      Page {i + 1} of {values.length}{" "}
                     </div>
                   </div>
                 );
               })
             : ""}
         </div>
-        <a
-          className="carousel-control-prev"
-          href="#carouselExampleControls"
-          role="button"
-          data-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon "
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only colors-control">Previous</span>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#carouselExampleControls"
-          role="button"
-          data-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Next</span>
-        </a>
+        {pagination!=0 && (
+          <a
+            className="carousel-control-prev"
+            href="#carouselExampleControls"
+            role="button"
+            onClick={carouselArrow}
+            data-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon "
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only colors-control">Previous</span>
+          </a>
+        )}
+        {pagination!=3 && (
+          <a
+            className="carousel-control-next"
+            href="#carouselExampleControls"
+            role="button"
+            data-slide="next"
+            onClick={carouselArrow}
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="sr-only">Next</span>
+          </a>
+        )}
       </div>
     </React.Fragment>
   );
