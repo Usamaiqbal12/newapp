@@ -4,14 +4,21 @@ import RSkeleton from "../RSkeleton";
 
 function Profile(props) {
   const [author, setAuthor] = useState([]);
+  const [dob,setDob] = useState('')
   useEffect(() => {
     const {
       match: { params },
     } = props;
+    let authorDob = "";
     let mounted = true;
     getauthor(params.id).then((items) => {
       if (mounted) {
         setAuthor(items.data);
+        let day = items.data.date_of_birth.split("-")[2]
+        let month = items.data.date_of_birth.split("-")[1]
+        let year = items.data.date_of_birth.split("-")[0]
+        authorDob = month+"-"+day+"-"+year
+        setDob(authorDob)
       }
     });
     return () => (mounted = false);
@@ -85,7 +92,7 @@ function Profile(props) {
                   <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
-                      {author.bio ? (author.bio):<RSkeleton />}{" "}
+                      {author.bio ? (author.bio):"None"}{" "}
                     </span>
                   </div>
                 </div>
@@ -126,7 +133,7 @@ function Profile(props) {
                   <div className="col-sm-8 col-6">
                     <span className="profile__info">
                       {" "}
-                      {author.date_of_birth ? author.date_of_birth : <RSkeleton />}{" "}
+                      {author.date_of_birth ? dob   : <RSkeleton />}{" "}
                     </span>
                   </div>
                 </div>

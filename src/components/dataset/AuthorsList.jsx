@@ -1,9 +1,15 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import RSkeleton from "../RSkeleton";
 import "./dataset.css";
 function AuthorsList(props) {
   const { foundedValue } = props;
+  const dateofbirth=(dob)=>{
+    let day = dob.split("-")[2]
+    let month = dob.split("-")[1]
+    let year = dob.split("-")[0]
+    return month+"-"+day+"-"+year
+  }
   const history = useHistory()
   return (
     <div >
@@ -35,7 +41,7 @@ function AuthorsList(props) {
                   <td>{v.first_name}</td>
                   <td>{v.last_name}</td>
                   <td>{(v.sex==='M'&&'Male')||(v.sex==='F'&&'Female')}</td>
-                  <td>{v.date_of_birth}</td>
+                  <td>{dateofbirth(v.date_of_birth)}</td>
                 </tr>
               );
             }):

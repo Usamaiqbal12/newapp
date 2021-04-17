@@ -20,6 +20,12 @@ function ListDataset(props) {
     })
     return () => (mounted = false);
   },[])
+  const dateofbirth=(dob)=>{
+    let day = dob.split("-")[2]
+    let month = dob.split("-")[1]
+    let year = dob.split("-")[0]
+    return month+"-"+day+"-"+year
+  }
   return (
     <div className="px-2 py-1 mt-4 rounded mb-5">
       <table className="table mt-3 table-hover table-dark">
@@ -43,7 +49,7 @@ function ListDataset(props) {
                   <td scope="row">{i + 1}</td>
                   <td>{v.dataset_name}</td>
                   <td className="pl-4">{v.author.length}</td>
-                  <td>{v.created_at.split(":")[0].split("T")[0]}</td>
+                  <td>{dateofbirth(v.created_at.split(":")[0].split("T")[0])}</td>
                 </tr>
               );
             })

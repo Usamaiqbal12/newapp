@@ -30,7 +30,12 @@ function DatasetDetails(props) {
     });
     return () => (mounted = false);
   }, [currentDataset]);
-
+  const dateofbirth=(dob)=>{
+    let day = dob.split("-")[2]
+    let month = dob.split("-")[1]
+    let year = dob.split("-")[0]
+    return month+"-"+day+"-"+year
+  }
   const deleteDataset = (e) => {
     setLoading(true);
     deleteDatasetFunc(foundedValue.id).then((data) => {
@@ -107,7 +112,7 @@ function DatasetDetails(props) {
                 <p className="lead">
                   <b className="dataset__date">
                     {foundedValue.created_at ? (
-                      foundedValue.created_at.split(":")[0].split("T")[0]
+                      dateofbirth(foundedValue.created_at.split(":")[0].split("T")[0])
                     ) : (
                       <RSkeleton />
                     )}

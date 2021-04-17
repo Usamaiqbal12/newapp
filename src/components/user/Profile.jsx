@@ -5,6 +5,12 @@ import RSkeleton from "../RSkeleton";
 
 function Profile() {
   const [{ user }] = useStateValue();
+  const dateofbirth=(dob)=>{
+    let day = dob.split("-")[2]
+    let month = dob.split("-")[1]
+    let year = dob.split("-")[0]
+    return month+"-"+day+"-"+year
+  }
   const history= useHistory()
   return (
     <>
@@ -107,7 +113,7 @@ function Profile() {
                   <div className="col-6 col-sm-8">
                     <span className="profile__info">
                       {" "}
-                      {user[0] ? user[0].date_of_birth : <RSkeleton />}
+                      {user[0] ? dateofbirth(user[0].date_of_birth) : <RSkeleton />}
                     </span>
                   </div>
                 </div>
