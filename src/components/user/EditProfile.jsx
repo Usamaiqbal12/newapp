@@ -84,6 +84,7 @@ function EditProfile() {
         gender: user[0].gender === null ? "--" : user[0].gender,
         profile_picture: "",
       });
+      setSelectedDate(user[0].date_of_birth)
     }
   }, [user]);
   const handleChange = (e) => {
@@ -213,25 +214,6 @@ function EditProfile() {
                   autoComplete="nName"
                 />
               </Grid>
-              {/* <Grid item xs={12} sm={12}>
-                <TextField
-                  className={classes.date}
-                  required
-                  name="date_of_birth"
-                  // value={currentUser.date_of_birth}
-                  onChange={handleChange}
-                  variant="outlined"
-                  id="date"
-                  label="DATE OF BIRTH"
-                  type="date"
-                  size={'small'}
-
-                  defaultValue="2017-05-24"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Grid> */}
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <Grid className='col-md-12'>
                     <KeyboardDatePicker

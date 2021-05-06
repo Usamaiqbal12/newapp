@@ -3,6 +3,7 @@ import {
   authorsList,
   createdataset,
   datasetListFunc,
+  getDataSet,
   updatedataset,
 } from "../../services/Api";
 import { TextField } from "@material-ui/core";
@@ -31,7 +32,11 @@ function Manual(props) {
         setauthorsList(items.data);
       }
     });
+    getDataSet(params.id).then((items)=>{
+      setauthorsData({...authorsData,name:items.data.dataset_name})
+    })
     return () => (mounted = false);
+    
   }, []);
 
   const handleChange = (e) => {

@@ -68,19 +68,6 @@ const SignUp = () => {
   const [loading, setloading] = useState(false);
   const history = useHistory();
   const classes = useStyles();
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-    date_of_birth: "",
-    gender: "",
-    first_name: "",
-    last_name: "",
-    error: [false, ""],
-    success: false,
-    passError: false,
-  });
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
   function getFormattedDate(date) {
     let year = date.getFullYear();
     let month = (1 + date.getMonth()).toString().padStart(2, '0');
@@ -88,6 +75,20 @@ const SignUp = () => {
   
     return year+ '-' + month + '-' + day;
 }
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    nickname: "",
+    date_of_birth: getFormattedDate(new Date('2000-01-01T21:11:54')),
+    gender: "",
+    first_name: "",
+    last_name: "",
+    error: [false, ""],
+    success: false,
+    passError: false,
+  });
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2000-01-01T21:11:54'));
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setValues({...values,date_of_birth:getFormattedDate(date)})
@@ -115,11 +116,12 @@ const SignUp = () => {
   } = values;
   function submit(e) {
     e.preventDefault();
-    setloading(true);
+    
     if (password.length < 8) {
       setPassLength(true);
     } else {
       if (confirmPassword === password) {
+        setloading(true);
         signup({
           email,
           password,
@@ -262,6 +264,7 @@ const SignUp = () => {
                       variant="inline"
                       format="MM/dd/yyyy"
                       margin="normal"
+                      required
                       id="date-picker-inline"
                       label="Date of Birth"
                     value={selectedDate}

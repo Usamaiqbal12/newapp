@@ -25,7 +25,7 @@ function CreateDataset(props) {
     gender: "",
     morality: "",
     size: 0,
-    name: props.create ? "" : props.values.name,
+    name: props.create ? "" : props.values.dataset_name,
     type_dataset: "parameter",
   });
   let values = {
@@ -33,7 +33,7 @@ function CreateDataset(props) {
     gender: "",
     morality: "",
     size: 0,
-    name: props.create ? "" : props.values.name,
+    name: props.create ? "" : props.values.dataset_name,
     type_dataset: "parameter",
   };
   const handleChange = (e) => {
@@ -62,7 +62,6 @@ function CreateDataset(props) {
     e.preventDefault();
     setLoading(true);
     values = { ...params };
-    console.log(params);
     if (params.name === "" || params.name===undefined) {
       setErr(true);
       setError("Please Type Dataset Name");
@@ -150,7 +149,7 @@ function CreateDataset(props) {
         <button
           className="btn btn-light my-2 w-100"
           onClick={() =>
-            props.create
+            props.create  
               ? history.push("/manual")
               : history.push(`/dataseteditmanual/${props.id}`)
           }

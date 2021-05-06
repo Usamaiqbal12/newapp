@@ -34,12 +34,16 @@ const DiscussionMode = (props) => {
         "carousel-item false active"
     ) {
       setpagination(3);
-    }
-    else{
-      setpagination(2)
+    } else {
+      setpagination(2);
     }
   };
-
+  const dateofbirth = (dob) => {
+    let day = dob.split("-")[2];
+    let month = dob.split("-")[1];
+    let year = dob.split("-")[0];
+    return month + "-" + day + "-" + year;
+  };
   return (
     <React.Fragment>
       {loading && <Loading />}
@@ -75,7 +79,7 @@ const DiscussionMode = (props) => {
                               src={
                                 v.author.photo == null
                                   ? "https://via.placeholder.com/150"
-                                  : "http://localhost:8000" + v.author.photo
+                                  : v.author.photo
                               }
                               alt="name"
                               className=" profilePicture rounded"
@@ -121,7 +125,7 @@ const DiscussionMode = (props) => {
                                   <div className="text-user_info">
                                     {v.author.attribute.length > 0
                                       ? v.author.attribute.map((v, i) => {
-                                          return <span key={i}>{v}</span>;
+                                          return <span key={i}>{v} </span>;
                                         })
                                       : "None"}
                                   </div>
@@ -133,14 +137,25 @@ const DiscussionMode = (props) => {
                                       (v.author.sex === "F" && "Female")}
                                   </div>
                                 </div>
-                                <div className="col-md-6 col-6 py-3">
-                                  <h6 className="mb-2 text-white">
-                                    Date of Birth
-                                  </h6>
-                                  <div className="text-user_info">
-                                    {v.author.date_of_birth}
+                                {v.author.date_of_death ? (
+                                  <div className="col-md-6 col-6 py-3">
+                                    <h6 className="mb-2 text-white">
+                                      Date of Death
+                                    </h6>
+                                    <div className="text-user_info">
+                                      {dateofbirth(v.author.date_of_death)}
+                                    </div>
                                   </div>
-                                </div>
+                                ) : (
+                                  <div className="col-md-6 col-6 py-3">
+                                    <h6 className="mb-2 text-white">
+                                      Date of Birth
+                                    </h6>
+                                    <div className="text-user_info">
+                                      {dateofbirth(v.author.date_of_birth)}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -202,7 +217,7 @@ const DiscussionMode = (props) => {
               })
             : ""}
         </div>
-        {pagination!=0 && (
+        {pagination != 0 && (
           <a
             className="carousel-control-prev"
             href="#carouselExampleControls"
@@ -217,7 +232,7 @@ const DiscussionMode = (props) => {
             <span className="sr-only colors-control">Previous</span>
           </a>
         )}
-        {pagination!=3 && (
+        {pagination != 3 && (
           <a
             className="carousel-control-next"
             href="#carouselExampleControls"
